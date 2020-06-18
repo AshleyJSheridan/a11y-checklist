@@ -1,0 +1,15 @@
+<fieldset class="compliance-level">
+	<legend>Desired compliance level:</legend>
+	
+	<div class="compliance-level-list">
+		 <span *ngFor="let level of levels">
+			<input 
+				 type="radio" 
+				 name="compliance-level" 
+				 value="{{ level }}" id="compliance-level-{{ level }}"
+				 [checked]="level === defaultLevel"
+			/>
+			<label for="compliance-level-{{ level }}">{{ level }}</label>
+		</span>
+	</div>
+</fieldset>
