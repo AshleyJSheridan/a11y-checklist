@@ -1,0 +1,5 @@
+$quick-animation-duration: .25s;
+
+@mixin transition($duration) {
+	transition: all $duration ease-in;
+}

@@ -1,0 +1,58 @@
+.content-selection {
+	margin: 1em 0;
+	max-width: $max-content-width;
+	
+	.content-selection-list {
+		display: flex;
+		flex-wrap: wrap;
+		justify-content: space-evenly;
+		margin: 0;
+		padding: 0;
+	}
+	
+	.content-selection-item {
+		color: $white;
+		flex: 1 0 20%;
+		list-style: none;
+		margin: 1em .5em;
+		text-align: center;
+	}
+	
+	label {
+		@include transition($quick-animation-duration);
+		border: 2px solid $light-grey;
+		cursor: pointer;
+		display: block;
+		padding: 1em;
+	}
+	
+	input[type=checkbox]:checked ~ label {
+		background-color: $light-grey;
+		color: #0070b0;
+		
+		svg {
+			stroke: #0070b0;
+		}
+		
+		.filled {
+			fill: #0070b0;
+		}
+	}
+	
+	svg {
+		height: auto;
+		stroke: $white;
+		stroke-width: 8;
+		width: 85%;
+		
+		.filled {
+			fill: $white;
+			stroke-width: 0;
+		}
+	}
+	
+	.content-selection-label {
+		display: block;
+		text-align: center;
+	}
+}

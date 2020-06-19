@@ -1,0 +1,25 @@
+.compliance-level {
+	display: inline-block;
+	
+	.compliance-level-list {
+		display: flex;
+	}
+	
+	label {
+		@include transition($quick-animation-duration);
+		align-items: center;
+		border: 2px solid $light-grey;
+		border-radius: 50%;
+		cursor: pointer;
+		display: flex;
+		height: 3em;
+		justify-content: center;
+		margin-right: .5em;
+		width: 3em;
+	}
+	
+	input[type=radio]:checked + label {
+		background-color: $light-grey;
+		color: #0070b0;
+	}
+}
