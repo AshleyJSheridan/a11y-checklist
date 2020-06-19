@@ -2,4 +2,8 @@ $quick-animation-duration: .25s;
 
 @mixin transition($duration) {
 	transition: all $duration ease-in;
+	
+	@media (prefers-reduced-motion) {
+		transition: none;
+	}
 }
