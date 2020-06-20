@@ -12,6 +12,6 @@ export class ChecklistService {
 	constructor() { }
 	
 	getMatchingGuidelines(contentTypes: ContentType[], complianceLevel: GuidelineLevel) {
-		
+		return this.guidelines;
 	}
 }

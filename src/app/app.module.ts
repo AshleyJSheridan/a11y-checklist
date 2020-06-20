@@ -12,6 +12,8 @@ import { SvgTimedComponentsComponent } from './components/svg/svg-timed-componen
 import { SvgTranslationsComponent } from './components/svg/svg-translations/svg-translations.component';
 import { SvgVideoComponent } from './components/svg/svg-video/svg-video.component';
 import { CheckDesiredComplianceLevelComponent } from './components/check-desired-compliance-level/check-desired-compliance-level.component';
+import { GuidelinesComponent } from './components/guidelines/guidelines.component';
+import { SvgContentTypesComponent } from './components/svg/svg-content-types/svg-content-types.component';
 
 @NgModule({
 	declarations: [
@@ -26,7 +28,9 @@ import { CheckDesiredComplianceLevelComponent } from './components/check-desired
 		SvgTimedComponentsComponent,
 		SvgTranslationsComponent,
 		SvgVideoComponent,
-		CheckDesiredComplianceLevelComponent
+		CheckDesiredComplianceLevelComponent,
+		GuidelinesComponent,
+		SvgContentTypesComponent
 	],
 	imports: [
 		BrowserModule
