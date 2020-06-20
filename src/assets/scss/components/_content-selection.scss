@@ -4,7 +4,7 @@
 	
 	.content-selection-list {
 		display: flex;
-		flex-wrap: wrap;
+		flex-wrap: nowrap;
 		justify-content: space-evenly;
 		margin: 0;
 		padding: 0;
@@ -12,9 +12,9 @@
 	
 	.content-selection-item {
 		color: $white;
-		flex: 1 0 20%;
+		flex: 1 1 100%;
 		list-style: none;
-		margin: 1em .5em;
+		margin: 1em .25em;
 		text-align: center;
 	}
 	
@@ -23,7 +23,7 @@
 		border: 2px solid $light-grey;
 		cursor: pointer;
 		display: block;
-		padding: 1em;
+		padding: .5em;
 		
 		&:hover {
 			background-image: repeating-linear-gradient(
@@ -82,6 +82,9 @@
 	
 	.content-selection-label {
 		display: block;
+		font-size: 14px;
+		max-width: 100%;
 		text-align: center;
+		width: 100%;
 	}
 }
