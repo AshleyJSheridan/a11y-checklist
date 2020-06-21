@@ -2,7 +2,7 @@
 	<legend>Desired compliance level:</legend>
 	
 	<div class="compliance-level-list">
-		 <span *ngFor="let level of levels">
+		 <span *ngFor="let level of getAllGuidelineLevels()">
 			<input 
 				 type="radio" 
 				 name="compliance-level" 
