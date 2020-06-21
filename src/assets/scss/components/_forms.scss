@@ -8,6 +8,12 @@
 	position: relative;
 	vertical-align: middle;
 	width: 1.5em;
+	
+	.accessible-hidden {
+		height: 1.5em;
+		overflow: hidden;
+		width: 1.5em;
+	}
 }
 
 input[type=checkbox]:checked + .tick-checkbox:after {

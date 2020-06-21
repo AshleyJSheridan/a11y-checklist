@@ -8,8 +8,11 @@
 
 	<details>
 		<summary class="short-description">{{ guideline.shortDescription }}</summary>
-		<div class="long-description">
-			{{ guideline.longDescription }}
-		</div>
+		<div class="long-description" [innerHTML]="guideline.longDescription"></div>
+		
+		<p *ngIf="guideline.jsSnippets.length > 0">You can run these snippets in your browser to help identify failing code:</p>
+		<ul class="js-snippets" *ngIf="guideline.jsSnippets.length > 0">
+			<li *ngFor="let snippet of guideline.jsSnippets">{{ snippet }}</li>
+		</ul>
 	</details>
 </li>
