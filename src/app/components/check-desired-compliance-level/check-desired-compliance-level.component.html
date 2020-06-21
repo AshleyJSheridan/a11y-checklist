@@ -10,6 +10,7 @@
 				 [checked]="level === defaultLevel"
 				 class="accessible-hidden"
 				 (change)="toggleSelectedComplianceLevel($event, level)"
+				 aria-controls="guidelines"
 			/>
 			<label for="compliance-level-{{ level }}">{{ level }}</label>
 		</span>

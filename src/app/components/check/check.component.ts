@@ -12,14 +12,11 @@ import { CheckDesiredComplianceLevelComponent } from '../check-desired-complianc
 	templateUrl: './check.component.html'
 })
 export class CheckComponent implements OnInit {
-	private _checklistService: ChecklistService;
 	@ViewChild(CheckContentTypesComponent) checkContentTypeComponent;
 	@ViewChild(CheckDesiredComplianceLevelComponent) checkDesiredComplianceLevelComponent;
 	@ViewChild(GuidelinesComponent) guidelinesComponent;
 
-	constructor(checklistService: ChecklistService) { 
-		this._checklistService = checklistService;
-	}
+	constructor() { }
 
 	ngOnInit() {
 	}
