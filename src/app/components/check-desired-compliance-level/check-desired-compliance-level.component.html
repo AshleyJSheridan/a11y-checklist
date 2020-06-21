@@ -9,6 +9,7 @@
 				 value="{{ level }}" id="compliance-level-{{ level }}"
 				 [checked]="level === defaultLevel"
 				 class="accessible-hidden"
+				 (change)="toggleSelectedComplianceLevel($event, level)"
 			/>
 			<label for="compliance-level-{{ level }}">{{ level }}</label>
 		</span>

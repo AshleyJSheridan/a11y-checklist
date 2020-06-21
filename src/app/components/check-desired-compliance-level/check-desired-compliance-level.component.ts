@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { EnumHelper } from 'src/app/helpers/enum-helper';
 import { GuidelineLevel } from 'src/app/enums/guideline-level.enum';
 
@@ -9,7 +9,9 @@ import { GuidelineLevel } from 'src/app/enums/guideline-level.enum';
 })
 export class CheckDesiredComplianceLevelComponent implements OnInit {
 	private _enumHelper: EnumHelper;
+	currentLevel: GuidelineLevel = GuidelineLevel.AA;
 	defaultLevel: string = GuidelineLevel[GuidelineLevel.AA];
+	@Output() updateGuidelines: EventEmitter<boolean> = new EventEmitter<boolean>();
 
 	constructor(enumHelper: EnumHelper) {
 		this._enumHelper = enumHelper;
@@ -22,5 +24,15 @@ export class CheckDesiredComplianceLevelComponent implements OnInit {
 		let levels = this._enumHelper.getStringValuesFromEnum(GuidelineLevel);
 		
 		return levels;
+	}
+	
+	toggleSelectedComplianceLevel($event: any, level: string): void {
+		this.currentLevel = GuidelineLevel[level];
+		
+		this.updateGuidelines.emit(true);
+	}
+	
+	getCurrentGuidelineLevel(): GuidelineLevel {
+		return this.currentLevel;
 	}
 }

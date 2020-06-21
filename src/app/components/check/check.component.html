@@ -2,7 +2,7 @@
 	
 	<app-check-content-types (updateGuidelines)="updateGuidelines($event)"></app-check-content-types>
 
-	<app-check-desired-compliance-level></app-check-desired-compliance-level>
+	<app-check-desired-compliance-level (updateGuidelines)="updateGuidelines($event)"></app-check-desired-compliance-level>
 	
-	<app-guidelines [selectedContentTypes]="getSelectedContentTypes()"></app-guidelines>
+	<app-guidelines [selectedContentTypes]="getSelectedContentTypes()" [guidelineLevel]="getSelectedGuidelineLevel()"></app-guidelines>
 </form>
