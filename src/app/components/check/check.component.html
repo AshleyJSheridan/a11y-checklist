@@ -1,8 +1,8 @@
 <form>
 	
-	<app-check-content-types></app-check-content-types>
+	<app-check-content-types (updateGuidelines)="updateGuidelines($event)"></app-check-content-types>
 
 	<app-check-desired-compliance-level></app-check-desired-compliance-level>
 	
-	<app-guidelines></app-guidelines>
+	<app-guidelines [selectedContentTypes]="getSelectedContentTypes()"></app-guidelines>
 </form>

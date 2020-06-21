@@ -3,8 +3,16 @@
 	
 	<div class="content-selection-list">
 		
-		<span class="content-selection-item" *ngFor="let contentType of getContentTypes()">
-			<input type="checkbox" name="content-selection" value="{{ contentType }}" id="select-{{ contentType }}" class="accessible-hidden"/>
+		<span class="content-selection-item" *ngFor="let contentType of getAllContentTypes()">
+			<input 
+				type="checkbox"
+				name="content-selection"
+				value="{{ contentType }}"
+				id="select-{{ contentType }}"
+				class="accessible-hidden"
+				(change)="toggleSelectedType($event, contentType)"
+			/>
+			
 			<label for="select-{{ contentType }}">
 				
 				<app-svg-content-types svgIcon="{{ contentType }}"></app-svg-content-types>
