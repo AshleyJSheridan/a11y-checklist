@@ -1,16 +1,29 @@
 .guideline-list {
 	list-style: none;
 	padding: 0;
+	
+	.guideline {
+		border: 1px solid;
+		padding: .5em;
+	}
+
+	.guideline-name {
+		display: inline-block;
+		font-weight: bold;
+		vertical-align: middle;
+	}
+	
+	.short-description {
+		&:focus {
+			box-shadow: 0 0 10px $primary, 0 0 5px $primary;
+			outline: none;
+		}
+	}
+	
+	.long-description {
+		margin-top: 1em;
+	}
 }
 
-.guideline {
-	border: 1px solid;
-	padding: .5em;
-}
 
-.guideline-name {
-	display: inline-block;
-	font-weight: bold;
-	vertical-align: middle;
-}
 

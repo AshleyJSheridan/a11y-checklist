@@ -1,6 +1,7 @@
 .tick-checkbox {
 	border: 2px solid;
 	border-radius: 5px;
+	cursor: pointer;
 	display: inline-block;
 	height: 1.5em;
 	margin-right: .5em;
@@ -14,9 +15,14 @@ input[type=checkbox]:checked + .tick-checkbox:after {
 	background-repeat: no-repeat;
 	background-size: 100%;
 	content: "";
+	filter: brightness(0.5) sepia(1) hue-rotate(190deg) saturate(73);
 	height: 1.5em;
 	left: .4em;
 	position: absolute;
 	top: -.25em;
 	width: 1.5em;
+}
+
+input[type=checkbox]:focus + .tick-checkbox {
+	box-shadow: 0 0 10px $primary, 0 0 5px $primary;
 }

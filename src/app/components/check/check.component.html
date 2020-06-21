@@ -1,8 +1,12 @@
 <form>
-	
-	<app-check-content-types (updateGuidelines)="updateGuidelines($event)"></app-check-content-types>
+	<div class="setup">
+		<h1>Accessibility Testing Checklist Tool</h1>
+		
+		<app-check-content-types (updateGuidelines)="updateGuidelines($event)"></app-check-content-types>
 
-	<app-check-desired-compliance-level (updateGuidelines)="updateGuidelines($event)"></app-check-desired-compliance-level>
-	
-	<app-guidelines [selectedContentTypes]="getSelectedContentTypes()" [guidelineLevel]="getSelectedGuidelineLevel()"></app-guidelines>
+		<app-check-desired-compliance-level (updateGuidelines)="updateGuidelines($event)"></app-check-desired-compliance-level>
+	</div>
+	<div class="results">
+		<app-guidelines [selectedContentTypes]="getSelectedContentTypes()" [guidelineLevel]="getSelectedGuidelineLevel()"></app-guidelines>
+	</div>
 </form>

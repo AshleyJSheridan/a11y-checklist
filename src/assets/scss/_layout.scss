@@ -1,19 +1,30 @@
 $max-content-width: 900px;
 
 body {
-	background-color: $primary;
-	color: $white;
+	background-color: $white;
+	color: $black;
 	font-family: $font-family;
 	font-size: $font-size;
 	margin: 0;
-	padding: 1em;
+	padding: 0;
 }
 
-h1 {
+h1,
+h2 {
 	margin: 0;
 }
 
 .accessible-hidden {
 	position: absolute;
 	opacity: 0;
+}
+
+.setup {
+	background-color: $primary;
+	color: $white;
+}
+
+.results,
+.setup {
+	padding: 1em;
 }
