@@ -1,0 +1,15 @@
+<li class="guideline">
+	<input type="checkbox" name="guideline" value="{{ guideline.guidelineNumber }}" class="accessible-hidden" id="guideline-{{ guideline.guidelineNumber }}"/>
+	<label for="guideline-{{ guideline.guidelineNumber }}" class="tick-checkbox">
+		<span class="accessible-hidden">Completed guideline {{ guideline.guidelineNumber }} {{ guideline.guidelineName }}</span>
+	</label>
+	
+	<p class="guideline-name">{{ guideline.guidelineNumber }} {{ guideline.guidelineName }}</p>
+
+	<details>
+		<summary>{{ guideline.shortDescription }}</summary>
+		<div>
+			{{ guideline.longDescription }}
+		</div>
+	</details>
+</li>

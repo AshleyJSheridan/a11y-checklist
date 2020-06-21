@@ -13,7 +13,7 @@ export class AllGuidelines {
 			'1.1.1',
 			'Text Alternatives',
 			'Provide text alternatives for any non-text content so that it can be changed into other forms people need, such as large print, braille, speech, symbols or simpler language.',
-			'long description',
+			`long description`,
 			[ContentType.Audio, ContentType.Images, ContentType.Video]
 		),
 		new Guideline(

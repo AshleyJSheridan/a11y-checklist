@@ -25,7 +25,7 @@
 		display: block;
 		padding: .5em;
 		
-		&:hover {
+		&:hover{
 			background-image: repeating-linear-gradient(
 				45deg,
 				transparent,
@@ -40,7 +40,7 @@
 		background-color: $light-grey;
 		color: $primary;
 		
-		&:hover {
+		&:hover{
 			background-image: repeating-linear-gradient(
 				45deg,
 				transparent,
@@ -66,6 +66,10 @@
 		.filled {
 			fill: $primary;
 		}
+	}
+	
+	input[type=checkbox]:focus ~ label {
+		box-shadow: 0 0 10px $white, 0 0 5px $white, inset 0 0 10px $white;
 	}
 	
 	svg {

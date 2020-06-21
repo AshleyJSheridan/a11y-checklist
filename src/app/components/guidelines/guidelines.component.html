@@ -1,7 +1,8 @@
-<div class="guidelines" aria-relevant="all" aria-live="polite" id="guidelines">
+<section class="guidelines" aria-relevant="all" aria-live="polite" id="guidelines" aria-labelledby="guidelines-heading">
+	<h2 id="guidelines-heading">You need to test these things:</h2>
 	
-	<div *ngFor="let guideline of guidelines">
-		{{ guideline.guidelineNumber }}
-	</div>
+	<ol *ngFor="let guideline of guidelines" class="guideline-list">
+		<app-guideline [guideline]="guideline"></app-guideline>
+	</ol>
 	
-</div>
+</section>

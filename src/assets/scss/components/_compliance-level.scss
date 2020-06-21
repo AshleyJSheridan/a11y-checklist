@@ -43,4 +43,8 @@
 			color: $black;
 		}
 	}
+	
+	input[type=radio]:focus ~ label {
+		box-shadow: 0 0 10px $white, 0 0 5px $white, inset 0 0 10px $white;
+	}
 }

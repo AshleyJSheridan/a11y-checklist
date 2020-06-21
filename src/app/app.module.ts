@@ -14,6 +14,7 @@ import { SvgVideoComponent } from './components/svg/svg-video/svg-video.componen
 import { CheckDesiredComplianceLevelComponent } from './components/check-desired-compliance-level/check-desired-compliance-level.component';
 import { GuidelinesComponent } from './components/guidelines/guidelines.component';
 import { SvgContentTypesComponent } from './components/svg/svg-content-types/svg-content-types.component';
+import { GuidelineComponent } from './components/guideline/guideline.component';
 
 @NgModule({
 	declarations: [
@@ -30,7 +31,8 @@ import { SvgContentTypesComponent } from './components/svg/svg-content-types/svg
 		SvgVideoComponent,
 		CheckDesiredComplianceLevelComponent,
 		GuidelinesComponent,
-		SvgContentTypesComponent
+		SvgContentTypesComponent,
+		GuidelineComponent
 	],
 	imports: [
 		BrowserModule
