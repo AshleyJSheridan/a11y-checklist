@@ -1,5 +1,6 @@
 import { GuidelineLevel } from '../enums/guideline-level.enum';
 import { ContentType } from '../enums/content-type.enum';
+import { CodeSnippet } from './code-snippet';
 
 export class Guideline {
 	level: GuidelineLevel;
@@ -8,7 +9,7 @@ export class Guideline {
 	shortDescription: string;
 	longDescription: string;
 	testAgainst: ContentType[];
-	jsSnippets: string[];
+	codeSnippets: CodeSnippet[];
 	
 	constructor(
 		level: GuidelineLevel, 
@@ -17,7 +18,7 @@ export class Guideline {
 		shortDescription: string, 
 		longDescription: string, 
 		testAgainst: ContentType[],
-		jsSnippets: string[]
+		codeSnippets: CodeSnippet[]
 	) {
 		this.level = level;
 		this.guidelineNumber = guidelineNumber;
@@ -25,6 +26,10 @@ export class Guideline {
 		this.shortDescription = shortDescription;
 		this.longDescription = longDescription;
 		this.testAgainst = testAgainst;
-		this.jsSnippets = jsSnippets;
+		this.codeSnippets = codeSnippets;
+	}
+	
+	getLabel(): string {
+		return `guideline-label-${this.guidelineNumber}`;
 	}
 }

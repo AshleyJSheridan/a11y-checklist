@@ -4,16 +4,15 @@
 	
 	.guideline {
 		border: 1px solid;
+		display: flex;
+		margin-bottom: .5em;
 		padding: .5em;
 	}
 	
-	.guideline-name {
-		display: inline-block;
-		font-weight: bold;
-		vertical-align: middle;
-	}
-	
 	.short-description {
+		cursor: pointer;
+		font-weight: bold;
+		
 		&:focus {
 			box-shadow: 0 0 10px $primary, 0 0 5px $primary;
 			outline: none;
@@ -22,14 +21,31 @@
 	
 	.long-description {
 		margin-top: 1em;
+		
+		ul {
+			list-style-type: disc;
+		}
 	}
 	
 	li {
 		line-height: 1.5;
 	}
 	
-	.js-snippets {
-		font-family: monospace;
+	.code-snippets {
+		background-color: $light-grey;
+		border: 1px solid $primary;
+		padding: .5em;
+		
+		.snippet-code {
+			background-color: #ddd;
+			border: 1px solid $dark-grey;
+			font-family: monospace;
+			margin: .25em 0 0.7em  1em;
+			overflow-wrap: break-all;
+			padding: .25em;
+			word-break: break-all;
+			word-wrap: anywhere;
+		}
 	}
 }
 

@@ -1,8 +1,10 @@
 <section class="guidelines" aria-relevant="all" aria-live="polite" id="guidelines" aria-labelledby="guidelines-heading">
 	<h2 id="guidelines-heading">You need to test these things:</h2>
 	
-	<ol *ngFor="let guideline of guidelines" class="guideline-list">
-		<app-guideline [guideline]="guideline"></app-guideline>
+	<ol class="guideline-list">
+		<li *ngFor="let guideline of guidelines">
+			<app-guideline [guideline]="guideline"></app-guideline>
+		</li>
 	</ol>
 	
 </section>

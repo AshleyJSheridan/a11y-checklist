@@ -1,18 +1,29 @@
-<li class="guideline">
-	<input type="checkbox" name="guideline" value="{{ guideline.guidelineNumber }}" class="accessible-hidden" id="guideline-{{ guideline.guidelineNumber }}"/>
-	<label for="guideline-{{ guideline.guidelineNumber }}" class="tick-checkbox">
-		<span class="accessible-hidden">Completed guideline {{ guideline.guidelineNumber }} {{ guideline.guidelineName }}</span>
-	</label>
-	
-	<p class="guideline-name">{{ guideline.guidelineNumber }} {{ guideline.guidelineName }}</p>
+<article class="guideline" attr.aria-labelledby="{{ guideline.getLabel() }}">
+	<div class="guideline-checkbox">
+		<input
+			type="checkbox"
+			name="guideline"
+			value="{{ guideline.guidelineNumber }}" 
+			class="accessible-hidden"
+			id="guideline-{{ guideline.guidelineNumber }}"
+		/>
+		<label for="guideline-{{ guideline.guidelineNumber }}" class="tick-checkbox">
+			<h2 class="accessible-hidden">Completed guideline {{ guideline.guidelineNumber }} {{ guideline.guidelineName }}</h2>
+		</label>
+	</div>
 
-	<details>
-		<summary class="short-description">{{ guideline.shortDescription }}</summary>
+	<details class="guideline-details">
+		<summary class="short-description" id="{{ guideline.getLabel() }}">{{ guideline.guidelineNumber }} {{ guideline.guidelineName }}</summary>
+		<p>{{ guideline.shortDescription }}</p>
+
 		<div class="long-description" [innerHTML]="guideline.longDescription"></div>
-		
-		<p *ngIf="guideline.jsSnippets.length > 0">You can run these snippets in your browser to help identify failing code:</p>
-		<ul class="js-snippets" *ngIf="guideline.jsSnippets.length > 0">
-			<li *ngFor="let snippet of guideline.jsSnippets">{{ snippet }}</li>
-		</ul>
+
+		<p *ngIf="guideline.codeSnippets.length > 0">You can run these snippets in your browser to help identify failing code:</p>
+		<dl class="code-snippets" *ngIf="guideline.codeSnippets.length > 0">
+			<span *ngFor="let snippet of guideline.codeSnippets">
+				<dt class="snippet-description" [innerHTML]="snippet.description"></dt>
+				<dd class="snippet-code" [innerHTML]="snippet.code"></dd>
+			</span>
+		</dl>
 	</details>
-</li>
+</article>
