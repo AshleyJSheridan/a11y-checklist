@@ -22,7 +22,12 @@
 		<dl class="code-snippets" *ngIf="guideline.codeSnippets.length > 0">
 			<span *ngFor="let snippet of guideline.codeSnippets">
 				<dt class="snippet-description" [innerHTML]="snippet.description"></dt>
-				<dd class="snippet-code" [innerHTML]="snippet.code"></dd>
+				<dd class="snippet-code">
+					<div [innerHTML]="snippet.code"></div>
+					<button type="button" class="copy-code" (click)="copyCode($event, snippet)">
+						<span class="accessible-hidden">Copy code to clipboard</span>
+					</button>
+				</dd>
 			</span>
 		</dl>
 	</details>
