@@ -2,6 +2,12 @@
 
 This is a tool to help generate a custom list of automated and manual accessibility tests based on the type of content being tested.
 
+It will produce a filtered list of <abbr title="Web Content Accessibility Guidelines">WCAG</abbr> 2.1 guidelines that explain what to test, and where possible, give some JavaScript snippets that can be run in a browsers developer console to check for things in a more automated way.
+
+As always with any kind of automated check such as this, it is not a replacement for manual testing, and a passing automated test is only an indication that you're doing things right, not a guarantee that you actually are. Always try to test with different browsers, input devices, screen readers, physical devices, and with people of differing needs where you can.
+
+---
+
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 7.3.9.
 
 ## Development server
