@@ -155,5 +155,55 @@ export class AllGuidelines {
 				this._audioVideoCaptionsSnippet
 			]
 		),
+		new Guideline(
+			GuidelineLevel.A,
+			'1.3.1',
+			'Info and Relationships',
+			'Ensure that the same meaning of your content is conveyed when a user perceives the content in a different form',
+			`<p>Sighted users get a lot of context from the appearance of elements, but people who have problems with their site benefit from additional semantics and cues. You should ensure that you:</p>\n\
+			<ul>
+				<li>Use semantic markup and don't rely on styling <code>&lt;div></code> and <code>&lt;span></code> elements</li>
+				<li>Where the right markup cannot be used, add the correct <code>role</code> attribute to help identify what it's meant to be</li>
+				<li>Don't rely on colour alone to identify meaning. Red might indicate an error, but to someone who cannot see red, put the word 'error' (or similar) into the message to convey the same meaning</li>
+				<li>Identify required fields with the <code>required</code> attribute, and not only with a symbol, and for sighted users that symbols meaning should be made clear and appear before the first usage</li>
+				<li>All form elements should have labels. Checkboxes and radio buttons should have individual labels and should be grouped with a <code>&lt;fieldset></code></li>
+				<li>Identify important landmarks by giving them accessible lables using <code>aria-labelledby</code> or <code>aria-label</code></li>
+				<li>Avoid things like icon fonts as these just hide the real letter being used which a screen reader will read out, instead look to using other image forms. If you must use them, mark them up with <code>role="image"</code> or hide them from assistive tech</li>
+			</ul>
+			`,
+			[ContentType.Forms, ContentType.Modals, ContentType.Images],
+			[
+				this._unlabelledFormElementsSnippet,
+			]
+		),
+		new Guideline(
+			GuidelineLevel.A,
+			'1.3.2',
+			'Meaningful Sequence',
+			`The order of the content should make sense, and you should avoid using techniques of re-ordering content that is not understood by assistive tech`,
+			`<p>If you have a need to change the visual order of content to something different than it appears in the <abbr title="Document Object Model">DOM</abbr>, try to avoid doing it in a way that assistive tech cannot understand. You should check that:</p>
+			<ul>
+				<li>Avoid deliberate bad ordering of content in the <abbr>DOM</abbr> just to use <code>float</code> to position it correctly visually</li>
+				<li>Avoid using <abbr>flexbox</abbr> to change content order, as <a href="https://www.w3.org/TR/css-flexbox-1/#order-accessibility">screen readers (should) deliberately ignore this</a></li>
+			</ul>
+			<p>Test the content order by disabling all <abbr title="Cascading Style Sheets">CSS</abbr> and observing that the result is logical</p>`,
+			[ContentType.Audio, ContentType.Forms, ContentType.Images, ContentType.Modals, ContentType.Video],
+			[]
+		),
+		new Guideline(
+			GuidelineLevel.A,
+			'1.3.3',
+			'Sensory Characteristics',
+			'Instructions or context for content should not rely on a particular sensory characteristic, e.g. colour, shape, relative location, etc',
+			`<p>If you have instructions of contextual clues (e.g. a status indicator), you should avoid relying on sensory characteristics, as not all users can percieve these.</p>
+			<ul>
+				<li>Avoid referencing information by colour: e.g. using traffic light style dots to indicate availability status. Not everyone can see the dots or determine their colour</li>
+				<li>Try not to refer to elements by their shape. For example, 'round button', or 'icon of two squares'.</li>
+				<li>Don't refer to content by it's location (i.e. 'the paragraph above', or 'the menu on the left') as this both relies on a user reading from start to finish and can also break in languages that don't follow a left-to-right order</li>
+			</ul>
+			<p>Test the content order by disabling all <abbr title="Cascading Style Sheets">CSS</abbr> and observing that the result is logical</p>`,
+			[ContentType.Audio, ContentType.Forms, ContentType.Images, ContentType.Modals, ContentType.Video],
+			[]
+		),
 	];
 }
