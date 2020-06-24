@@ -200,6 +200,7 @@ export class AllGuidelines {
 				<li>Avoid referencing information by colour: e.g. using traffic light style dots to indicate availability status. Not everyone can see the dots or determine their colour</li>
 				<li>Try not to refer to elements by their shape. For example, 'round button', or 'icon of two squares'.</li>
 				<li>Don't refer to content by it's location (i.e. 'the paragraph above', or 'the menu on the left') as this both relies on a user reading from start to finish and can also break in languages that don't follow a left-to-right order</li>
+				<li>If you have graphs or charts where the size of an element denotes its value you should also include the values in another accessible format, such as a table or list, for example</li>
 			</ul>
 			<p>Test the content order by disabling all <abbr title="Cascading Style Sheets">CSS</abbr> and observing that the result is logical</p>`,
 			[ContentType.Audio, ContentType.Forms, ContentType.Images, ContentType.Modals, ContentType.Video],
