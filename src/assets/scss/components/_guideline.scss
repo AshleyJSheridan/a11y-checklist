@@ -9,15 +9,25 @@
 		padding: .5em;
 	}
 	
-	.short-description {
-		cursor: pointer;
-		font-weight: bold;
+	.guideline-details {
+		width: 100%;
 		
-		&:focus {
-			box-shadow: 0 0 10px $primary, 0 0 5px $primary;
-			outline: none;
+		.short-description {
+			cursor: pointer;
+			font-weight: bold;
+
+			&:focus {
+				box-shadow: 0 0 10px $primary, 0 0 5px $primary;
+				outline: none;
+			}
+		}
+		
+		.guideline-level {
+			float: right;
 		}
 	}
+	
+	
 	
 	.long-description {
 		margin-top: 1em;

@@ -2,6 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import { Guideline } from 'src/app/entities/guideline';
 import { CodeSnippet } from 'src/app/entities/code-snippet';
 import { ClipboardHelper } from 'src/app/helpers/clipboard-helper';
+import { GuidelineLevel } from 'src/app/enums/guideline-level.enum';
 
 @Component({
 	selector: 'app-guideline',
@@ -9,6 +10,7 @@ import { ClipboardHelper } from 'src/app/helpers/clipboard-helper';
 	providers: [ClipboardHelper]
 })
 export class GuidelineComponent implements OnInit {
+	public GuidelineLevel = GuidelineLevel;
 	private _clipboardHelper: ClipboardHelper;
 	@Input() guideline: Guideline;
 

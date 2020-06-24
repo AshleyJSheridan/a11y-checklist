@@ -13,7 +13,13 @@
 	</div>
 
 	<details class="guideline-details">
-		<summary class="short-description" id="{{ guideline.getLabel() }}">{{ guideline.guidelineNumber }} {{ guideline.guidelineName }}</summary>
+		<summary class="short-description" id="{{ guideline.getLabel() }}">
+			<span class="guideline-name">{{ guideline.guidelineNumber }} {{ guideline.guidelineName }}</span>
+			<span class="guideline-level">
+				<span class="accessible-hidden">Guideline level: </span>
+				{{ GuidelineLevel[guideline.level] }}
+			</span>
+		</summary>
 		<p>{{ guideline.shortDescription }}</p>
 
 		<div class="long-description" [innerHTML]="guideline.longDescription"></div>
