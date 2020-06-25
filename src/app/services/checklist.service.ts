@@ -38,6 +38,9 @@ export class ChecklistService {
 	}
 	
 	doesGuidelineMatchContentTypes(contentTypes: ContentType[]): boolean {
+		if(contentTypes.length === 0)
+			return true;
+		
 		let matchingContentTypes = this.selectedContentTypes.filter(value => contentTypes.includes(value));
 		
 		return matchingContentTypes.length > 0;
