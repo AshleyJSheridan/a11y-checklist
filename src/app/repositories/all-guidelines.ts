@@ -21,7 +21,6 @@ export class AllGuidelines {
 			GuidelineLevel.A,
 			'1.1.1',
 			'Text Alternatives',
-			'Provide text alternatives for any non-text content.',
 			`<p>All non-text content (e.g. images, videos, graphs, etc) should have a text alternative. Check that:</p>
 			<ul>
 				<li>Images have <code>alt</code> text</li>
@@ -42,7 +41,6 @@ export class AllGuidelines {
 			GuidelineLevel.A,
 			'1.2.1',
 			'Audio-only and Video-only (Prerecorded)',
-			'Provide alternatives for pre-recorded audio and video.',
 			`<p>All video and audio clips need equivalent alternative content. Check that:</p>
 			<ul>
 				<li>Video and audio clips have a description, caption, or subtitle tracks, or a text equivalent, such as a transcript</li>
@@ -59,7 +57,6 @@ export class AllGuidelines {
 			GuidelineLevel.A,
 			'1.2.2',
 			'Captions (Prerecorded)',
-			'Provide captions for pre-recorded audio content.',
 			`<p>All video and audio clips need equivalent alternative content. Check that:</p>
 			<ul>
 				<li>Video and audio clips have a description or a text equivalent, such as a transcript</li>
@@ -74,7 +71,6 @@ export class AllGuidelines {
 			GuidelineLevel.A,
 			'1.2.3',
 			'Audio Description or Media Alternative (Prerecorded)',
-			'Provide audio descriptions for pre-recorded video content.',
 			`<p>Videos and animations that should have audio descriptions (or a text equivalent).</p>
 			<p>For example, an animated graph tracking a change over time should have a corresponding audio clip or time-based descriptions to illustrate the same point. Avoid media types that do not offer ways to synchronise descriptions easily, such as animated <abbr title="Graphics Interchange Format">GIF</abbr>s</p>
 			<ul>
@@ -90,7 +86,6 @@ export class AllGuidelines {
 			GuidelineLevel.AA,
 			'1.2.4',
 			'Captions (Live)',
-			'Captions are provided for all live audio content in synchronized media.',
 			'<p>Live audio streams should provide captions</p>',
 			[ContentType.Audio, ContentType.Video],
 			[
@@ -101,7 +96,6 @@ export class AllGuidelines {
 			GuidelineLevel.AA,
 			'1.2.5',
 			'Audio Description (Prerecorded)',
-			'Provide audio descriptions for pre-recorded video content.',
 			`<p>Videos and animations that should have audio descriptions (or a text equivalent).</p>
 			<p>For example, an animated graph tracking a change over time should have a corresponding audio clip or time-based descriptions to illustrate the same point. Avoid media types that do not offer ways to synchronise descriptions easily, such as animated <abbr title="Graphics Interchange Format">GIF</abbr>s</p>
 			<ul>
@@ -116,7 +110,6 @@ export class AllGuidelines {
 			GuidelineLevel.AAA,
 			'1.2.6',
 			'Sign Language (Prerecorded)',
-			'Provide sign language interpretation for all prerecorded audio content',
 			`<p>Videos and audio clips should have provided sign language interpretation.</p>`,
 			[ContentType.Audio, ContentType.Video],
 			[]
@@ -125,8 +118,7 @@ export class AllGuidelines {
 			GuidelineLevel.AAA,
 			'1.2.7',
 			'Extended Audio Description (Prerecorded)',
-			'Provide extended audio descriptions where standard audio descriptions are insufficient',
-			`<p>Videos that do not allow enough time for audio descriptions to accurately convey the video content should automatically pause to allow the video to remain synchronised with the audio descriptions</p>`,
+			`<p>Provide extended audio descriptions where standard audio descriptions are insufficient. Videos that do not allow enough time for audio descriptions to accurately convey the video content should automatically pause to allow the video to remain synchronised with the audio descriptions</p>`,
 			[ContentType.Audio, ContentType.Video],
 			[]
 		),
@@ -134,7 +126,6 @@ export class AllGuidelines {
 			GuidelineLevel.AAA,
 			'1.2.8',
 			'Media Alternative (Prerecorded)',
-			'Provide alternatives for pre-recorded video content.',
 			`<p>Videos and animations that should have audio descriptions (or a text equivalent).</p>
 			<p>For example, an animated graph tracking a change over time should have a corresponding audio clip or time-based descriptions to illustrate the same point. Avoid media types that do not offer ways to synchronise descriptions easily, such as animated <abbr title="Graphics Interchange Format">GIF</abbr>s</p>
 			<ul>
@@ -150,7 +141,6 @@ export class AllGuidelines {
 			GuidelineLevel.AAA,
 			'1.2.9',
 			'Audio-only (Live)',
-			'Provide alternatives for pre-recorded audio content.',
 			`<p>Offer alternatives to live audio, such as a link to a script (if the audio is following one), or captions</p>`,
 			[ContentType.Audio, ContentType.Video],
 			[
@@ -161,8 +151,7 @@ export class AllGuidelines {
 			GuidelineLevel.A,
 			'1.3.1',
 			'Info and Relationships',
-			'Ensure that the same meaning of your content is conveyed when a user perceives the content in a different form',
-			`<p>Sighted users get a lot of context from the appearance of elements, but people who have problems with their site benefit from additional semantics and cues. You should ensure that you:</p>\n\
+			`<p>Ensure that the same meaning of your content is conveyed when a user perceives the content in a different form. Sighted users get a lot of context from the appearance of elements, but people who have problems with their site benefit from additional semantics and cues. You should ensure that you:</p>\n\
 			<ul>
 				<li>Use semantic markup and don't rely on styling <code>&lt;div></code> and <code>&lt;span></code> elements</li>
 				<li>Where the right markup cannot be used, add the correct <code>role</code> attribute to help identify what it's meant to be</li>
@@ -182,8 +171,7 @@ export class AllGuidelines {
 			GuidelineLevel.A,
 			'1.3.2',
 			'Meaningful Sequence',
-			`The order of the content should make sense, and you should avoid using techniques of re-ordering content that is not understood by assistive tech`,
-			`<p>If you have a need to change the visual order of content to something different than it appears in the <abbr title="Document Object Model">DOM</abbr>, try to avoid doing it in a way that assistive tech cannot understand. You should check that:</p>
+			`<p>The order of the content should make sense, and you should avoid using techniques of re-ordering content that is not understood by assistive tech. If you have a need to change the visual order of content to something different than it appears in the <abbr title="Document Object Model">DOM</abbr>, try to avoid doing it in a way that assistive tech cannot understand. You should check that:</p>
 			<ul>
 				<li>Avoid deliberate bad ordering of content in the <abbr>DOM</abbr> just to use <code>float</code> to position it correctly visually</li>
 				<li>Avoid using <abbr>flexbox</abbr> to change content order, as <a href="https://www.w3.org/TR/css-flexbox-1/#order-accessibility">screen readers (should) deliberately ignore this</a></li>
@@ -196,8 +184,8 @@ export class AllGuidelines {
 			GuidelineLevel.A,
 			'1.3.3',
 			'Sensory Characteristics',
-			'Instructions or context for content should not rely on a particular sensory characteristic, e.g. colour, shape, relative location, etc',
-			`<p>If you have instructions of contextual clues (e.g. a status indicator), you should avoid relying on sensory characteristics, as not all users can percieve these.</p>
+			`<p>Instructions or context for content should not rely on a particular sensory characteristic, e.g. colour, shape, relative location, etc</p>
+			<p>If you have instructions of contextual clues (e.g. a status indicator), you should avoid relying on sensory characteristics, as not all users can percieve these.</p>
 			<ul>
 				<li>Avoid referencing information by colour: e.g. using traffic light style dots to indicate availability status. Not everyone can see the dots or determine their colour</li>
 				<li>Try not to refer to elements by their shape. For example, 'round button', or 'icon of two squares'.</li>
@@ -212,17 +200,15 @@ export class AllGuidelines {
 			GuidelineLevel.AA,
 			'1.3.4',
 			'Orientation',
-			'Content should not be restricted to a specific orientation of a device',
 			`<p>Avoid restricting your content to a specific orientation unless the orientation is vital to the content.</p>
 			<p>An exceptions might bea virtual reality display where the display requires landscape orientation of a phone</p>`,
-			[ContentType.Animation, ContentType.Audio, ContentType.Forms, ContentType.Images, ContentType.Modals, ContentType.Translations, ContentType.Video],
+			[ContentType.Animation, ContentType.Forms, ContentType.Images, ContentType.Modals, ContentType.Translations, ContentType.Video],
 			[]
 		),
 		new Guideline(
 			GuidelineLevel.AA,
 			'1.3.5',
 			'Identify Input Purpose',
-			'Form fields should use the correct types so that browsers can understand how to best present them to users',
 			`<p>The appropriate form field types should be used for different types of input. It should be noted that sometimes inputs may look like a type they're not, and in those cases an appropriate <code>inputmode</code> (or <code>pattern</code> for older devices) attribute should be used instead</p>
 			<ul>
 				<li>Textual inputs should use the correct type:
@@ -257,7 +243,6 @@ export class AllGuidelines {
 			GuidelineLevel.AAA,
 			'1.3.6',
 			'Identify Purpose',
-			'The purpose of page regions and interactive components should be able to be determined by a browser',
 			`<p>Parts of the page should be identifiable as specific regions using named landmark areas. Interactive components should use native elements where possible, and identify their purpose in other ways when native elements cannot perform the task.</p>
 			<p>For example, <code>&lt;form></code>, <code>&lt;nav></code>, and <code>&lt;section></code> elements should be labelled using <code>arial-labelledby</code> or <code>aria-label</code>, and custom components should use the correct <code>role</code> attribute to identify their purpose.</p>`,
 			[ContentType.Audio, ContentType.Forms, ContentType.Images, ContentType.Modals, ContentType.Video],
@@ -267,17 +252,15 @@ export class AllGuidelines {
 			GuidelineLevel.A,
 			'1.4.1',
 			'Use of Colour',
-			'Colour should not be the only means of conveying information',
-			`<p>If you use colour to convey information, e.g. using traffic light colours to denote the status of something, then you should also convey this information in other ways to be accessible to people who can't perceive colours.</p>
+			`<p>Colour should not be the only means of conveying information. If you use colour to convey information, e.g. using traffic light colours to denote the status of something, then you should also convey this information in other ways to be accessible to people who can't perceive colours.</p>
 			<p>Instead of relying only on colour, consider using text or different icons to identify the different meanings of things.</p>`,
-			[ContentType.Audio, ContentType.Forms, ContentType.Images, ContentType.Modals, ContentType.Video],
+			[ContentType.Forms, ContentType.Images, ContentType.Modals, ContentType.Video],
 			[]
 		),
 		new Guideline(
 			GuidelineLevel.A,
 			'1.4.2',
 			'Audio Control',
-			'Controls for audio that plays for longer than 3 seconds',
 			`<p>If audio on a page plays for longer than 3 seconds, it should have controls to allow a user to pause, stop, or mute and change the volume</p>
 			<p>Audio that's longer than 3 seconds shouldn't play automatically without being initiated by the user, unless that purpose is clear (e.g. a music website might play a radio stream when loading a page specifically for listening to that stream)</p>`,
 			[ContentType.Audio, ContentType.Video],
@@ -287,7 +270,6 @@ export class AllGuidelines {
 			GuidelineLevel.AA,
 			'1.4.3',
 			'Contrast (Minimum)',
-			'Text should contrast with its background at a ratio of 4.5:1',
 			`<p>Text should contrast with its background with a ratio of 4.5:1. Large text may have a 3:1 contrast ratio. Large text is either:</p>
 			<ul>
 				<li>18 point (1 point is <sup>1</sup>/<sub>72</sub>th of an inch, so is dependendent on screen resolution and pixel density)</li>
@@ -304,18 +286,16 @@ export class AllGuidelines {
 			GuidelineLevel.AA,
 			'1.4.4',
 			'Resize Text',
-			'The interface should allow the user to resize text without breaking',
 			`<p>The user interface should allow for text to be increased to 200% of its original size, without the interface breaking or losing functionality.</p>
 			<p>The website itself does not need to offer the user the ability to adjust the text size (although it can).</p>
 			<p>The website should bear in mind that a user may specify a <em>miniumum</em> font size, so any calculations performed on the base font size that drops below this minimum will be capped at the minimum.</p>`,
-			[ContentType.Audio, ContentType.Video],
+			[ContentType.Forms, ContentType.Images, ContentType.Modals],
 			[]
 		),
 		new Guideline(
 			GuidelineLevel.AA,
 			'1.4.5',
 			'Images of Text',
-			'Text should be used instead of images of text',
 			`<p>Wherever possible, text should be used instead of images of text unless the visual presentation is crucial, such as with a branded logo, or when portraying a font that is not available. In these cases, a text alternative should also be provided for those who cannot see the image.</p>`,
 			[ContentType.Images],
 			[]
@@ -324,7 +304,6 @@ export class AllGuidelines {
 			GuidelineLevel.AAA,
 			'1.4.6',
 			'Contrast (Enhanced)',
-			'Text should have a contrast ratio of at least 7:1 with its background',
 			`<p>Text should contrast with a ratio of 7:1 with its background. Large text may contrast with a ratio of 4..5:1. Large text is classed as:</p>
 			<ul>
 				<li>18 point (1 point is <sup>1</sup>/<sub>72</sub>th of an inch, so is dependendent on screen resolution and pixel density)</li>
@@ -336,6 +315,17 @@ export class AllGuidelines {
 				this._colourContrastHighSnippet
 			]
 		),
-		
+		new Guideline(
+			GuidelineLevel.AAA,
+			'1.4.7',
+			'Low or No Background Audio',
+			`<p>Avoid background sounds on audio containing speech, as this can be distracting and make the speech impossible to discern for those who have any problems with their hearing. If you do need to keep background sounds (e.g. atmospheric music to set the tone for speech) then ensure that:</p>
+			<ul>
+				<li>Background sounds can be disabled or have their volume lowered</li>
+				<li><em>or</em> the background sounds are 4&times; quieter (20 <abbr title="decibels">dB</abbr> lower) than the speech</li>
+			</ul>`,
+			[ContentType.Audio, ContentType.Video],
+			[]
+		),
 	];
 }

@@ -6,7 +6,6 @@ export class Guideline {
 	level: GuidelineLevel;
 	guidelineNumber: string;
 	guidelineName: string;
-	shortDescription: string;
 	longDescription: string;
 	testAgainst: ContentType[];
 	codeSnippets: CodeSnippet[];
@@ -15,7 +14,6 @@ export class Guideline {
 		level: GuidelineLevel, 
 		guidelineNumber: string,
 		guidelineName: string, 
-		shortDescription: string, 
 		longDescription: string, 
 		testAgainst: ContentType[],
 		codeSnippets: CodeSnippet[]
@@ -23,7 +21,6 @@ export class Guideline {
 		this.level = level;
 		this.guidelineNumber = guidelineNumber;
 		this.guidelineName = guidelineName;
-		this.shortDescription = shortDescription;
 		this.longDescription = longDescription;
 		this.testAgainst = testAgainst;
 		this.codeSnippets = codeSnippets;
