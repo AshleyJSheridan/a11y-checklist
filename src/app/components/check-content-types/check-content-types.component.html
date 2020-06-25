@@ -3,7 +3,7 @@
 	
 	<div class="content-selection-list">
 		
-		<span class="content-selection-item" *ngFor="let contentType of getAllContentTypes()">
+		<span class="content-selection-item" *ngFor="let contentType of getAllContentTypes()" title="{{ contentType }}">
 			<input 
 				type="checkbox"
 				name="content-selection"

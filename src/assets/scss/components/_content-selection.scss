@@ -4,18 +4,30 @@
 	
 	.content-selection-list {
 		display: flex;
-		flex-wrap: nowrap;
-		justify-content: space-evenly;
+		flex-wrap: wrap;
+		//justify-content: space-evenly;
 		margin: 0;
 		padding: 0;
 	}
 	
 	.content-selection-item {
 		color: $white;
-		flex: 1 1 100%;
+		flex: 0 0 23%;
 		list-style: none;
-		margin: 1em .25em;
+		margin: 1em .15em;
 		text-align: center;
+		
+		@media(min-width: 460px) {
+			flex: 0 0 18%;
+		}
+		
+		@media(min-width: 600px) {
+			flex: 0 0 15%;
+		}
+		
+		@media(min-width: 800px) {
+			flex: 0 0 11.5%;
+		}
 	}
 	
 	label {
@@ -85,7 +97,7 @@
 	}
 	
 	.content-selection-label {
-		display: block;
+		display: none;
 		font-size: 14px;
 		max-width: 100%;
 		text-align: center;
