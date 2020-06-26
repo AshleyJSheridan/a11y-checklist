@@ -1,5 +1,9 @@
 .guideline-list {
+	display: flex;
+	flex-direction: row;;
+	flex-wrap: wrap;
 	list-style: none;
+	max-width: 1000px;
 	padding: 0;
 	
 	.guideline {
@@ -26,9 +30,7 @@
 			float: right;
 		}
 	}
-	
-	
-	
+
 	.long-description {
 		margin-top: 1em;
 		
@@ -38,7 +40,13 @@
 	}
 	
 	li {
+		flex: 0 0 100%;
 		line-height: 1.5;
+		margin: .25em 0.5em;
+		
+		@media(min-width: 500px) {
+			flex: 0 0 45%;
+		}
 	}
 	
 	.code-snippets {
