@@ -162,7 +162,7 @@ export class AllGuidelines {
 			'Info and Relationships',
 			`<p>Ensure that the same meaning of your content is conveyed when a user perceives the content in a different form. Sighted users 
 				get a lot of context from the appearance of elements, but people who have problems with their site benefit from additional 
-				semantics and cues. You should ensure that you:</p>\n\
+				semantics and cues. You should ensure that you:</p>
 			<ul>
 				<li>Use semantic markup and don't rely on styling <code>&lt;div></code> and <code>&lt;span></code> elements</li>
 				<li>Where the right markup cannot be used, add the correct <code>role</code> attribute to help identify what it's meant to be</li>
@@ -465,6 +465,39 @@ export class AllGuidelines {
 				a screen reader, the Enter key <em>would</em> fire the click event.</p>
 			<p>You should verify that all links and form elements can be tabbed into and used. For custom elements you should ensure that the
 				functionality is available. If this is not possible, the same functionality should be offered in an alternate accessible manner.</p>`,
+			[],
+			[]
+		),
+		new Guideline(
+			GuidelineLevel.A,
+			'2.1.2',
+			'Keyboard Trap',
+			`<p>If the user can move focus to an element using the keyboard, then it should be possible to move it away using the keyboard. If the 
+				user is not able to exit using the same method they entered, an alternative should be supplied, and the user should be informed
+				about this method.</p>
+			<p>For example, a text editor control might allow itself to be tabbed into, but then might capture tabs and output them as the tab
+				character inside the editor interface. It could then offer an alternative key combination in order to exit the control, such as 
+				<code>CTRL</code> and <code>Tab</code>.</p>
+			<p>An exception where keyboard trapping is logical would be a modal displayed asking the user to confirm a destructive action (such as
+				a delete). The modal blocks clicking outside onto other elements. Trapping focus within the focusable elements of the modal ensures
+				a consistent user experience. In this case, the modal should accept the Escape key as equivalent to the cancel action of the modal.
+				For completeness, whichever option the user chose that closes the modal, the focus should be returned to whatever triggered it, so 
+				that their journey follows on from the point they expect.</p>`,
+			[ContentType.Forms, ContentType.Modals],
+			[]
+		),
+		new Guideline(
+			GuidelineLevel.AAA,
+			'2.1.3',
+			'Keyboard',
+			`<p>All functionality of the website should be accessible with keyboard alone.</p>
+			<p>If your content has functionality which absolutely needs non-keyboard input, then it cannot pass this guideline.</p>
+			<p>You should test your content <em>without</em> the use of a screen reader, as some screen readers will automatically treat some 
+				keyboard actions as their mouse equivalent. For example, an interactive component that has only registered a click event handler.
+				Under normal keyboard-only situations, this would not capture keyboard events, like the Enter key being pressed. Whilst running
+				a screen reader, the Enter key <em>would</em> fire the click event.</p>
+			<p>You should verify that all links and form elements can be tabbed into and used. For custom elements you should ensure that the
+				functionality is available.</p>`,
 			[],
 			[]
 		),
