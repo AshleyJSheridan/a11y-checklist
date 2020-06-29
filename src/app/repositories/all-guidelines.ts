@@ -16,7 +16,10 @@ export class AllGuidelines {
 	private _colourContrastSnippet: CodeSnippet = new CodeSnippet('(() => {let walker = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT, null, false);let textNode;while (textNode = walker.nextNode()) {var textContent = textNode.textContent.trim();if (textContent.length > 0) {var computedStyles = window.getComputedStyle(textNode.parentNode);var background = getColourFromComputed(computedStyles, "background-color");var foreground = getColourFromComputed(computedStyles, "color");var fontSize = parseInt(getPropertyFromComputedStyles(computedStyles, "font-size"));var fontWeight = getPropertyFromComputedStyles(computedStyles, "font-weight");var contrast = getColourContrast(background, foreground);if (!doesTextContrast(fontSize, fontWeight, contrast)) {console.error(textNode);}}}})();function getPropertyFromComputedStyles(computedStyles, property) {return computedStyles.getPropertyValue(property);}function getColourFromComputed(computedStyles, colourProperty) {var colour = getPropertyFromComputedStyles(computedStyles, colourProperty);var colourComponents;if (colour.match(/^rgba/)) {colourComponents = colour.match(/^rgba\\((\\d+), ?(\\d+), ?(\\d+), ?(\\d+)/);return convertRGBAtoRGB(colourComponents[1], colourComponents[2], colourComponents[3], colourComponents[4]);}colourComponents = colour.match(/^rgb\\((\\d+), ?(\\d+), ?(\\d+)/);return {r: parseInt(colourComponents[1]),g: parseInt(colourComponents[2]),b: parseInt(colourComponents[3])};}function convertRGBAtoRGB(r, g, b, alpha) {var defaultBackground = 255;return {r: (1 - alpha) * defaultBackground + alpha * r,g: (1 - alpha) * defaultBackground + alpha * g,b: (1 - alpha) * defaultBackground + alpha * b};}function getColourContrast(rgb1, rgb2) {var luminance1 = getColourLuminance(rgb1.r, rgb1.g, rgb1.b);var luminance2 = getColourLuminance(rgb2.r, rgb2.g, rgb2.b);return luminance1 / luminance2;}function getColourLuminance(r, g, b) {var a = [r, g, b].map(function (v) {v /= 255;return v <= .03928? v / 12.92: Math.pow((v + .055) / 1.055, 2.4);});return a[0] * 0.2126 + a[1] * 0.7152 + a[2] * .0722 + .05;}function doesTextContrast(fontSize, fontWeight, contrast) {var minContrastLevel = 4.5;var largeTextContrastLevel = 3;var largeTextSize = 24;var largeTextSizeBold = 18.66;var boldTextWeight = 700;var passedMinContrast = contrast >= minContrastLevel;var isLargeText = (fontSize >= largeTextSize) || (fontWeight >= boldTextWeight && fontSize >= largeTextSizeBold);var passedLargeTextMinContrast = (isLargeText && contrast >= largeTextContrastLevel);return passedMinContrast || passedLargeTextMinContrast;}', 'Find text that does not contrast well enough with the background');
 	private _colourContrastHighSnippet: CodeSnippet = new CodeSnippet('(() => {let walker = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT, null, false);let textNode;while (textNode = walker.nextNode()) {var textContent = textNode.textContent.trim();if (textContent.length > 0) {var computedStyles = window.getComputedStyle(textNode.parentNode);var background = getColourFromComputed(computedStyles, "background-color");var foreground = getColourFromComputed(computedStyles, "color");var fontSize = parseInt(getPropertyFromComputedStyles(computedStyles, "font-size"));var fontWeight = getPropertyFromComputedStyles(computedStyles, "font-weight");var contrast = getColourContrast(background, foreground);if (!doesTextContrast(fontSize, fontWeight, contrast)) {console.error(textNode);}}}})();function getPropertyFromComputedStyles(computedStyles, property) {return computedStyles.getPropertyValue(property);}function getColourFromComputed(computedStyles, colourProperty) {var colour = getPropertyFromComputedStyles(computedStyles, colourProperty);var colourComponents;if (colour.match(/^rgba/)) {colourComponents = colour.match(/^rgba\\((\\d+), ?(\\d+), ?(\\d+), ?(\\d+)/);return convertRGBAtoRGB(colourComponents[1], colourComponents[2], colourComponents[3], colourComponents[4]);}colourComponents = colour.match(/^rgb\\((\\d+), ?(\\d+), ?(\\d+)/);return {r: parseInt(colourComponents[1]),g: parseInt(colourComponents[2]),b: parseInt(colourComponents[3])};}function convertRGBAtoRGB(r, g, b, alpha) {var defaultBackground = 255;return {r: (1 - alpha) * defaultBackground + alpha * r,g: (1 - alpha) * defaultBackground + alpha * g,b: (1 - alpha) * defaultBackground + alpha * b};}function getColourContrast(rgb1, rgb2) {var luminance1 = getColourLuminance(rgb1.r, rgb1.g, rgb1.b);var luminance2 = getColourLuminance(rgb2.r, rgb2.g, rgb2.b);return luminance1 / luminance2;}function getColourLuminance(r, g, b) {var a = [r, g, b].map(function (v) {v /= 255;return v <= .03928? v / 12.92: Math.pow((v + .055) / 1.055, 2.4);});return a[0] * 0.2126 + a[1] * 0.7152 + a[2] * .0722 + .05;}function doesTextContrast(fontSize, fontWeight, contrast) {var minContrastLevel = 7;var largeTextContrastLevel = 4.5;var largeTextSize = 24;var largeTextSizeBold = 18.66;var boldTextWeight = 700;var passedMinContrast = contrast >= minContrastLevel;var isLargeText = (fontSize >= largeTextSize) || (fontWeight >= boldTextWeight && fontSize >= largeTextSizeBold);var passedLargeTextMinContrast = (isLargeText && contrast >= largeTextContrastLevel);return passedMinContrast || passedLargeTextMinContrast;}', 'Find text that does not contrast well enough with the background');
 	private _textSpacingSnippet: CodeSnippet = new CodeSnippet('(() => {let body = document.body || document.getElementsByTagName("body")[0];let textSpacing = document.createElement("style");body.appendChild(textSpacing);textSpacing.type = "text/css";textSpacing.appendChild(document.createTextNode("* {line-height: 2.5 !important;letter-spacing:1.12 !important;word-spacing:1.16 !important;}p {margin-bottom: 2em !important;}"))})();', 'Increase the spacing of text to test for broken layouts');
-		
+	private _missingTitleSnippet: CodeSnippet = new CodeSnippet('(() => {if(document.title.length===0){console.error("missing title")}})()', 'Detect missing page title');
+	private _largeTabindexSnippet: CodeSnippet = new CodeSnippet('(() => {let tabItems = document.querySelectorAll("*[tabindex]");tabItems.forEach((tabElement) => {let index = parseFloat(tabElement.getAttribute("tabindex"));if(index > 1){console.warn(tabElement)}})})()', 'Detect and warn about elements containing a <code>tabindex</code> higher than 1');
+	private _showLinkTextSnippet: CodeSnippet = new CodeSnippet('(()=>{let links=document.querySelectorAll("a");links.forEach((domLink) => {let link = domLink.cloneNode(true);let tabIndex = link.getAttribute("tabindex");if(tabIndex === "-1")return;let images=link.querySelectorAll("img");images.forEach((image) => {let altText = image.getAttribute("alt");image.parentNode.replaceChild(document.createTextNode(altText), image);})console.log(link.innerText);})})()','Show the text of links');
+					
 	availableGuidelines: Guideline[] = [
 		new Guideline(
 			GuidelineLevel.A,
@@ -32,7 +35,7 @@ export class AllGuidelines {
 			</ul>`,
 			[ContentType.Audio, ContentType.Images, ContentType.Video, ContentType.Forms, ContentType.Animation],
 			[
-				new CodeSnippet('console.log(document.querySelectorAll("img:not([alt])"))', 'Find <code>&lt;img></code> tags without <code>alt</code> text'),
+				new CodeSnippet('console.error(document.querySelectorAll("img:not([alt])"))', 'Find <code>&lt;img></code> tags without <code>alt</code> text'),
 				this._videoCaptionSnippet,
 				this._audioCaptionSnippet,
 				this._unlabelledFormElementsSnippet,
@@ -498,6 +501,190 @@ export class AllGuidelines {
 				a screen reader, the Enter key <em>would</em> fire the click event.</p>
 			<p>You should verify that all links and form elements can be tabbed into and used. For custom elements you should ensure that the
 				functionality is available.</p>`,
+			[],
+			[]
+		),
+		new Guideline(
+			GuidelineLevel.A,
+			'2.1.4',
+			'Character Key Shortcuts',
+			`<p>If you offer keyboard shortcuts to allow users to more quickly access functionality (e.g. a rich text editor that has key shortcuts
+				to highligh text in bold or italic), then you must ensure that the shortcuts can be remapped, disabled, or are only active when
+				the functional component they're part of has focus.</p>`,
+			[],
+			[]
+		),
+		new Guideline(
+			GuidelineLevel.A,
+			'2.2.1',
+			'Timing Adjustable',
+			`<p>Functionality which relies on a specific time limit (e.g. shopping cart item hold, login session duration, popup notification)
+				you should ensure that at least one of the following is true:</p>
+			<ul>
+				<li>The time limit can be disabled</li>
+				<li>The time limit can be increased at least 10&times; the default length</li>
+				<li>The user is given at least a 20 second notice before the time expires and is given opportunity to extend it at least 10&times;
+					the default. This must be offered by a simple action.</li>
+			</ul>
+			<p>Exceptions to disabling or extending the limit can be made under at least one of the folling conditions:</p>
+			<ul>
+				<li>The limit is tied to a real-time event, such as a bid on an auction where it would be unfair for a user to be given an
+					extended amount of time</li>
+				<li>The limit is essential and would invalidate the function or activity (e.g. a two-factor authentication code which relies
+					on a 30-second window for its security</li>
+				<li>The time limit is longer than 20 hours, such as for a login session which lasts a day</li>
+			</ul>`,
+			[ContentType.Timed],
+			[]
+		),
+		new Guideline(
+			GuidelineLevel.A,
+			'2.2.2',
+			'Pause, Stop, Hide',
+			`<p>Any animation that starts automatically and lasts more than 5 seconds should allow the user to pause, stop, or hide it, unless
+				the animation is absolutely essential to the content</p>
+			<p>For example, a loading animation can honor the <abbr title="Cascading StyleSheets">CSS</abbr> <code>prefer@media (prefers-reduced-motion) {}</code>
+				media query to display non-animated text instead.</p>`,
+			[ContentType.Animation],
+			[]
+		),
+		new Guideline(
+			GuidelineLevel.AAA,
+			'2.2.3',
+			'No Timing',
+			`<p>Timing should not be a part of the website in any way, unless the limit comes from a real-time event, such as an auction.</p>`,
+			[ContentType.Timed],
+			[]
+		),
+		new Guideline(
+			GuidelineLevel.AAA,
+			'2.2.4',
+			'Interruptions',
+			`<p>Interruptions (such as popup reminders to sign up to newsletters) can be postponed or surpressed unless they are vitally important.</p>
+			<p>For example, a popup which prompts the user about new messages in a chat application should have a method by which a person can pause 
+				them and prevent their future appearance until the end of the current session. However, a popup warning they are disconnected or
+				informing them of an important error would be allowed as an exception.</p>`,
+			[ContentType.Timed],
+			[]
+		),
+		new Guideline(
+			GuidelineLevel.AAA,
+			'2.2.5',
+			'Re-authenticating',
+			`<p>If your website relies on timed sessions (e.g. a login session), then the user should be able to continue where they left off after
+				re-authenticating. For example, a lengthy signup form could store the user input in their browser as they go (paying mind to any
+				security concerns regarding sensitive information like credit card info, etc) and retrieve it later if their session expires
+				during the process.</p>`,
+			[ContentType.Timed],
+			[]
+		),
+		new Guideline(
+			GuidelineLevel.AAA,
+			'2.2.6',
+			'Timeouts',
+			`<p>Users should be warned about any loss of data (e.g. details entered into a signup form) that may occur if a given time limit is
+				reached (such as a session timeout), unless the data is preserved in some way. Restrictions on the types of data and the country 
+				of origin of the user may affect any data retention in such cases.</p>`,
+			[ContentType.Timed],
+			[]
+		),
+		new Guideline(
+			GuidelineLevel.A,
+			'2.3.1',
+			'Three Flashes or Below Threshold',
+			`<p>There should be no content that flashes more than 3 times in a second, unless the the flashing is below the
+				 <a href="https://www.w3.org/TR/WCAG21/#dfn-general-flash-and-red-flash-thresholds">general flash and red flash thresholds</a>.</p>`,
+			[ContentType.Animation, ContentType.Video, ContentType.Timed],
+			[]
+		),
+		new Guideline(
+			GuidelineLevel.AAA,
+			'2.3.2',
+			'Three Flashes',
+			`<p>There should be no content that flashes more than 3 times in a second.</p>`,
+			[ContentType.Animation, ContentType.Video, ContentType.Timed],
+			[]
+		),
+		new Guideline(
+			GuidelineLevel.AAA,
+			'2.3.3',
+			'Animation from Interactions',
+			`<p>Animations that are triggered from a user action (e.g. hovering over a link) should allow the user to disable them unless they're
+				vital to the functionality of the website.</p>
+			<p>For example, a tooltip animation can honor the <abbr title="Cascading StyleSheets">CSS</abbr> <code>prefer@media (prefers-reduced-motion) {}</code>
+				media query to display non-animated tooltip instead.</p>`,
+			[ContentType.Animation],
+			[]
+		),
+		new Guideline(
+			GuidelineLevel.A,
+			'2.4.1',
+			'Bypass Blocks',
+			`<p>Users should be offered a method that allows them to easily skip repeated content across pages.</p>
+			<p>For example, a typical website will share the same heading and navigation blocks across pages. Adding a 'skip to content' link would meet this
+				requirement.</p>`,
+			[],
+			[]
+		),
+		new Guideline(
+			GuidelineLevel.A,
+			'2.4.2',
+			'Page Titles',
+			`<p>Pages should have a title, and that title should accurately describes the pages purpose. For example, a portfolio website where all page 
+				titles are just the name of the person or business it belongs to would be a fail, as the titles do not help the user identify what content
+				is on each page.</p>`,
+			[],
+			[
+				this._missingTitleSnippet
+			]
+		),
+		new Guideline(
+			GuidelineLevel.A,
+			'2.4.3',
+			'Focus Order',
+			`<p>Content which can be navigated via keyboard should allow content to be focused in an order that makes sense. Avoid techniques which alter
+				content order visually but where the underlying content order in the <abbr title="Document Object Model">DOM</abbr> is out of order purely
+				to allow visual presentation to be controlled more easily.</p>
+			<p>Avoid using <code>z-index</code> values above 1 as this is a sign that the content is possibly not in an order that makese sense.</p>`,
+			[],
+			[
+				this._largeTabindexSnippet
+			]
+		),
+		new Guideline(
+			GuidelineLevel.A,
+			'2.4.4',
+			'Link Purpose (In Context)',
+			`<p>Links should make sense when taken stand-alone, out of context of their surroundings. For example, a blog with a series of small excerpts
+				might have links to read more. If every link just said "read more" and had no extra context, a person relying on a screen reader would
+				not be able to make much sense about where each link was going. Instead, if each link were "read more about <em>blog post title</em>"
+				the user would be able to easily understand where each link was going to take them.</p>
+			<p>If the link contains images, ensure that the <code>alt</code> text of the images also makes sense.</p>`,
+			[],
+			[
+				this._showLinkTextSnippet
+			]
+		),
+		new Guideline(
+			GuidelineLevel.AA,
+			'2.4.5',
+			'Multiple Ways',
+			`<p>A person should be able to use more than one single way locate a web page within a set of pages. For example, a blog containing many
+				posts could offer links to various posts by a tagging system, or a search feature.</p>
+			<p>An exception to this can be made for pages that are transactional in nature, such as those used in a signup process. A user shouldn't be
+				able to access step 2 if they've not already completed step one, for example.</p>
+			<p>Having your pages available to search engines and indexable does meet this requirement.</p>`,
+			[],
+			[]
+		),
+		new Guideline(
+			GuidelineLevel.AA,
+			'2.4.6',
+			'Headings and Labels',
+			`<p>Headings for pages and sections should describe the content they head up. Avoid overly "quirky" headings that do not relate to or
+				 describe the content for their corresponding section.</p>
+			<p>Labels for form fields (including button text) should describe the field they accompany. Avoid generic terms like "click here" 
+				for buttons, and try not to re-use field labels.</p>`,
 			[],
 			[]
 		),
