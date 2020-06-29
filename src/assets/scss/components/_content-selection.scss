@@ -5,37 +5,36 @@
 	.content-selection-list {
 		display: flex;
 		flex-wrap: wrap;
-		//justify-content: space-evenly;
 		margin: 0;
 		padding: 0;
 	}
 	
 	.content-selection-item {
 		color: $white;
-		flex: 0 0 23%;
+		flex: 0 0 100%;
 		list-style: none;
-		margin: 1em .15em;
-		text-align: center;
+		margin: 1em 0.15em 0 auto;
 		
 		@media(min-width: 460px) {
-			flex: 0 0 18%;
+			flex: 0 0 47%;
 		}
 		
 		@media(min-width: 600px) {
-			flex: 0 0 15%;
+			flex: 1 0 30%;
 		}
 		
 		@media(min-width: 800px) {
-			flex: 0 0 11.5%;
+			flex: 1 0 20%;
 		}
 	}
 	
 	label {
 		@include transition($quick-animation-duration);
+		align-items: center;
 		border: 2px solid $light-grey;
 		cursor: pointer;
-		display: block;
-		padding: .5em;
+		display: flex;
+		padding: .25em .5em;
 		
 		&:hover{
 			background-image: repeating-linear-gradient(
@@ -85,10 +84,10 @@
 	}
 	
 	svg {
-		height: auto;
+		height: 2.5em;
 		stroke: $white;
-		stroke-width: 8;
-		width: 85%;
+		stroke-width: 10;
+		width: auto;
 		
 		.filled {
 			fill: $white;
@@ -97,8 +96,7 @@
 	}
 	
 	.content-selection-label {
-		display: none;
-		font-size: 14px;
+		font-size: $label-font-size;
 		max-width: 100%;
 		text-align: center;
 		width: 100%;

@@ -32,3 +32,7 @@ input[type=checkbox]:checked + .tick-checkbox:after {
 input[type=checkbox]:focus + .tick-checkbox {
 	box-shadow: 0 0 10px $primary, 0 0 5px $primary;
 }
+
+legend {
+	font-size: $label-font-size;
+}
