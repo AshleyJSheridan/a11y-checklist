@@ -21,19 +21,29 @@
 			</span>
 		</summary>
 
-		<div class="long-description" [innerHTML]="guideline.longDescription"></div>
+		<div class="guideline-content">
+			<div class="long-description" [innerHTML]="guideline.longDescription"></div>
 
-		<p *ngIf="guideline.codeSnippets.length > 0">You can run these snippets in your browser to help identify failing code:</p>
-		<dl class="code-snippets" *ngIf="guideline.codeSnippets.length > 0">
-			<span *ngFor="let snippet of guideline.codeSnippets">
-				<dt class="snippet-description" [innerHTML]="snippet.description"></dt>
-				<dd class="snippet-code">
-					<div [innerHTML]="snippet.code"></div>
-					<button type="button" class="copy-code" (click)="copyCode($event, snippet)">
-						<span class="accessible-hidden">Copy code to clipboard</span>
-					</button>
-				</dd>
-			</span>
-		</dl>
+			<p *ngIf="guideline.codeSnippets.length > 0">You can run these snippets in your browser to help identify failing code:</p>
+			<dl class="code-snippets" *ngIf="guideline.codeSnippets.length > 0">
+				<span *ngFor="let snippet of guideline.codeSnippets; let i = index">
+
+					<label 
+						class="snippet-description" 
+						[innerHTML]="snippet.description"
+						for="snipper-{{ guideline.guidelineNumber }}-{{ i }}"
+					></label>
+					<textarea 
+						class="snippet-code" 
+						[innerHTML]="snippet.code" 
+						id="snipper-{{ guideline.guidelineNumber }}-{{ i }}"
+						readonly
+					></textarea>
+					
+					<button type="button" class="copy-code" (click)="copyCode($event, snippet)">Copy code to clipboard</button>
+
+				</span>
+			</dl>
+		</div>
 	</details>
 </article>
