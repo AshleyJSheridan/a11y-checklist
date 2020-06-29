@@ -36,3 +36,9 @@ input[type=checkbox]:focus + .tick-checkbox {
 legend {
 	font-size: $label-font-size;
 }
+
+textarea {
+	&:focus {
+		box-shadow: 0 0 10px $primary, 0 0 5px $primary;
+	}
+}
