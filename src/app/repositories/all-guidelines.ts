@@ -655,11 +655,11 @@ export class AllGuidelines {
 			GuidelineLevel.A,
 			'2.4.4',
 			'Link Purpose (In Context)',
-			`<p>Links should make sense when taken stand-alone, out of context of their surroundings. For example, a blog with a series of small excerpts
-				might have links to read more. If every link just said "read more" and had no extra context, a person relying on a screen reader would
-				not be able to make much sense about where each link was going. Instead, if each link were "read more about <em>blog post title</em>"
-				the user would be able to easily understand where each link was going to take them.</p>
-			<p>If the link contains images, ensure that the <code>alt</code> text of the images also makes sense.</p>`,
+			`<p>Links should make sense when taken stand-alone Adjacent text can be used to supply additional context. For example, a news article
+				highlighting a recent event on horses might link to an external source for survey data with a sentence like "The original data for
+				this graph is from this years Prestigious University Horse Welfare Study", and the text "Prestigious University Horse Welfare Study"
+				would be the link. The link can be easily understood out of context, but the surrounding sentence lends further context to it.</p>
+			<p>If the link contains images, ensure that the <code>alt</code> text of the images also makes sense within the existing text of the link.</p>`,
 			[],
 			[
 				this._showLinkTextSnippet
@@ -688,5 +688,62 @@ export class AllGuidelines {
 			[],
 			[]
 		),
+		new Guideline(
+			GuidelineLevel.AA,
+			'2.4.7',
+			'Focus Visible',
+			`<p>Any element that can receive focus from keyboard interaction should have a visible indicator to show this. A browser typically does
+				this by giving elements a border or box shadow, and these styles can be overridden with your websites' 
+				<abbr title="Cascading Style Sheets">CSS</abbr>.</p>
+			<p>Avoid removing default browser focus styles without replacing them with an alternative that:</p>
+			<ul>
+				<li>Doesn't rely on colour alone; not everyone can perceive all colours</li>
+				<li>Doesn't rely on font styles alone; some styles might not be available in a given font, fonts can be overridden by the user, and
+					sometimes browsers break things</li>
+				<li>Doesn't rely on shadows alone; some dark/high contrast modes remove all shadows</li>
+			</ul>
+			<p>A common pattern to resolve Windows High Contrast mode removing shadows is to give elements a transparent border with a defined width.
+				When the shadow is removed, the border colour is set to the foreground automaticall by the operating system.</p>
+			<p>To test this effectively, tab through all the content on your page and ensure that you can visibly see where the focus is at all times.</p>`,
+			[],
+			[]
+		),
+		new Guideline(
+			GuidelineLevel.AAA,
+			'2.4.8',
+			'Location',
+			`<p>Users should be able to identify where they are within your website. This can be achieved by highlighting the main section they're in
+				within the websites navigation menu, or by using a breadcrumb component. This helps people with memory problems. It can also help
+				those users who	may have needed to go away for a short period of time and need a reminder about what they were doing before.</p>`,
+			[],
+			[]
+		),
+		new Guideline(
+			GuidelineLevel.AAA,
+			'2.4.9',
+			'Link Purpose (Link Only)',
+			`<p>Links should make sense when taken stand-alone, out of context of their surroundings. For example, a blog with a series of small excerpts
+				might have links to read more. If every link just said "read more" and had no extra context, a person relying on a screen reader would
+				not be able to make much sense about where each link was going. Instead, if each link were "read more about <em>blog post title</em>"
+				the user would be able to easily understand where each link was going to take them.</p>
+			<p>If the link contains images, ensure that the <code>alt</code> text of the images also makes sense within the existing text of the link.</p>
+			<p>If a link needs to visually remain as "read more", then <code>aria-labelledby</code> or <code>aria-label</code> can be used to provied an
+				accessible label, but this approach should be considered a last resort</p>`,
+			[],
+			[]
+		),
+		new Guideline(
+			GuidelineLevel.AAA,
+			'2.4.10',
+			'Section Headings',
+			`<p>Pages are often broken up into sections, and each should be headed with an appropriate level of heading. A good way to do achieve this is
+				to give an <code>id</code> to the visible heading, and associate the sectioning element with <code>aria-describedby</code>, which makes
+				the section a named landmark, enabling screen reader users to more easily navigate the page.</p>
+			<p>You should add sectioning elements (e.g. <code>&lt;section></code>, <code>&lt;aside></code>, <code>&lt;form></code>, etc) at appropriate
+				points of the page, which might often match the visual layout of the page.</p>`,
+			[],
+			[]
+		),
+		
 	];
 }
