@@ -744,6 +744,94 @@ export class AllGuidelines {
 			[],
 			[]
 		),
-		
+		new Guideline(
+			GuidelineLevel.A,
+			'2.5.1',
+			'Pointer Gestures',
+			`<p>Any functionality which relies on gestures (e.g. like unlocking a phone with a drawn pattern) or multiple points of interaction at once (e.g. 
+				pinch and zoom on a map) should also be available with a single pointer and without gestures, unless this is absolutely essential.</p>
+			<p>So, a map that relies on two points of interaction for zooming could also have buttons to provide this same behaviour for those people who
+				cannot do this. A phone lock screen that relies on drawing a specific pattern cannot offer an alternative method for inputting the pattern,
+				but it can offer an alternative method of unlocking the device (such as fingerprint, password, or facial recognition).</p>`,
+			[],
+			[]
+		),
+		new Guideline(
+			GuidelineLevel.A,
+			'2.5.2',
+			'Pointer Cancellation',
+			`<p>Functionality that is pointer based should allow actions to be cancelled or reversed. For example, a file manager allows a file to be
+				dragged across to a different folder to move it, but you could cancel this action by moving to an inactive area of the file manager
+				before releasing the mouse button, and you can undo the move action if it was done by mistake.</p>
+			<p>In order to best achieve this, you should ensure that:</p>
+			<ul>
+				<li>Actions are not triggered by the down event, this should only be used to start an action, never complete one</li>
+				<li>Any action can be undone, such as a move, rename, or delete action</li>
+				<li>Actions can be aborted by the user, e.g. by moving the pointer outside of the active area before releasing, or by moving the pointer
+					off of the active button.</li>
+			</ul>`,
+			[],
+			[]
+		),
+		new Guideline(
+			GuidelineLevel.A,
+			'2.5.3',
+			'Label in Name',
+			`<p>If a component has a visible label, that label should also be accessibly connected to that component. There are some exceptions:</p>
+			<ul>
+				<li>A link the visually contains only the text "read more" might have a more accessible name (via <code>aria-label</code> that says 
+					"read more about XYZ news story". The accessible name should contain the full visible text.</li>
+				<li>If there is no visual text for a component (e.g. it's a representative icon) then it's excempt from this guideline</li>
+				<li>If there is an icon that contains some symbolic characters (e.g. the bold, italic, and underline buttons of a text editor) then
+					the accessible label should label the action the button is performing</li>
+			</ul>`,
+			[],
+			[]
+		),
+		new Guideline(
+			GuidelineLevel.A,
+			'2.5.4',
+			'Motion Actuation',
+			`<p>If a particular function is tied to the physical movement of a device (e.g. moving a phone around to view a panoramic 3D photo), then
+				that function should also be available via other methods (such as pointer movement over the image)</p>
+			<p>Exceptions to this might be:</p>
+			<ul>
+				<li>A pedometer application in a phone or smart watch</li>
+				<li>A spirit level which relies on the orientation of a device for accuracy of readings</li>
+			</ul>`,
+			[],
+			[]
+		),
+		new Guideline(
+			GuidelineLevel.AAA,
+			'2.5.5',
+			'Target Size',
+			`<p>The size of interactive elements should be at least 44&times;44 pixels in order to allow users without fine motor control to
+				use them. Exceptions can be made when:</p>
+			<ul>
+				<li>The target is inline in a block of text, e.g. a link around a word. However, where links are used in text, the text should
+					not be too small and the link should wrap around enough words to make sense when taken out of context.</li>
+				<li>If the interactive element in question is visually determined by the browser (e.g. a file upload button)</li>
+				<li>There is an equivalent alternative available of an accessible size</li>
+			</ul>
+			<p>Note that links or buttons which contain letter-like symbols should meet this guideline, such as a help link which is just the
+				"?" symbol.</p>`,
+			[],
+			[]
+		),
+		new Guideline(
+			GuidelineLevel.AAA,
+			'2.5.6',
+			'Concurrent Input Mechanisms',
+			`<p>A website or web app should not limit the user to a specific type of input unless absolutely necessary. You can't rely on a
+				devices primary input mechanism as being the only one in use. For example, Android phones and tablets allow for a mouse to
+				be plugged in, allowing them to completely bypass the touchscreen. Someone might do this if they struggle with the fine 
+				motor control to operate a touchscreen, but have enough to operate a mouse, for example. Another person who was unable to
+				use a regular keyboard might rely on an on-screen version instead to type.</p>
+			<p>An exception to this might be a fingerprint scanner, which would obviously require touch. Generally, avoid specific
+				event handlers (keydown, keyup, etc) in favour of more input-agnostic ones (focus, click, etc).</p>`,
+			[],
+			[]
+		),
 	];
 }
