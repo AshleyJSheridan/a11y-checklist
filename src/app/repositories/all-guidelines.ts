@@ -16,9 +16,11 @@ export class AllGuidelines {
 	private _colourContrastSnippet: CodeSnippet = new CodeSnippet('(() => {let walker = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT, null, false);let textNode;while (textNode = walker.nextNode()) {var textContent = textNode.textContent.trim();if (textContent.length > 0) {var computedStyles = window.getComputedStyle(textNode.parentNode);var background = getColourFromComputed(computedStyles, "background-color");var foreground = getColourFromComputed(computedStyles, "color");var fontSize = parseInt(getPropertyFromComputedStyles(computedStyles, "font-size"));var fontWeight = getPropertyFromComputedStyles(computedStyles, "font-weight");var contrast = getColourContrast(background, foreground);if (!doesTextContrast(fontSize, fontWeight, contrast)) {console.error(textNode);}}}})();function getPropertyFromComputedStyles(computedStyles, property) {return computedStyles.getPropertyValue(property);}function getColourFromComputed(computedStyles, colourProperty) {var colour = getPropertyFromComputedStyles(computedStyles, colourProperty);var colourComponents;if (colour.match(/^rgba/)) {colourComponents = colour.match(/^rgba\\((\\d+), ?(\\d+), ?(\\d+), ?(\\d+)/);return convertRGBAtoRGB(colourComponents[1], colourComponents[2], colourComponents[3], colourComponents[4]);}colourComponents = colour.match(/^rgb\\((\\d+), ?(\\d+), ?(\\d+)/);return {r: parseInt(colourComponents[1]),g: parseInt(colourComponents[2]),b: parseInt(colourComponents[3])};}function convertRGBAtoRGB(r, g, b, alpha) {var defaultBackground = 255;return {r: (1 - alpha) * defaultBackground + alpha * r,g: (1 - alpha) * defaultBackground + alpha * g,b: (1 - alpha) * defaultBackground + alpha * b};}function getColourContrast(rgb1, rgb2) {var luminance1 = getColourLuminance(rgb1.r, rgb1.g, rgb1.b);var luminance2 = getColourLuminance(rgb2.r, rgb2.g, rgb2.b);return luminance1 / luminance2;}function getColourLuminance(r, g, b) {var a = [r, g, b].map(function (v) {v /= 255;return v <= .03928? v / 12.92: Math.pow((v + .055) / 1.055, 2.4);});return a[0] * 0.2126 + a[1] * 0.7152 + a[2] * .0722 + .05;}function doesTextContrast(fontSize, fontWeight, contrast) {var minContrastLevel = 4.5;var largeTextContrastLevel = 3;var largeTextSize = 24;var largeTextSizeBold = 18.66;var boldTextWeight = 700;var passedMinContrast = contrast >= minContrastLevel;var isLargeText = (fontSize >= largeTextSize) || (fontWeight >= boldTextWeight && fontSize >= largeTextSizeBold);var passedLargeTextMinContrast = (isLargeText && contrast >= largeTextContrastLevel);return passedMinContrast || passedLargeTextMinContrast;}', 'Find text that does not contrast well enough with the background');
 	private _colourContrastHighSnippet: CodeSnippet = new CodeSnippet('(() => {let walker = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT, null, false);let textNode;while (textNode = walker.nextNode()) {var textContent = textNode.textContent.trim();if (textContent.length > 0) {var computedStyles = window.getComputedStyle(textNode.parentNode);var background = getColourFromComputed(computedStyles, "background-color");var foreground = getColourFromComputed(computedStyles, "color");var fontSize = parseInt(getPropertyFromComputedStyles(computedStyles, "font-size"));var fontWeight = getPropertyFromComputedStyles(computedStyles, "font-weight");var contrast = getColourContrast(background, foreground);if (!doesTextContrast(fontSize, fontWeight, contrast)) {console.error(textNode);}}}})();function getPropertyFromComputedStyles(computedStyles, property) {return computedStyles.getPropertyValue(property);}function getColourFromComputed(computedStyles, colourProperty) {var colour = getPropertyFromComputedStyles(computedStyles, colourProperty);var colourComponents;if (colour.match(/^rgba/)) {colourComponents = colour.match(/^rgba\\((\\d+), ?(\\d+), ?(\\d+), ?(\\d+)/);return convertRGBAtoRGB(colourComponents[1], colourComponents[2], colourComponents[3], colourComponents[4]);}colourComponents = colour.match(/^rgb\\((\\d+), ?(\\d+), ?(\\d+)/);return {r: parseInt(colourComponents[1]),g: parseInt(colourComponents[2]),b: parseInt(colourComponents[3])};}function convertRGBAtoRGB(r, g, b, alpha) {var defaultBackground = 255;return {r: (1 - alpha) * defaultBackground + alpha * r,g: (1 - alpha) * defaultBackground + alpha * g,b: (1 - alpha) * defaultBackground + alpha * b};}function getColourContrast(rgb1, rgb2) {var luminance1 = getColourLuminance(rgb1.r, rgb1.g, rgb1.b);var luminance2 = getColourLuminance(rgb2.r, rgb2.g, rgb2.b);return luminance1 / luminance2;}function getColourLuminance(r, g, b) {var a = [r, g, b].map(function (v) {v /= 255;return v <= .03928? v / 12.92: Math.pow((v + .055) / 1.055, 2.4);});return a[0] * 0.2126 + a[1] * 0.7152 + a[2] * .0722 + .05;}function doesTextContrast(fontSize, fontWeight, contrast) {var minContrastLevel = 7;var largeTextContrastLevel = 4.5;var largeTextSize = 24;var largeTextSizeBold = 18.66;var boldTextWeight = 700;var passedMinContrast = contrast >= minContrastLevel;var isLargeText = (fontSize >= largeTextSize) || (fontWeight >= boldTextWeight && fontSize >= largeTextSizeBold);var passedLargeTextMinContrast = (isLargeText && contrast >= largeTextContrastLevel);return passedMinContrast || passedLargeTextMinContrast;}', 'Find text that does not contrast well enough with the background');
 	private _textSpacingSnippet: CodeSnippet = new CodeSnippet('(() => {let body = document.body || document.getElementsByTagName("body")[0];let textSpacing = document.createElement("style");body.appendChild(textSpacing);textSpacing.type = "text/css";textSpacing.appendChild(document.createTextNode("* {line-height: 2.5 !important;letter-spacing:1.12 !important;word-spacing:1.16 !important;}p {margin-bottom: 2em !important;}"))})();', 'Increase the spacing of text to test for broken layouts');
-	private _missingTitleSnippet: CodeSnippet = new CodeSnippet('(() => {if(document.title.length===0){console.error("missing title")}})()', 'Detect missing page title');
+	private _missingTitleSnippet: CodeSnippet = new CodeSnippet('(() => {if(document.title.length===0){console.error("missing page title")}})()', 'Detect missing page title');
 	private _largeTabindexSnippet: CodeSnippet = new CodeSnippet('(() => {let tabItems = document.querySelectorAll("*[tabindex]");tabItems.forEach((tabElement) => {let index = parseFloat(tabElement.getAttribute("tabindex"));if(index > 1){console.warn(tabElement)}})})()', 'Detect and warn about elements containing a <code>tabindex</code> higher than 1');
 	private _showLinkTextSnippet: CodeSnippet = new CodeSnippet('(()=>{let links=document.querySelectorAll("a");links.forEach((domLink) => {let link = domLink.cloneNode(true);let tabIndex = link.getAttribute("tabindex");if(tabIndex === "-1")return;let images=link.querySelectorAll("img");images.forEach((image) => {let altText = image.getAttribute("alt");image.parentNode.replaceChild(document.createTextNode(altText), image);})console.log(link.innerText);})})()','Show the text of links');
+	private _missingDocumentLanguage: CodeSnippet = new CodeSnippet('(() => {if(document.querySelector("html:not([lang])")){console.error("missing document language identifier")}})()','Detect missing document language identifier');
+	private _missingLanguageOfParts: CodeSnippet = new CodeSnippet('(() => {if(document.querySelectorAll("*[lang]").length<1){}console.warn("No alternate language parts of document found")})()','Detect no lang attributes on any part of document');
 					
 	availableGuidelines: Guideline[] = [
 		new Guideline(
@@ -830,6 +832,87 @@ export class AllGuidelines {
 				use a regular keyboard might rely on an on-screen version instead to type.</p>
 			<p>An exception to this might be a fingerprint scanner, which would obviously require touch. Generally, avoid specific
 				event handlers (keydown, keyup, etc) in favour of more input-agnostic ones (focus, click, etc).</p>`,
+			[],
+			[]
+		),
+		new Guideline(
+			GuidelineLevel.A,
+			'3.1.1',
+			'Language of Page',
+			`<p>Regardlless of whether or not a page exists in multiple languages it should indicate to the browser what language the 
+				content is in. This can be done with the <code>lang</code> attribute on the <code>&lt;html></code> tag. It should be
+				noted that <a href="https://www.w3.org/WAI/WCAG21/Techniques/server-side-script/SVR5.html#description">setting the 
+				locale with the <code>Content-Language</code> header does not meet this guideline</a>.</p>`,
+			[],
+			[this._missingDocumentLanguage]
+		),
+		new Guideline(
+			GuidelineLevel.AA,
+			'3.1.2',
+			'Language of Parts',
+			`<p>If a website contains content in multiple languages, those parts should be identified with a <code>lang</code> attribute
+				on the containing block.</p>`,
+			[ContentType.Translations],
+			[this._missingLanguageOfParts]
+		),
+		new Guideline(
+			GuidelineLevel.AAA,
+			'3.1.3',
+			'Unusual Words',
+			`<p>Some people may find it difficult to understand unusual or specialised words or phrases. This can be more pronounced in 
+				websites covering a specialist or niche subject matter. Users with cognitive or learning disabilities and younger audiences
+				can find this kind of language use especially difficult to read and understand.</p>
+			<p>In order to make the experience as comfortable as possible for your users, try to:</p>
+			<ul>
+				<li>Avoid unnecessary jargon</li>
+				<li>Explain unusual terms, and include a glossary if there are many such terms used</li>
+				<li>Avoid idioms, these don't translate well to all other languages if content is multi-lingual</li>
+			</ul>`,
+			[],
+			[]
+		),
+		new Guideline(
+			GuidelineLevel.AAA,
+			'3.1.4',
+			'Abbreviations',
+			`<p>Some users may find abbreviations hard to understand, and this can be even more of an issue if they are also using a
+				screen reader as this may read out abbreviations with the wrong pronunciation.</p>
+			<p>Further confusion can be created if the same abbreviation has different meanings, for example the letters "st" can be
+				interpretted as both "stree" and "station".</p>
+			<p>In order to make abbreviations as accessible as possible, you should:</p>
+			<ul>
+				<li>Mark up abbreviations with the correct <code>&lt;abbr></code> tag</li>
+				<li>Include the definition and abbreviation in parentheses for its first use, e.g. "Web Accessibility Initiative (WAI)"</li>
+				<li>Link to a glossary containing the abbreviations used</li>
+				<li>Avoid abbreviations that could be confusing, e.g. "accessibility" is sometimes abbreviated to "a11y", but this can be
+					confusing for people who do not know it, as it has little in relation to the original word. Use of this abbreviation
+					is typically reserved for use in cases where small text limits apply, like Twitter or mobile phone text messages.</li>
+			</ul>`,
+			[],
+			[]
+		),
+		new Guideline(
+			GuidelineLevel.AAA,
+			'3.1.5',
+			'Reading Level',
+			`<p>People will only be able to easily understand content up to their reading level or age. So, for example, someone who can
+				only read up to the level of a 10 year old will find content that has a higher reading age more difficult to understand.
+				Content should be readable by someone with a lower secondary education level, or about that of an 11 year old. If your 
+				content is more complicated than this, then you should provide an equivalent version that meets this requirement.</p>
+			<p>You can determine the reading level of your content with a Flesch-Kinkaid test (or equivalent for non-English content).</p>`,
+			[],
+			[]
+		),
+		new Guideline(
+			GuidelineLevel.AAA,
+			'3.1.6',
+			'Pronunciation',
+			`<p>The meaning of content may sometimes rely upon the pronounciation of words. Usually, this can be derived from the context
+				of those words within a sentence, but if they're missing that, then additional context may be required.</p>
+			<p>For example, the word "read" in English changes meaning depending on whether it's past or present tense, so using it as a
+				standalone word might be confusing. Consider a message system where each message has a button with a label of "read".
+				This could be interpreted to mean both "read this message" as an action and "mark the message as read". In order to avoid
+				ambiguity, you could change the label to use an alternate phrasing, such as "mark as read", for example.</p>`,
 			[],
 			[]
 		),
