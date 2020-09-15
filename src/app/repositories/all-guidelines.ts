@@ -916,5 +916,126 @@ export class AllGuidelines {
 			[],
 			[]
 		),
+		new Guideline(
+			GuidelineLevel.A,
+			'3.2.1',
+			'On Focus',
+			`<p>When anything on the website recieves focus, it should not cause a change of context so that their user journey remains
+				consistent and within reasonable expectations. So, for example, avoid things like:</p>
+			<ul>
+				<li>Submitting a form when something receieves focus. Instead, allow them to submit via a button or the Enter key</li>
+				<li>Moving focus to another component, although sometimes exceptions may be made for important modal dialogues where focus
+					trap might be required</li>
+				<li>Opening windows, or triggering system dialogs (like print or download) unless the user has already taken a
+					specific action where such a dialog might be expected (such as clicking a download link)</li>
+			</ul>`,
+			[],
+			[]
+		),
+		new Guideline(
+			GuidelineLevel.A,
+			'3.2.2',
+			'On Input',
+			`<p>When anything on the website recieves input, it should not cause a change of context so that their user journey remains
+				consistent and within reasonable expectations. So, for example, avoid things like:</p>
+			<ul>
+				<li>Opening windows, or triggering system dialogs (like print or download) when the user presses a certain key on their
+					keyboard unless it's reasonable expected. E.g. don't trigger the download dialog for a file just by pressing the
+					letter "d", but you may trigger it using an <code>accesskey</code> in the HTML (which is typically <code>Alt</code>
+					and <code><em>accessKey</em></code>, although it may vary slightly across browsers and operating systems)</li>
+				<li>Triggering a form submission from changing the value on one of the form elements, e.g. a <code>&lt;select></code>
+					list</li>
+			</ul>
+			<p>Instead, actions should be triggered by elements that are expected to trigger actions, such as buttons and links.</p>`,
+			[ContentType.Forms],
+			[]
+		),
+		new Guideline(
+			GuidelineLevel.AA,
+			'3.2.3',
+			'Consistent Navigation',
+			`<p>Navigation on all pages within a set (e.g. a whole website, or main sub-section of a website if it may be large
+				enough to warrent this) should remain consistent. For example, the main site navigation and breadcrumbs should remain
+				in the same location across pages. This will ensure that all people visitng your website will be able to navigate 
+				easily.</p>
+			<p>If a website is split into multiple distinct categories, such as a backup file management interface and a help section,
+				the navigation might change from a very simple top-level navigation for the main parts of backup, to a longer list
+				outlining the document structure for the help section.</p>`,
+			[],
+			[]
+		),
+		new Guideline(
+			GuidelineLevel.AA,
+			'3.2.4',
+			'Consistent Identification',
+			`<p>If your website contains repeated fuinctional components across a set of pages (e.g. search input, language picker, 
+				etc) the element should be labelled and identified in the same way. This makes it easier for people who might have 
+				short-term memory issues or people relying on screen readers who may not have the same visual identifiers to go by.</p>
+			<p>Exceptions can be made if the element offers functionality that differs in some way, and that difference can
+				be reflected in the labelling for the element.</p>`,
+			[],
+			[]
+		),
+		new Guideline(
+			GuidelineLevel.AAA,
+			'3.2.5',
+			'Change on Request',
+			`<p>Changes of your current browsing context should be initiated from user action. For example, launching new windows or
+				file downloads should only be triggered by an action that would be expected to do that, such as clicking a link or a
+				button. Initiating an action like this by hovering over something on a page, or just be visiting the page would be
+				considered a violation of this.</p>
+			<p>This can really help those people who might struggle with an unexpected change of context, or those relying on
+				assistive technology (like a screen reader), as they could be left in a situation that doesn't match their expectations.
+				For example, finding that their browser back button does not take them to where they expect, or that their screen
+				reader is now on a modal dialogue that they did not request.</p>`,
+			[],
+			[]
+		),
+		new Guideline(
+			GuidelineLevel.A,
+			'3.3.1',
+			'Error Identification',
+			`<p>Any web components that are in an error state should identify this error state correctly and an appropriate error
+				message should be presented to the user. For example, an account creation form that with a new password in an error
+				state should:</p>
+			<ul>
+				<li>Identify the form field as being in an error state with <code>aria-invalid</code></li>
+				<li>Visually highlight the password field as being in an error state. You may use an icon to indicate this, but do not
+					rely on colour alone to indicate an error</li>
+				<li>Label the error clearly in text, using words that can be easily understood to mean the password field has an error</li>
+				<li>Associate the error message with the field when it's in an error state using <code>aria-describedby</code> so that
+					people relying on screen readers can also understand <em>what</em> the error is</li>
+			</ul>
+			<p>You may also present the error as a form of alert instead of inline, and use <code>role="alert"</code> or
+				<code>role="alertdialog"</code> to present the error, although care should be taken with this approach for larger forms
+				that contain many errors, as alerts can be quite intrusive to the normal browsing process (imagine presenting all errors
+				to a user with a Javscript <code>alert()</code>.)</p>`,
+			[],
+			[]
+		),
+		new Guideline(
+			GuidelineLevel.A,
+			'3.3.2',
+			'Labels or Instructions',
+			`<p>If user input requires that someone needs to enter data in a specific way, this should be indicated clearly to them
+				prior to them entering that data, and not as part of an error message if they get it wrong the first time. For example:</p>
+			<ul>
+				<li>A date field should indicate the format required if it will only work with a specific type</li>
+				<li>Phone number fields should show the format they expect, and also if non-numerical values are allowed (as phone numbers
+					aren't numbers)</li>
+				<li>Optional and required fields should indicate their status with more than an asterisk/star alone, such as with a message
+					within the form that indicates what the use of this symbol means</li>
+			</ul>
+			<p>As well as this, to best aid those users relying on technology like screen readers, you should:</p>
+			<ul>
+				<li>Make use of <code>aria-describedby</code> to provide further messaging for more complex interface components, such as
+					password complixity requirements</li>
+				<li>Use grouping roles like <code>role="radiogroup"</code> or <code>&lt;fieldset></code> to group related controls, e.g.
+					credit card information fields</li>
+				<li>Provide examples for any input elements which require specific <code>pattern</code> values</li>
+			</ul>`,
+			[],
+			[]
+		),
 	];
 }
