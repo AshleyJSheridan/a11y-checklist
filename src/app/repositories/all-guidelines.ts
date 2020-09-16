@@ -1037,5 +1037,58 @@ export class AllGuidelines {
 			[],
 			[]
 		),
+		new Guideline(
+			GuidelineLevel.AA,
+			'3.3.3',
+			'Error Suggestion',
+			`<p>If an error can be detected with user input, amd suggestions to rectify the error can be provided, they should be provided
+				to the user. For example, if you were sharing a photo with a single person from a list of your contacts, you might be shown
+				a free-text input field. If you type a name that doesn't exist in your contacts, the system could find the closest match
+				based on your spelling.</p>
+			<p>Exceptions are made for situations that might pose a security risk, such as inputs used for authorisation or authentication.</p>`,
+			[],
+			[]
+		),
+		new Guideline(
+			GuidelineLevel.AA,
+			'3.3.4',
+			'Error Prevention (Legal, Financial, Data)',
+			`<p>If a website allows a user to perform an action with a financial or legal transation element (such as a purchase or deletion
+				of backed up data), then at least one of the following should be true:</p>
+			<ol>
+				<li>The submission is <strong>reversable</strong>, e.g. a deleted file can be restored</li>
+				<li>The submission can be <strong>confirmed</strong>, e.g. a user is shown a confirmation message before finalising their purchase</li>
+				<li>Data is <strong>checked</strong> for possible errors to allow the user the chance to correct them, such as a messaging app verifying
+					the user intentionally omitted a file attachment if they mentioned attaching a file in their message</li>
+			</ol>`,
+			[],
+			[]
+		),
+		new Guideline(
+			GuidelineLevel.AAA,
+			'3.3.5',
+			'Help',
+			`<p>Context-sensitive should be provided to help when existing labels may not be sufficient to describe the full functionality available to
+				the user. For example, an interface that allows a user to manage the appearance of their account might have an input field that allows
+				them to enter code to achieve this. A link could be provided that explains in further detail what kind of code is accepted, and maybe
+				small examples could be given.</p>`,
+			[],
+			[]
+		),
+		new Guideline(
+			GuidelineLevel.AAA,
+			'3.3.6',
+			'Error Prevention (All)',
+			`<p>If a website allows a user to perform an action by submitting information, then at least one of the following should be true:</p>
+			<ol>
+				<li>The submission is <strong>reversable</strong>, e.g. a deleted file can be restored</li>
+				<li>The submission can be <strong>confirmed</strong>, e.g. a user is shown a confirmation message before finalising their purchase</li>
+				<li>Data is <strong>checked</strong> for possible errors to allow the user the chance to correct them, such as a messaging app verifying
+					the user intentionally omitted a file attachment if they mentioned attaching a file in their message</li>
+			</ol>
+			<p>This guideline extends 3.3.4 and applies it to all and any action a user might take, and not just those with a financial or legal component.</p>`,
+			[],
+			[]
+		),
 	];
 }
