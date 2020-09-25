@@ -1090,5 +1090,64 @@ export class AllGuidelines {
 			[],
 			[]
 		),
+		new Guideline(
+			GuidelineLevel.A,
+			'4.1.1',
+			'Parsing',
+			`<p>HTML is a very forgiving language, and web browsers are very good at correcting invalid markup. However, not all browsers do this in
+				the same way, and some corectings they make may have unwanted side-effects on the original intention behind the markup. In order to prevent
+				this from happening, you should ensure that the markup you produce is well-formed, follows the language specifications, and can be
+				validated successfully.</p>
+			<p>Things to look out for are:</p>
+			<ul>
+				<li>Missig closing tags</li>
+				<li>Mismatched tags, or tags closed in the wrong nesting order</li>
+				<li>Duplicate <code>id</code> attributes</li>
+				<li>Invalid tags, or custom tags with improper names or not registed correctly</li>
+			</ul>`,
+			[],
+			[]
+		),
+		new Guideline(
+			GuidelineLevel.A,
+			'4.1.2',
+			'Name, Role, Value',
+			`<p>A browser should be able to present all necessary information about a user interface control to the person using it, such as the elements
+				name, role, and current state (or multiple states if applicable). For example, a screen reader would need to present the following 
+				infromation to someone who is using a screen reader on a login form:</p>
+			<ul>
+				<li>Names of each element (text fields and submit button)</li>
+				<li>Type of element, e.g. text, password, button</li>
+				<li>Whether a field is editable or not (perhaps the password field is disabled or read-only until a username is entered)</li>
+				<li>Whether the field is marked invalid or not</li>
+				<li>Any additional description for the field</li>
+				<li>The current value of a field</li>
+				<li>Any placeholder a field might have</li>
+				<li>Validation requirements or restrictions that apply to a given field</li>
+			</ul>`,
+			[],
+			[]
+		),
+		new Guideline(
+			GuidelineLevel.AA,
+			'4.1.3',
+			'Status Messages',
+			`<p>At times you may want to give your user a message about an event that occurred, either from an action of theirs (such as an error
+				message), a system event (e.g. an alert about their session about to expire), or something from outside the system (like an instant 
+				message). Such status messages should rely on means other than visual or audio clues alone to alert 
+				the user</p>
+			<p>In order to meet this guideline, you could:</p>
+			<ul>
+				<li>Attach form error messages to the form or field to which they should belong using <code>aria-description</code> in conjunction
+					with using <code>aria-invalid</code> on the element</li>
+				<li>Add a local status/notification area which uses an appropriate <code>role</code> attribute (such as <code>alert</code> or
+					<code>status</code>) and adding a <code>aria-relevant</code> attribute which covers the types of changes expected, such as
+					<code>additions</code> or <code>removals</code> and use this to display messages local to an interface component, like a file list</li>
+				<li>Add a global notification are using the same techniques of the local one, and use it to contain messages from across multiple
+					interface components</li>
+			</ul>`,
+			[],
+			[]
+		),
 	];
 }
