@@ -1,25 +1,33 @@
 <section class="guidelines" aria-relevant="all" aria-live="polite" id="guidelines" aria-labelledby="guidelines-heading">
 	<h2 id="guidelines-heading" *ngIf="guidelines.length > 0">You need to test these things:</h2>
 	
-	<ol class="guideline-list">
+	<h3 *ngIf="hasGuidelinesForLevel(1)">Perceivable</h3>
+	<p *ngIf="hasGuidelinesForLevel(1)">People will be perceiving your content in a variety of ways, these guidelines will help ensure they can.</p>
+	<ol class="guideline-list" *ngIf="hasGuidelinesForLevel(1)">
 		<li *ngFor="let guideline of guidelines | guidelineLevel:{level: '1'}">
 			<app-guideline [guideline]="guideline"></app-guideline>
 		</li>
 	</ol>
 	
-	<ol class="guideline-list">
+	<h3 *ngIf="hasGuidelinesForLevel(2)">Operable</h3>
+	<p *ngIf="hasGuidelinesForLevel(2)">These guidelines ensure people can interact with your interface, regardless of their exact means of interaction.</p>
+	<ol class="guideline-list" *ngIf="hasGuidelinesForLevel(2)">
 		<li *ngFor="let guideline of guidelines | guidelineLevel:{level: '2'}">
 			<app-guideline [guideline]="guideline"></app-guideline>
 		</li>
 	</ol>
 	
-	<ol class="guideline-list">
+	<h3 *ngIf="hasGuidelinesForLevel(3)">Understandable</h3>
+	<p *ngIf="hasGuidelinesForLevel(3)">Your users should be able to understand what they're being presented wtih, and should understand how to use the interface available to them.</p>
+	<ol class="guideline-list" *ngIf="hasGuidelinesForLevel(3)">
 		<li *ngFor="let guideline of guidelines | guidelineLevel:{level: '3'}">
 			<app-guideline [guideline]="guideline"></app-guideline>
 		</li>
 	</ol>
 	
-	<ol class="guideline-list">
+	<h3 *ngIf="hasGuidelinesForLevel(4)">Robust</h3>
+	<p *ngIf="hasGuidelinesForLevel(4)">Content should be robust enough to correctly interpreted by the presenting technology (e.g. browser) and should allow a user to manage actions which change state.</p>
+	<ol class="guideline-list" *ngIf="hasGuidelinesForLevel(4)">
 		<li *ngFor="let guideline of guidelines | guidelineLevel:{level: '4'}">
 			<app-guideline [guideline]="guideline"></app-guideline>
 		</li>

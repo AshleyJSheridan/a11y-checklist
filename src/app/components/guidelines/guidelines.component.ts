@@ -27,4 +27,8 @@ export class GuidelinesComponent implements OnInit {
 		
 		this.guidelines = this._checklistService.getMatchingGuidelines(selectedContentType, guidelineLevel);
 	}
+	
+	hasGuidelinesForLevel(level: number): boolean {
+		return this.guidelines.filter(guideline => guideline.guidelineNumber.charAt(0) === level.toString()).length > 0;
+	}
 }
