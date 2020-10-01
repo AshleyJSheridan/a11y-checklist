@@ -39,4 +39,11 @@ export class GuidelinesComponent implements OnInit {
 	getTotalCheckedGuidelines(): number {
 		return this.guidelines.filter(guideline => guideline.checked == true).length;
 	}
+	
+	getPercentCompleted(): number {
+		if (this.getTotalGuidelines() === 0 || this.getTotalCheckedGuidelines() === 0)
+			return 0;
+			
+		return Math.floor((this.getTotalCheckedGuidelines() / this.getTotalGuidelines()) * 10000) / 100;
+	}
 }
