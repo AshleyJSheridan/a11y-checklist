@@ -15,6 +15,7 @@ import { CheckDesiredComplianceLevelComponent } from './components/check-desired
 import { GuidelinesComponent } from './components/guidelines/guidelines.component';
 import { SvgContentTypesComponent } from './components/svg/svg-content-types/svg-content-types.component';
 import { GuidelineComponent } from './components/guideline/guideline.component';
+import { GuidelineLevelPipe } from './pipes/guideline-level.pipe';
 
 @NgModule({
 	declarations: [
@@ -32,7 +33,8 @@ import { GuidelineComponent } from './components/guideline/guideline.component';
 		CheckDesiredComplianceLevelComponent,
 		GuidelinesComponent,
 		SvgContentTypesComponent,
-		GuidelineComponent
+		GuidelineComponent,
+		GuidelineLevelPipe
 	],
 	imports: [
 		BrowserModule

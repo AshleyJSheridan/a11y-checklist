@@ -2,7 +2,25 @@
 	<h2 id="guidelines-heading" *ngIf="guidelines.length > 0">You need to test these things:</h2>
 	
 	<ol class="guideline-list">
-		<li *ngFor="let guideline of guidelines">
+		<li *ngFor="let guideline of guidelines | guidelineLevel:{level: '1'}">
+			<app-guideline [guideline]="guideline"></app-guideline>
+		</li>
+	</ol>
+	
+	<ol class="guideline-list">
+		<li *ngFor="let guideline of guidelines | guidelineLevel:{level: '2'}">
+			<app-guideline [guideline]="guideline"></app-guideline>
+		</li>
+	</ol>
+	
+	<ol class="guideline-list">
+		<li *ngFor="let guideline of guidelines | guidelineLevel:{level: '3'}">
+			<app-guideline [guideline]="guideline"></app-guideline>
+		</li>
+	</ol>
+	
+	<ol class="guideline-list">
+		<li *ngFor="let guideline of guidelines | guidelineLevel:{level: '4'}">
 			<app-guideline [guideline]="guideline"></app-guideline>
 		</li>
 	</ol>
