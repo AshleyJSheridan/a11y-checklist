@@ -28,4 +28,8 @@ export class GuidelineComponent implements OnInit {
 	updateCheckedState(event: any) {
 		this.guideline.updateCheckedState(event.target.checked);
 	}
+	
+	isChecked(): boolean {
+		return this.guideline.checked;
+	}
 }
