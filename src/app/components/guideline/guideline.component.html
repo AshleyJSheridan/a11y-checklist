@@ -6,6 +6,7 @@
 			value="{{ guideline.guidelineNumber }}" 
 			class="accessible-hidden"
 			id="guideline-{{ guideline.guidelineNumber }}"
+			(change)="updateCheckedState($event)"
 		/>
 		<label for="guideline-{{ guideline.guidelineNumber }}" class="tick-checkbox">
 			<h2 class="accessible-hidden">Completed guideline {{ guideline.guidelineNumber }} {{ guideline.guidelineName }}</h2>

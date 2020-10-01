@@ -9,6 +9,7 @@ export class Guideline {
 	longDescription: string;
 	testAgainst: ContentType[];
 	codeSnippets: CodeSnippet[];
+	checked: boolean = false;
 	
 	constructor(
 		level: GuidelineLevel, 
@@ -28,5 +29,9 @@ export class Guideline {
 	
 	getLabel(): string {
 		return `guideline-label-${this.guidelineNumber}`;
+	}
+	
+	updateCheckedState(state: boolean) {
+		this.checked = state;
 	}
 }

@@ -31,4 +31,12 @@ export class GuidelinesComponent implements OnInit {
 	hasGuidelinesForLevel(level: number): boolean {
 		return this.guidelines.filter(guideline => guideline.guidelineNumber.charAt(0) === level.toString()).length > 0;
 	}
+	
+	getTotalGuidelines(): number {
+		return this.guidelines.length;
+	}
+	
+	getTotalCheckedGuidelines(): number {
+		return this.guidelines.filter(guideline => guideline.checked == true).length;
+	}
 }

@@ -24,4 +24,8 @@ export class GuidelineComponent implements OnInit {
 	copyCode(event: any, codeSnippet: CodeSnippet): void {
 		this._clipboardHelper.copyTextToClipboard(codeSnippet.code, event.target);
 	}
+	
+	updateCheckedState(event: any) {
+		this.guideline.updateCheckedState(event.target.checked);
+	}
 }
