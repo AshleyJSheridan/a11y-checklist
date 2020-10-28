@@ -12,6 +12,8 @@ import { CheckDesiredComplianceLevelComponent } from '../check-desired-complianc
 	templateUrl: './check.component.html'
 })
 export class CheckComponent implements OnInit {
+	private _showResults: boolean = false;
+	private _listParamsChanged: boolean = false;
 	@ViewChild(CheckContentTypesComponent) checkContentTypeComponent;
 	@ViewChild(CheckDesiredComplianceLevelComponent) checkDesiredComplianceLevelComponent;
 	@ViewChild(GuidelinesComponent) guidelinesComponent;
@@ -29,11 +31,29 @@ export class CheckComponent implements OnInit {
 		return this.checkDesiredComplianceLevelComponent.getCurrentGuidelineLevel();
 	}
 	
-	updateGuidelines(event: any): void {
+	updateGuidelines(): void {
+		this._listParamsChanged = false;
 		let self = this;
 		
 		window.setTimeout(function(){
 			self.guidelinesComponent.updateGuidelines();
 		}, 0);
+	}
+	
+	markListParamsChanged(event: any): void {
+		this._listParamsChanged = true;
+	}
+	
+	canShowResults(): boolean {
+		return this._showResults;
+	}
+	
+	canShowListParamsChanged(): boolean {
+		return this._listParamsChanged && this._showResults;
+	}
+	
+	showChecklist(): void {
+		this._showResults = true;
+		this.updateGuidelines();
 	}
 }

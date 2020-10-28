@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, ElementRef } from '@angular/core';
 import { ContentType } from 'src/app/enums/content-type.enum';
 import { GuidelineLevel } from 'src/app/enums/guideline-level.enum';
 import { Guideline } from 'src/app/entities/guideline';
@@ -10,13 +10,15 @@ import { ChecklistService } from 'src/app/services/checklist.service';
 })
 export class GuidelinesComponent implements OnInit {
 	private _checklistService: ChecklistService;
+	private _elementRef: ElementRef;
 	guidelines: Guideline[] = [];
 	
 	@Input() selectedContentTypes: ContentType[];
 	@Input() guidelineLevel: GuidelineLevel;
 
-	constructor(checklistService: ChecklistService) {
+	constructor(checklistService: ChecklistService, elementRef: ElementRef) {
 		this._checklistService = checklistService;
+		this._elementRef = elementRef;
 	}
 
 	ngOnInit() { }
@@ -26,6 +28,8 @@ export class GuidelinesComponent implements OnInit {
 		let guidelineLevel = this.guidelineLevel;
 		
 		this.guidelines = this._checklistService.getMatchingGuidelines(selectedContentType, guidelineLevel);
+		
+		this.focusFirstGuideline();
 	}
 	
 	hasGuidelinesForLevel(level: number): boolean {
@@ -45,5 +49,18 @@ export class GuidelinesComponent implements OnInit {
 			return 0;
 			
 		return Math.floor((this.getTotalCheckedGuidelines() / this.getTotalGuidelines()) * 10000) / 100;
+	}
+	
+	focusFirstGuideline(): void {
+		let self = this;
+		
+		window.setTimeout(function(){
+			let firstInput = self._elementRef.nativeElement.querySelector('input');
+			
+			if(firstInput !== null) {
+				firstInput.focus();
+			}
+		}, 0);
+		
 	}
 }

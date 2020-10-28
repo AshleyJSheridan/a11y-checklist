@@ -12,7 +12,7 @@ export class CheckContentTypesComponent implements OnInit {
 	private _selectedTypes: ContentType[] = [];
 	private _enumHelper: EnumHelper;
 	private _arrayHelper: ArrayHelper;
-	@Output() updateGuidelines: EventEmitter<boolean> = new EventEmitter<boolean>();
+	@Output() markListParamsChanged: EventEmitter<boolean> = new EventEmitter<boolean>();
 	
 	constructor(enumHelper: EnumHelper, arrayHelper: ArrayHelper) { 
 		this._enumHelper = enumHelper;
@@ -38,7 +38,7 @@ export class CheckContentTypesComponent implements OnInit {
 			this._arrayHelper.removeFromArray(this._selectedTypes, contentType);
 		}
 		
-		this.updateGuidelines.emit(true);
+		this.markListParamsChanged.emit(true);
 	}
 	
 	getSelectedContentTypes(): ContentType[] {
