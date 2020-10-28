@@ -3,36 +3,44 @@
 	
 	<p *ngIf="getTotalGuidelines() > 0">Checked {{ getTotalCheckedGuidelines() }} of {{ getTotalGuidelines() }} applicable guidelines ({{ getPercentCompleted() }}% complete).</p>
 	
-	<h3 *ngIf="hasGuidelinesForLevel(1)">Perceivable</h3>
-	<p *ngIf="hasGuidelinesForLevel(1)">People will be perceiving your content in a variety of ways, these guidelines will help ensure they can.</p>
-	<ol class="guideline-list" *ngIf="hasGuidelinesForLevel(1)">
-		<li *ngFor="let guideline of guidelines | guidelineLevel:{level: '1'}">
-			<app-guideline [guideline]="guideline"></app-guideline>
-		</li>
-	</ol>
+	<section aria-labelledby="guidelines-perceivable-heading" aria-describedby="guidelines-perceivable-description" *ngIf="hasGuidelinesForLevel(1)">
+		<h3 id="guidelines-perceivable-heading">Perceivable</h3>
+		<p id="guidelines-perceivable-description">People will be perceiving your content in a variety of ways, these guidelines will help ensure they can.</p>
+		<ol class="guideline-list" *ngIf="hasGuidelinesForLevel(1)">
+			<li *ngFor="let guideline of guidelines | guidelineLevel:{level: '1'}">
+				<app-guideline [guideline]="guideline"></app-guideline>
+			</li>
+		</ol>
+	</section>
 	
-	<h3 *ngIf="hasGuidelinesForLevel(2)">Operable</h3>
-	<p *ngIf="hasGuidelinesForLevel(2)">These guidelines ensure people can interact with your interface, regardless of their exact means of interaction.</p>
-	<ol class="guideline-list" *ngIf="hasGuidelinesForLevel(2)">
-		<li *ngFor="let guideline of guidelines | guidelineLevel:{level: '2'}">
-			<app-guideline [guideline]="guideline"></app-guideline>
-		</li>
-	</ol>
+	<section aria-labelledby="guidelines-operable-heading" aria-describedby="guidelines-operable-description" *ngIf="hasGuidelinesForLevel(2)">
+		<h3 id="guidelines-operable-heading">Operable</h3>
+		<p id="guidelines-operable-description">These guidelines ensure people can interact with your interface, regardless of their exact means of interaction.</p>
+		<ol class="guideline-list" *ngIf="hasGuidelinesForLevel(2)">
+			<li *ngFor="let guideline of guidelines | guidelineLevel:{level: '2'}">
+				<app-guideline [guideline]="guideline"></app-guideline>
+			</li>
+		</ol>
+	</section>
 	
-	<h3 *ngIf="hasGuidelinesForLevel(3)">Understandable</h3>
-	<p *ngIf="hasGuidelinesForLevel(3)">Your users should be able to understand what they're being presented wtih, and should understand how to use the interface available to them.</p>
-	<ol class="guideline-list" *ngIf="hasGuidelinesForLevel(3)">
-		<li *ngFor="let guideline of guidelines | guidelineLevel:{level: '3'}">
-			<app-guideline [guideline]="guideline"></app-guideline>
-		</li>
-	</ol>
+	<section aria-labelledby="guidelines-understandable-heading" aria-describedby="guidelines-understandable-description" *ngIf="hasGuidelinesForLevel(3)">
+		<h3 id="guidelines-understandable-heading">Understandable</h3>
+		<p id="guidelines-understandable-description">Your users should be able to understand what they're being presented with, and should understand how to use the interface available to them.</p>
+		<ol class="guideline-list" *ngIf="hasGuidelinesForLevel(3)">
+			<li *ngFor="let guideline of guidelines | guidelineLevel:{level: '3'}">
+				<app-guideline [guideline]="guideline"></app-guideline>
+			</li>
+		</ol>
+	</section>
 	
-	<h3 *ngIf="hasGuidelinesForLevel(4)">Robust</h3>
-	<p *ngIf="hasGuidelinesForLevel(4)">Content should be robust enough to correctly interpreted by the presenting technology (e.g. browser) and should allow a user to manage actions which change state.</p>
-	<ol class="guideline-list" *ngIf="hasGuidelinesForLevel(4)">
-		<li *ngFor="let guideline of guidelines | guidelineLevel:{level: '4'}">
-			<app-guideline [guideline]="guideline"></app-guideline>
-		</li>
-	</ol>
+	<section aria-labelledby="guidelines-robust-heading" aria-describedby="guidelines-robust-description" *ngIf="hasGuidelinesForLevel(4)">
+		<h3 id="guidelines-robust-heading">Robust</h3>
+		<p id="guidelines-robust-description">Content should be robust enough to correctly interpreted by the presenting technology (e.g. browser) and should allow a user to manage actions which change state.</p>
+		<ol class="guideline-list" *ngIf="hasGuidelinesForLevel(4)">
+			<li *ngFor="let guideline of guidelines | guidelineLevel:{level: '4'}">
+				<app-guideline [guideline]="guideline"></app-guideline>
+			</li>
+		</ol>
+	</section>
 	
 </section>
