@@ -14,6 +14,8 @@ import { CheckDesiredComplianceLevelComponent } from '../check-desired-complianc
 export class CheckComponent implements OnInit {
 	private _showResults: boolean = false;
 	private _listParamsChanged: boolean = false;
+	currentStep: number = 1;
+	totalSteps: number = 3;
 	@ViewChild(CheckContentTypesComponent) checkContentTypeComponent;
 	@ViewChild(CheckDesiredComplianceLevelComponent) checkDesiredComplianceLevelComponent;
 	@ViewChild(GuidelinesComponent) guidelinesComponent;
@@ -44,16 +46,23 @@ export class CheckComponent implements OnInit {
 		this._listParamsChanged = true;
 	}
 	
+	nextStep(event: any): void {
+		this.currentStep ++;
+		
+		if (this.canShowResults()) {
+			this.updateGuidelines();
+		}
+	}
+	
 	canShowResults(): boolean {
-		return this._showResults;
+		return this.currentStep === this.totalSteps;
 	}
 	
-	canShowListParamsChanged(): boolean {
-		return this._listParamsChanged && this._showResults;
+	canShowStep(step: number): boolean {
+		return this.currentStep === step;
 	}
 	
-	showChecklist(): void {
-		this._showResults = true;
-		this.updateGuidelines();
+	getStepsAsArray(): number[] {
+		return Array.from({length: 3}, (_, index) => index + 1);
 	}
 }

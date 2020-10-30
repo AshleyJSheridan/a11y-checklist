@@ -1,0 +1,40 @@
+nav.steps {
+	position: relative;
+	z-index: 1;
+	
+	ul {
+		display: flex;
+		list-style: none;
+		margin: 2em auto 3em;
+		padding: 0;
+		justify-content: space-between;
+		position: relative;
+		width: 50%;
+		
+		&:before {
+			content: "";
+			position: absolute;
+			border-top: 2px solid $white;
+			width: 100%;
+			top: 50%;
+			z-index: -1;
+		}
+	}
+	
+	li {
+		align-items: center;
+		background-color: $primary;
+		border: 2px solid $white;
+		border-radius: 50%;
+		display: flex;
+		font-size: 1em;
+		justify-content: center;
+		height: 3em;
+		width: 3em;
+		
+		&[aria-current=step] {
+			background-color: $white;
+			color: $primary;
+		}
+	}
+}

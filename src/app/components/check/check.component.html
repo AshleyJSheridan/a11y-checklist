@@ -2,12 +2,19 @@
 	<div class="setup">
 		<h1>Accessibility Testing Checklist Tool</h1>
 		
-		<app-check-content-types (markListParamsChanged)="markListParamsChanged($event)"></app-check-content-types>
-
-		<app-check-desired-compliance-level (markListParamsChanged)="markListParamsChanged($event)"></app-check-desired-compliance-level>
+		<nav [attr.aria-label]="step-label" class="steps">
+			<p hidden id="step-label">Step {{ step }} of {{ totalSteps }}</p>
+			<ul>
+				<li *ngFor="let step of getStepsAsArray()" [attr.aria-current]="step == currentStep ? 'step' : null">{{ step }}</li>
+			</ul>
+		</nav>
 		
-		<button type="button" (click)="showChecklist()" *ngIf="!canShowResults()">Create checklist</button>
-		<button type="button" (click)="updateGuidelines()" *ngIf="canShowListParamsChanged()">Re-create checklist</button>
+		<app-check-content-types (nextStep)="nextStep($event)" [attr.hidden]="!canShowStep(1) ? 'true' : null"></app-check-content-types>
+
+		<app-check-desired-compliance-level (nextStep)="nextStep($event)" [attr.hidden]="!canShowStep(2) ? 'true' : null"></app-check-desired-compliance-level>
+		
+		<!--<button type="button" (click)="showChecklist()" *ngIf="!canShowResults()">Create checklist</button>
+		<button type="button" (click)="updateGuidelines()" *ngIf="canShowListParamsChanged()">Re-create checklist</button>-->
 	</div>
 	
 	<div class="results" *ngIf="canShowResults()">

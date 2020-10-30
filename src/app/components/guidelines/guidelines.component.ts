@@ -24,6 +24,7 @@ export class GuidelinesComponent implements OnInit {
 	ngOnInit() { }
 
 	updateGuidelines(): void {
+		console.log('ok');
 		let selectedContentType = this.selectedContentTypes;
 		let guidelineLevel = this.guidelineLevel;
 		

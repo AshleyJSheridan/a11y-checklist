@@ -11,7 +11,7 @@ export class CheckDesiredComplianceLevelComponent implements OnInit {
 	private _enumHelper: EnumHelper;
 	currentLevel: GuidelineLevel = GuidelineLevel.AA;
 	defaultLevel: string = GuidelineLevel[GuidelineLevel.AA];
-	@Output() markListParamsChanged: EventEmitter<boolean> = new EventEmitter<boolean>();
+	@Output() nextStep: EventEmitter<boolean> = new EventEmitter<boolean>();
 
 	constructor(enumHelper: EnumHelper) {
 		this._enumHelper = enumHelper;
@@ -29,10 +29,14 @@ export class CheckDesiredComplianceLevelComponent implements OnInit {
 	toggleSelectedComplianceLevel($event: any, level: string): void {
 		this.currentLevel = GuidelineLevel[level];
 		
-		this.markListParamsChanged.emit(true);
+		//this.markListParamsChanged.emit(true);
 	}
 	
 	getCurrentGuidelineLevel(): GuidelineLevel {
 		return this.currentLevel;
+	}
+	
+	next(): void {
+		this.nextStep.emit(true);
 	}
 }

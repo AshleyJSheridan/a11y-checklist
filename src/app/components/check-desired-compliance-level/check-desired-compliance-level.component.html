@@ -1,6 +1,8 @@
 <fieldset class="compliance-level">
 	<legend>Desired compliance level:</legend>
 	
+	<p>This is the level of conformance you want your content to meet, with A being the minimum level. Typically, you will want to meet AA guidelines.</p>
+	
 	<div class="compliance-level-list">
 		 <span *ngFor="let level of getAllGuidelineLevels()">
 			<input 
@@ -15,4 +17,6 @@
 			<label for="compliance-level-{{ level }}">{{ level }}</label>
 		</span>
 	</div>
+	
+	<button type="button" (click)="next()">Create checklist</button>
 </fieldset>

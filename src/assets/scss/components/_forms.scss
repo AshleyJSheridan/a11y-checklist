@@ -42,3 +42,11 @@ textarea {
 		box-shadow: 0 0 10px $primary, 0 0 5px $primary;
 	}
 }
+
+button {
+	appearance: none;
+	background-color: $white;
+	border: none;
+	font-size: 1em;
+	padding: 1em;
+}
