@@ -9,7 +9,15 @@ nav.steps {
 		padding: 0;
 		justify-content: space-between;
 		position: relative;
-		width: 50%;
+		width: 90%;
+		
+		@media(min-width: 600px) {
+			width: 70%;
+		}
+		
+		@media(min-width: 800px) {
+			width: 50%;
+		}
 		
 		&:before {
 			content: "";
