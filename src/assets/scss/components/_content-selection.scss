@@ -1,5 +1,6 @@
 .content-selection {
 	margin: 1em 0;
+	max-width: 1000px;
 	
 	.content-selection-list {
 		display: flex;
@@ -25,10 +26,6 @@
 		
 		@media(min-width: 800px) {
 			flex: 1 0 20%;
-		}
-		
-		@media(min-width: 1000px) {
-			flex: 1 1 0px;
 		}
 	}
 	

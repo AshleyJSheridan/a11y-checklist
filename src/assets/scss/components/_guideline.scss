@@ -61,8 +61,10 @@
 		}
 		
 		.copy-code {
+			border: 1px solid;
 			font-size: $font-size;
 			margin-bottom: 1em;
+			margin-top: .25em;
 			padding: .25em;
 		}
 	}

@@ -49,4 +49,8 @@ button {
 	border: none;
 	font-size: 1em;
 	padding: 1em;
+	
+	&:focus {
+		box-shadow: 0 0 10px $white, 0 0 5px $white;
+	}
 }
