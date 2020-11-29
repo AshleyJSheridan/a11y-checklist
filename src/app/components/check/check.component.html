@@ -2,7 +2,7 @@
 	<div class="setup">
 		<h1>Accessibility Testing Checklist Tool</h1>
 		
-		<nav [attr.aria-label]="'step-label'" class="steps">
+		<nav [attr.aria-label]="'step-label'" class="steps step-{{ currentStep }}">
 			<p hidden id="step-label">Step {{ currentStep }} of {{ totalSteps }}</p>
 			<ul>
 				<li *ngFor="let step of getStepsAsArray()" [attr.aria-current]="step == currentStep ? 'step' : null">{{ step }}</li>
