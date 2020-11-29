@@ -66,6 +66,10 @@
 			margin-bottom: 1em;
 			margin-top: .25em;
 			padding: .25em;
+			
+			&:focus {
+				box-shadow: 0 0 10px $primary, 0 0 5px $primary;
+			}
 		}
 	}
 }
