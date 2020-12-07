@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 
 import { SvgContentTypesComponent } from './svg-content-types.component';
 
@@ -6,7 +6,7 @@ describe('SvgContentTypesComponent', () => {
 	let component: SvgContentTypesComponent;
 	let fixture: ComponentFixture<SvgContentTypesComponent>;
 
-	beforeEach(async(() => {
+	beforeEach(waitForAsync(() => {
 		TestBed.configureTestingModule({
 			declarations: [ SvgContentTypesComponent ]
 		})

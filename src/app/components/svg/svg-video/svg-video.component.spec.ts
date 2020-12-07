@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 
 import { SvgVideoComponent } from './svg-video.component';
 
@@ -6,7 +6,7 @@ describe('SvgVideoComponent', () => {
   let component: SvgVideoComponent;
   let fixture: ComponentFixture<SvgVideoComponent>;
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       declarations: [ SvgVideoComponent ]
     })

@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 
 import { SvgAudioComponent } from './svg-audio.component';
 
@@ -6,7 +6,7 @@ describe('SvgAudioComponent', () => {
   let component: SvgAudioComponent;
   let fixture: ComponentFixture<SvgAudioComponent>;
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       declarations: [ SvgAudioComponent ]
     })

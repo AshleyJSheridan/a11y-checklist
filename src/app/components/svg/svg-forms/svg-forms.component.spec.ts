@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 
 import { SvgFormsComponent } from './svg-forms.component';
 
@@ -6,7 +6,7 @@ describe('SvgFormsComponent', () => {
   let component: SvgFormsComponent;
   let fixture: ComponentFixture<SvgFormsComponent>;
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       declarations: [ SvgFormsComponent ]
     })

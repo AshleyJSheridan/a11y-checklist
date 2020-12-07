@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 
 import { CheckDesiredComplianceLevelComponent } from './check-desired-compliance-level.component';
 
@@ -6,7 +6,7 @@ describe('CheckDesiredComplianceLevelComponent', () => {
   let component: CheckDesiredComplianceLevelComponent;
   let fixture: ComponentFixture<CheckDesiredComplianceLevelComponent>;
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       declarations: [ CheckDesiredComplianceLevelComponent ]
     })
