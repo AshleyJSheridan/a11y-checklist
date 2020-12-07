@@ -18,7 +18,7 @@ export class CheckComponent implements OnInit {
 	totalSteps: number = 3;
 	@ViewChild(CheckContentTypesComponent, { static: true }) checkContentTypeComponent;
 	@ViewChild(CheckDesiredComplianceLevelComponent, { static: true }) checkDesiredComplianceLevelComponent;
-	@ViewChild(GuidelinesComponent, { static: false }) guidelinesComponent;
+	@ViewChild(GuidelinesComponent) guidelinesComponent;
 
 	constructor() { }
 
