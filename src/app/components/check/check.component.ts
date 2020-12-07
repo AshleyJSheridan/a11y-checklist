@@ -16,9 +16,9 @@ export class CheckComponent implements OnInit {
 	private _listParamsChanged: boolean = false;
 	currentStep: number = 1;
 	totalSteps: number = 3;
-	@ViewChild(CheckContentTypesComponent) checkContentTypeComponent;
-	@ViewChild(CheckDesiredComplianceLevelComponent) checkDesiredComplianceLevelComponent;
-	@ViewChild(GuidelinesComponent) guidelinesComponent;
+	@ViewChild(CheckContentTypesComponent, { static: true }) checkContentTypeComponent;
+	@ViewChild(CheckDesiredComplianceLevelComponent, { static: true }) checkDesiredComplianceLevelComponent;
+	@ViewChild(GuidelinesComponent, { static: false }) guidelinesComponent;
 
 	constructor() { }
 
