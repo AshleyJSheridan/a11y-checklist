@@ -1,7 +1,15 @@
 import { CodeSnippet } from './code-snippet';
 
-describe('CodeSnippet', () => {
+fdescribe('CodeSnippet', () => {
+	let snippet: CodeSnippet;
+	let code: string = 'some javascript code';
+	let description: string = 'some code snippet description';
+	
+	beforeEach(() => {
+		snippet = new CodeSnippet(code, description);
+	});
+  
 	it('should create an instance', () => {
-		expect(new CodeSnippet()).toBeTruthy();
+		expect(snippet).toBeTruthy();
 	});
 });
