@@ -8,11 +8,17 @@ As always with any kind of automated check such as this, it is not a replacement
 
 ---
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 7.3.9.
+This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 11.0.3.
 
 ## Development server
 
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+
+Stylesheets are not embedded into each component. Instead, a single stylesheet is built using [SASS](https://sass-lang.com). From with the project root, run the following during development:
+
+```sh
+ sass --watch src/assets/scss/app.scss:src/assets/css/app.css
+```
 
 ## Code scaffolding
 
@@ -20,16 +26,12 @@ Run `ng generate component component-name` to generate a new component. You can 
 
 ## Build
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
+Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the following for a production build:
+
+```sh
+ng build --prod --aot --output-hashing none
+```
 
 ## Running unit tests
 
 Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
