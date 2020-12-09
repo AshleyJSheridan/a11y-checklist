@@ -5,13 +5,8 @@ describe('ClipboardHelper', () => {
 	let textToCopy: string = 'some text';
 	let triggerElement = document.createElement('button');
 	let triggerParent = document.createElement('div');
+	let mockTextArea = document.createElement('textarea');
 	triggerParent.appendChild(triggerElement);
-
-	let mockTextArea = {
-		setAttribute: function(attribute, value){},
-		select: function(){},
-		value: ''
-	};
 
 	beforeEach(() => {
 		TestBed.configureTestingModule({

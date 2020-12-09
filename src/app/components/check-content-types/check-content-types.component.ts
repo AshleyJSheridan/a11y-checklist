@@ -1,7 +1,7 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { ContentType } from '../../enums/content-type.enum';
-import { EnumHelper } from 'src/app/helpers/enum-helper';
-import { ArrayHelper } from 'src/app/helpers/array-helper';
+import { EnumHelper } from '../../helpers/enum-helper';
+import { ArrayHelper } from '../../helpers/array-helper';
 
 @Component({
 	selector: 'app-check-content-types',
@@ -37,8 +37,6 @@ export class CheckContentTypesComponent implements OnInit {
 		} else {
 			this._arrayHelper.removeFromArray(this._selectedTypes, contentType);
 		}
-		
-		//this.markListParamsChanged.emit(true);
 	}
 	
 	getSelectedContentTypes(): ContentType[] {

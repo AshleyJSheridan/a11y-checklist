@@ -1,8 +1,8 @@
 import { Component, OnInit, Input, ElementRef } from '@angular/core';
-import { ContentType } from 'src/app/enums/content-type.enum';
-import { GuidelineLevel } from 'src/app/enums/guideline-level.enum';
-import { Guideline } from 'src/app/entities/guideline';
-import { ChecklistService } from 'src/app/services/checklist.service';
+import { ContentType } from '../../enums/content-type.enum';
+import { GuidelineLevel } from '../../enums/guideline-level.enum';
+import { Guideline } from '../../entities/guideline';
+import { ChecklistService } from '../../services/checklist.service';
 
 @Component({
 	selector: 'app-guidelines',
@@ -24,7 +24,6 @@ export class GuidelinesComponent implements OnInit {
 	ngOnInit() { }
 
 	updateGuidelines(): void {
-		console.log('ok');
 		let selectedContentType = this.selectedContentTypes;
 		let guidelineLevel = this.guidelineLevel;
 		
@@ -62,6 +61,5 @@ export class GuidelinesComponent implements OnInit {
 				firstInput.focus();
 			}
 		}, 0);
-		
 	}
 }

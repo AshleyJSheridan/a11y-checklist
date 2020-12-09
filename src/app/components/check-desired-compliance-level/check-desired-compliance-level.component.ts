@@ -1,6 +1,6 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
-import { EnumHelper } from 'src/app/helpers/enum-helper';
-import { GuidelineLevel } from 'src/app/enums/guideline-level.enum';
+import { EnumHelper } from '../../helpers/enum-helper';
+import { GuidelineLevel } from '../../enums/guideline-level.enum';
 
 @Component({
 	selector: 'app-check-desired-compliance-level',
@@ -28,8 +28,6 @@ export class CheckDesiredComplianceLevelComponent implements OnInit {
 	
 	toggleSelectedComplianceLevel($event: any, level: string): void {
 		this.currentLevel = GuidelineLevel[level];
-		
-		//this.markListParamsChanged.emit(true);
 	}
 	
 	getCurrentGuidelineLevel(): GuidelineLevel {

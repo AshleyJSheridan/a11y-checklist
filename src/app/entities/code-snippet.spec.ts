@@ -1,6 +1,6 @@
 import { CodeSnippet } from './code-snippet';
 
-fdescribe('CodeSnippet', () => {
+describe('CodeSnippet', () => {
 	let snippet: CodeSnippet;
 	let code: string = 'some javascript code';
 	let description: string = 'some code snippet description';

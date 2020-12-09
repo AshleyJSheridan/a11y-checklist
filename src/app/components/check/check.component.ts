@@ -2,9 +2,9 @@ import { Component, OnInit, AfterViewInit, ViewChild } from '@angular/core';
 import { ChecklistService } from '../../services/checklist.service';
 import { Guidelines } from '../../entities/guidelines';
 import { CheckContentTypesComponent } from '../check-content-types/check-content-types.component';
-import { ContentType } from 'src/app/enums/content-type.enum';
+import { ContentType } from '../../enums/content-type.enum';
 import { GuidelinesComponent } from '../guidelines/guidelines.component';
-import { GuidelineLevel } from 'src/app/enums/guideline-level.enum';
+import { GuidelineLevel } from '../../enums/guideline-level.enum';
 import { CheckDesiredComplianceLevelComponent } from '../check-desired-compliance-level/check-desired-compliance-level.component';
 
 @Component({
@@ -13,7 +13,6 @@ import { CheckDesiredComplianceLevelComponent } from '../check-desired-complianc
 })
 export class CheckComponent implements OnInit {
 	private _showResults: boolean = false;
-	private _listParamsChanged: boolean = false;
 	currentStep: number = 1;
 	totalSteps: number = 3;
 	@ViewChild(CheckContentTypesComponent, { static: true }) checkContentTypeComponent;
@@ -34,18 +33,13 @@ export class CheckComponent implements OnInit {
 	}
 	
 	updateGuidelines(): void {
-		this._listParamsChanged = false;
 		let self = this;
 		
 		window.setTimeout(function(){
 			self.guidelinesComponent.updateGuidelines();
 		}, 0);
 	}
-	
-	markListParamsChanged(event: any): void {
-		this._listParamsChanged = true;
-	}
-	
+
 	nextStep(event: any): void {
 		this.currentStep ++;
 		

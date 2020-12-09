@@ -25,4 +25,26 @@ describe('Guideline', () => {
 	it('should create an instance', () => {
 		expect(guideline).toBeTruthy();
 	});
+	
+	it('should get the guideline label', () => {
+		let expectedLabel = `guideline-label-${guidelineNumber}`;
+		expect(guideline.getLabel()).toEqual(expectedLabel);
+	});
+	
+	it('the checked state of the guideline should initially be false', () => {
+		expect(guideline.checked).toBeFalsy();
+	});
+	
+	it('should set the checked state to true', () => {
+		guideline.updateCheckedState(true);
+		
+		expect(guideline.checked).toBeTruthy();
+	});
+	
+	it('should set the checked state to false', () => {
+		guideline.updateCheckedState(true);
+		guideline.updateCheckedState(false);
+		
+		expect(guideline.checked).toBeFalsy();
+	});
 });
