@@ -15,6 +15,7 @@ import { SvgModalsComponent } from '../svg/svg-modals/svg-modals.component';
 import { SvgTimedComponentsComponent } from '../svg/svg-timed-components/svg-timed-components.component';
 import { SvgTranslationsComponent } from '../svg/svg-translations/svg-translations.component';
 import { SvgVideoComponent } from '../svg/svg-video/svg-video.component';
+import { MockEvent } from '../../mocks/mock-event';
 
 describe('CheckComponent', () => {
 	let component: CheckComponent;
@@ -126,5 +127,14 @@ describe('CheckComponent', () => {
 		let steps = component.getStepsAsArray();
 		
 		expect(steps).toEqual([1, 2, 3]);
+	});
+	
+	it('should stop default event handling and move to specified step', () => {
+		let event = new MockEvent();
+		component.currentStep = 3;
+		
+		component.goBackToStep(1, event);
+		
+		expect(component.currentStep).toBe(1);
 	});
 });
