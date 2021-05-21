@@ -5,7 +5,10 @@
 		<nav [attr.aria-label]="'step-label'" class="steps step-{{ currentStep }}">
 			<p hidden id="step-label">Step {{ currentStep }} of {{ totalSteps }}</p>
 			<ul>
-				<li *ngFor="let step of getStepsAsArray()" [attr.aria-current]="step == currentStep ? 'step' : null">{{ step }}</li>
+				<ng-container *ngFor="let step of getStepsAsArray()">
+					<a *ngIf="step < currentStep" href="#" class="step" (click)="goBackToStep(step, $event)">{{ step }}</a>
+					<li *ngIf="step >= currentStep" [attr.aria-current]="step == currentStep ? 'step' : null" class="step">{{ step }}</li>
+				</ng-container>
 			</ul>
 		</nav>
 		

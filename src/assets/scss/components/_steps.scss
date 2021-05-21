@@ -10,7 +10,7 @@ nav.steps {
 			width: 40%;
 		}
 		
-		li {
+		.step {
 			font-size: 60%;
 		}
 	}
@@ -42,20 +42,24 @@ nav.steps {
 		}
 	}
 	
-	li {
+	.step {
 		align-items: center;
 		background-color: $primary;
 		border: 2px solid $white;
 		border-radius: 50%;
+		color: $white;
 		display: flex;
 		font-size: 1em;
 		justify-content: center;
 		height: 3em;
+		text-decoration: none;
 		width: 3em;
-		
-		&[aria-current=step] {
-			background-color: $white;
-			color: $primary;
-		}
+	}
+	
+	a.step:hover,
+	.step[aria-current=step] {
+		background-color: $white;
+		color: $primary;
+		font-weight: bold;
 	}
 }

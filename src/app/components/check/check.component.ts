@@ -59,4 +59,10 @@ export class CheckComponent implements OnInit {
 	getStepsAsArray(): number[] {
 		return Array.from({length: 3}, (_, index) => index + 1);
 	}
+	
+	goBackToStep(step, event: any) {
+		event.preventDefault();
+		
+		this.currentStep = step;
+	}
 }
