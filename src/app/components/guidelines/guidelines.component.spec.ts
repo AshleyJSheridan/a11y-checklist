@@ -5,6 +5,7 @@ import { GuidelineLevel } from '../../enums/guideline-level.enum';
 import { Guideline } from '../../entities/guideline';
 import { ElementRef } from '@angular/core';
 import { MockElementRef } from '../../mocks/mock-element-ref';
+import { PercentCompleteComponent } from '../percent-complete/percent-complete.component';
 
 describe('GuidelinesComponent', () => {
 	let component: GuidelinesComponent;
@@ -36,7 +37,7 @@ describe('GuidelinesComponent', () => {
 
 	beforeEach(waitForAsync(() => {
 		TestBed.configureTestingModule({
-			declarations: [ GuidelinesComponent ],
+			declarations: [ GuidelinesComponent, PercentCompleteComponent ],
 			providers: [ { provide: ElementRef, useClass: MockElementRef } ]
 		})
 		.compileComponents();
@@ -100,30 +101,7 @@ describe('GuidelinesComponent', () => {
 		component.guidelines[1].checked = false;
 	});
 	
-	it('should return 0 if there are no guidelines', () => {
-		component.guidelines = [];
-		
-		expect(component.getPercentCompleted()).toEqual(0);
-	});
-	
-	it('should return 0 if there are no checked guidelines', () => {
-		component.guidelines = [guideline1, guideline2, guideline3];
-		
-		expect(component.getPercentCompleted()).toEqual(0);
-	});
-	
-	it('should return the correct percentage of checked guidelines out of the total number of guidelines, to 2 decimal places', () => {
-		component.guidelines = [guideline1, guideline2, guideline3];
-		component.guidelines[0].checked = true;
-		component.guidelines[1].checked = true;
-		
-		expect(component.getPercentCompleted()).toEqual(66.66);
-		
-		// set these back to unchecked to ensure they are in an expected state for further tests
-		component.guidelines[0].checked = false;
-		component.guidelines[1].checked = false;
-	});
-	
+
 	it('should focus the first guideline', fakeAsync(() => {
 		let mockElement = { focus: function(){} };
 		

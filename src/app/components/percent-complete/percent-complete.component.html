@@ -1,0 +1,11 @@
+<div *ngIf="total > 0" class="percent-complete">
+	<div class="percent-complete-arc-graph">
+		<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" version="1.1" aria-hidden="true">
+			<circle cx="50" cy="50" [attr.r]="chartRadius" />
+			<circle cx="50" cy="50" [attr.r]="chartRadius" [attr.stroke-dasharray]="getDashArray()" class="completed-arc"/>
+		</svg>
+		<span class="arc-percentage">{{ getPercentCompleted() }}%</span>
+	</div>
+
+	<p>Marked {{ complete }} of {{ total }} applicable guidelines.</p>
+</div>

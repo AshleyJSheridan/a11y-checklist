@@ -1,7 +1,7 @@
 <section class="guidelines" aria-relevant="all" aria-live="polite" id="guidelines" aria-labelledby="guidelines-heading">
 	<h2 id="guidelines-heading" *ngIf="getTotalGuidelines() > 0">You need to test these things:</h2>
 	
-	<p *ngIf="getTotalGuidelines() > 0">Checked {{ getTotalCheckedGuidelines() }} of {{ getTotalGuidelines() }} applicable guidelines ({{ getPercentCompleted() }}% complete).</p>
+	<app-percent-complete [total]="getTotalGuidelines()" [complete]="getTotalCheckedGuidelines()"></app-percent-complete>
 	
 	<section aria-labelledby="guidelines-perceivable-heading" aria-describedby="guidelines-perceivable-description" *ngIf="hasGuidelinesForLevel(1)">
 		<h3 id="guidelines-perceivable-heading">Perceivable</h3>
