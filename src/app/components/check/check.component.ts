@@ -6,6 +6,7 @@ import { ContentType } from '../../enums/content-type.enum';
 import { GuidelinesComponent } from '../guidelines/guidelines.component';
 import { GuidelineLevel } from '../../enums/guideline-level.enum';
 import { CheckDesiredComplianceLevelComponent } from '../check-desired-compliance-level/check-desired-compliance-level.component';
+import { Guideline } from '../../entities/guideline';
 
 @Component({
 	selector: 'app-check',
@@ -64,5 +65,15 @@ export class CheckComponent implements OnInit {
 		event.preventDefault();
 		
 		this.currentStep = step;
+	}
+	
+	saveState(event: any): void {
+		console.log(this.getSelectedContentTypes());
+		console.log(this.getSelectedGuidelineLevel());
+		console.log(this.getCheckedGuidelines());
+	}
+	
+	getCheckedGuidelines(): Guideline[] {
+		return this.guidelinesComponent.getCheckedGuidelines();
 	}
 }

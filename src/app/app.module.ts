@@ -17,6 +17,7 @@ import { SvgContentTypesComponent } from './components/svg/svg-content-types/svg
 import { GuidelineComponent } from './components/guideline/guideline.component';
 import { GuidelineLevelPipe } from './pipes/guideline-level.pipe';
 import { PercentCompleteComponent } from './components/percent-complete/percent-complete.component';
+import { ToolbarComponent } from './components/toolbar/toolbar.component';
 
 @NgModule({
 	declarations: [
@@ -36,7 +37,8 @@ import { PercentCompleteComponent } from './components/percent-complete/percent-
 		SvgContentTypesComponent,
 		GuidelineComponent,
 		GuidelineLevelPipe,
-		PercentCompleteComponent
+		PercentCompleteComponent,
+  ToolbarComponent
 	],
 	imports: [
 		BrowserModule

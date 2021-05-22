@@ -55,4 +55,8 @@ export class GuidelinesComponent implements OnInit {
 			}
 		}, 0);
 	}
+	
+	getCheckedGuidelines(): Guideline[] {
+		return this.guidelines.filter(guideline => guideline.checked == true);
+	}
 }
