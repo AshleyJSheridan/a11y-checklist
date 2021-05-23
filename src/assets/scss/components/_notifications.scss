@@ -1,0 +1,33 @@
+.notification {
+	align-items: center;
+	border: 1px solid;
+	color: $black;
+	display: flex;
+	margin-top: 1em;
+	padding: 1em;
+	
+	&:before {
+		display: inline;
+		font-size: 150%;
+		font-weight: bold;
+		margin-right: .5em;
+	}
+	
+	&.notification-error {
+		background-color: $notification-error-background;
+		border-color: $notification-error-border;
+		
+		&:before {
+			content: "\26A0";
+		}
+	}
+	
+	&.notification-success {
+		background-color: $notification-success-background;
+		border-color: $notification-success-border;
+		
+		&:before {
+			content: "✓";
+		}
+	}
+}

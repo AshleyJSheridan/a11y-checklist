@@ -13,12 +13,12 @@ export class SaveStateService {
 		this.localStorageHelper = localStorageHelper;
 	}
 	
-	saveState(contentTypes: number[], complianceLevel: number, checkedGuidelines: Guideline[]) {
+	saveState(contentTypes: number[], complianceLevel: number, checkedGuidelines: Guideline[]): boolean {
 		let guidelineNumbers = checkedGuidelines.map(g => g.guidelineNumber);
 		
 		let saveDataJson = new SaveData(contentTypes, complianceLevel, guidelineNumbers);
 		let saveData = JSON.stringify(saveDataJson);
 		
-		console.log(this.localStorageHelper.setItem('a11y-checklist', saveData));
+		return this.localStorageHelper.setItem('a11y-checklist', saveData);
 	}
 }

@@ -9,6 +9,7 @@ import { CheckDesiredComplianceLevelComponent } from '../check-desired-complianc
 import { Guideline } from '../../entities/guideline';
 import { SaveStateService } from '../../services/save-state.service';
 import { LocalStorageHelper} from '../../helpers/local-storage-helper';
+import { NotificationComponent } from '../notification/notification.component';
 
 @Component({
 	selector: 'app-check',
@@ -23,6 +24,7 @@ export class CheckComponent implements OnInit {
 	@ViewChild(CheckContentTypesComponent, { static: true }) checkContentTypeComponent;
 	@ViewChild(CheckDesiredComplianceLevelComponent, { static: true }) checkDesiredComplianceLevelComponent;
 	@ViewChild(GuidelinesComponent) guidelinesComponent;
+	@ViewChild(NotificationComponent) notificationComponent;
 
 	constructor(saveStateService: SaveStateService) {
 		this.saveStateService = saveStateService;
@@ -74,10 +76,24 @@ export class CheckComponent implements OnInit {
 	}
 	
 	saveState(event: any): void {
-		this.saveStateService.saveState(this.getSelectedContentTypes(), this.getSelectedGuidelineLevel(), this.getCheckedGuidelines());
+		let saveSuccess = this.saveStateService.saveState(this.getSelectedContentTypes(), this.getSelectedGuidelineLevel(), this.getCheckedGuidelines());
+		let notificationType, message;
+		
+		if(saveSuccess) {
+			notificationType = 'success';
+			message = 'Save complete';
+		} else {
+			notificationType = 'error';
+			message = 'There was a problem saving your current state';
+		}
+		this.showNotification(notificationType, message);
 	}
 	
 	getCheckedGuidelines(): Guideline[] {
 		return this.guidelinesComponent.getCheckedGuidelines();
+	}
+	
+	showNotification(notificationType: string, message: string): void {
+		this.notificationComponent.showNotification(notificationType, message);
 	}
 }
