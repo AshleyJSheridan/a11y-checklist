@@ -16,7 +16,7 @@
 
 		<app-check-desired-compliance-level (nextStep)="nextStep($event)" [attr.hidden]="!canShowStep(2) ? 'true' : null"></app-check-desired-compliance-level>
 		
-		<app-toolbar *ngIf="currentStep == totalSteps" (saveState)="saveState($event)"></app-toolbar>
+		<app-toolbar (saveState)="saveState($event)" (loadState)="loadState($event)"></app-toolbar>
 		
 		<app-notification></app-notification>
 	</div>

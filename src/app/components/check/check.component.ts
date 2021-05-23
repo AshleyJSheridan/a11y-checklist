@@ -90,10 +90,27 @@ export class CheckComponent implements OnInit {
 	}
 	
 	getCheckedGuidelines(): Guideline[] {
+		if(!this.guidelinesComponent)
+			return [];
+			
 		return this.guidelinesComponent.getCheckedGuidelines();
 	}
 	
 	showNotification(notificationType: string, message: string): void {
 		this.notificationComponent.showNotification(notificationType, message);
+	}
+	
+	loadState($event): void {
+		event.preventDefault();
+		
+		let hasSavedState = this.saveStateService.hasSavedState();
+		
+		if(!hasSavedState) {
+			this.notificationComponent.showNotification('warn', 'No saved state to load');
+		} else {
+			let savedState = this.saveStateService.getSavedState();
+			
+			this.checkContentTypeComponent.setContentTypesFromArray(savedState.contentTypes);
+		}
 	}
 }

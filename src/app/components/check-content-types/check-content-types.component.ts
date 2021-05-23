@@ -46,4 +46,14 @@ export class CheckContentTypesComponent implements OnInit {
 	next(): void {
 		this.nextStep.emit(true);
 	}
+	
+	setContentTypesFromArray(checkedContentTypes: number[]): void {
+		this._selectedTypes = checkedContentTypes;
+	}
+	
+	isContentTypeChecked(contentTypeString: string): boolean {
+		let contentTypeIndex = ContentType[contentTypeString];
+		
+		return this._selectedTypes.includes(contentTypeIndex);
+	}
 }

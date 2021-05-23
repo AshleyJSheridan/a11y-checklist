@@ -14,6 +14,7 @@
 				class="accessible-hidden"
 				(change)="toggleSelectedType($event, contentType)"
 				aria-controls="guidelines"
+				[checked]="isContentTypeChecked(contentType)"
 			/>
 			
 			<label for="select-{{ contentType }}">

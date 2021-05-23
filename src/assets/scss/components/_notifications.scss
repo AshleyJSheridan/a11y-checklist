@@ -30,4 +30,13 @@
 			content: "✓";
 		}
 	}
+	
+	&.notification-warn {
+		background-color: $notification-warn-background;
+		border-color: $notification-warn-border;
+		
+		&:before {
+			content: "ℹ";
+		}
+	}
 }

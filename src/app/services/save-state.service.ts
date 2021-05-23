@@ -8,6 +8,7 @@ import { SaveData } from '../entities/save-data';
 })
 export class SaveStateService {
 	private localStorageHelper;
+	private storageKey: string = 'a11y-checklist';
 
 	constructor(localStorageHelper: LocalStorageHelper) { 
 		this.localStorageHelper = localStorageHelper;
@@ -19,6 +20,21 @@ export class SaveStateService {
 		let saveDataJson = new SaveData(contentTypes, complianceLevel, guidelineNumbers);
 		let saveData = JSON.stringify(saveDataJson);
 		
-		return this.localStorageHelper.setItem('a11y-checklist', saveData);
+		return this.localStorageHelper.setItem(this.storageKey, saveData);
+	}
+	
+	hasSavedState(): boolean {
+		return this.localStorageHelper.hasItem(this.storageKey);
+	}
+	
+	getSavedState(): SaveData {
+		try {
+			let savedStateRaw = JSON.parse(this.localStorageHelper.getItem(this.storageKey));
+			let savedState = new SaveData(savedStateRaw.contentTypes, savedStateRaw.complianceLevel, savedStateRaw.checkedGuidelines);
+		
+			return savedState;
+		} catch(e){
+			return null;
+		}
 	}
 }
