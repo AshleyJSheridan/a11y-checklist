@@ -37,4 +37,12 @@ export class CheckDesiredComplianceLevelComponent implements OnInit {
 	next(): void {
 		this.nextStep.emit(true);
 	}
+	
+	setComplianceLevelFromInt(complianceLevel: number): void {
+		this.currentLevel = complianceLevel;
+	}
+	
+	isComplianceLevelChecked(level: string) {
+		return GuidelineLevel[level] == this.currentLevel
+	}
 }

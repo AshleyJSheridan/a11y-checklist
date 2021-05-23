@@ -111,6 +111,7 @@ export class CheckComponent implements OnInit {
 			let savedState = this.saveStateService.getSavedState();
 			
 			this.checkContentTypeComponent.setContentTypesFromArray(savedState.contentTypes);
+			this.checkDesiredComplianceLevelComponent.setComplianceLevelFromInt(savedState.complianceLevel);
 		}
 	}
 }

@@ -9,7 +9,7 @@
 				 type="radio" 
 				 name="compliance-level" 
 				 value="{{ level }}" id="compliance-level-{{ level }}"
-				 [checked]="level === defaultLevel"
+				 [checked]="isComplianceLevelChecked(level)"
 				 class="accessible-hidden"
 				 (change)="toggleSelectedComplianceLevel($event, level)"
 				 aria-controls="guidelines"
