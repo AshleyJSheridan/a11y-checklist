@@ -1,6 +1,12 @@
 {
   "extends": "../tslint.json",
   "rules": {
+    "indent": {
+      "options": ["tabs", 4]
+    },
+    "no-inferrable-types": [
+      "ignore-properties"
+    ],
     "directive-selector": [
       true,
       "attribute",

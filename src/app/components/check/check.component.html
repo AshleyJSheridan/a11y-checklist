@@ -21,7 +21,7 @@
 		<app-notification></app-notification>
 	</div>
 	
-	<div class="results" *ngIf="canShowResults()">
+	<div class="results">
 		<app-guidelines [selectedContentTypes]="getSelectedContentTypes()" [guidelineLevel]="getSelectedGuidelineLevel()"></app-guidelines>
 	</div>
 </form>

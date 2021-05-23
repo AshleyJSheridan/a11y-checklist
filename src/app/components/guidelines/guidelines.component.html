@@ -1,4 +1,4 @@
-<section class="guidelines" aria-relevant="all" aria-live="polite" id="guidelines" aria-labelledby="guidelines-heading">
+<section *ngIf="canShowGuidelines()" class="guidelines" aria-relevant="all" aria-live="polite" id="guidelines" aria-labelledby="guidelines-heading">
 	<h2 id="guidelines-heading" *ngIf="getTotalGuidelines() > 0">You need to test these things:</h2>
 	
 	<app-percent-complete [total]="getTotalGuidelines()" [complete]="getTotalCheckedGuidelines()"></app-percent-complete>

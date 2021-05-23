@@ -14,7 +14,7 @@ export class GuidelineComponent implements OnInit {
 	private _clipboardHelper: ClipboardHelper;
 	@Input() guideline: Guideline;
 
-	constructor(clipboardHelper: ClipboardHelper) { 
+	constructor(clipboardHelper: ClipboardHelper) {
 		this._clipboardHelper = clipboardHelper;
 	}
 
@@ -24,11 +24,11 @@ export class GuidelineComponent implements OnInit {
 	copyCode(event: any, codeSnippet: CodeSnippet): void {
 		this._clipboardHelper.copyTextToClipboard(codeSnippet.code, event.target);
 	}
-	
+
 	updateCheckedState(event: any) {
 		this.guideline.updateCheckedState(event.target.checked);
 	}
-	
+
 	isChecked(): boolean {
 		return this.guideline.checked;
 	}

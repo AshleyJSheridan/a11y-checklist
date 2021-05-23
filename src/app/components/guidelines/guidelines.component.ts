@@ -12,7 +12,7 @@ export class GuidelinesComponent implements OnInit {
 	private _checklistService: ChecklistService;
 	private _elementRef: ElementRef;
 	guidelines: Guideline[] = [];
-	
+
 	@Input() selectedContentTypes: ContentType[];
 	@Input() guidelineLevel: GuidelineLevel;
 
@@ -24,39 +24,53 @@ export class GuidelinesComponent implements OnInit {
 	ngOnInit() { }
 
 	updateGuidelines(): void {
-		let selectedContentType = this.selectedContentTypes;
+		let selectedContentTypes = this.selectedContentTypes;
 		let guidelineLevel = this.guidelineLevel;
-		
-		this.guidelines = this._checklistService.getMatchingGuidelines(selectedContentType, guidelineLevel);
-		
+
+		this.guidelines = this._checklistService.getMatchingGuidelines(selectedContentTypes, guidelineLevel);
+
 		this.focusFirstGuideline();
 	}
-	
+
 	hasGuidelinesForLevel(level: number): boolean {
 		return this.guidelines.filter(guideline => guideline.guidelineNumber.charAt(0) === level.toString()).length > 0;
 	}
-	
+
 	getTotalGuidelines(): number {
 		return this.guidelines.length;
 	}
-	
+
 	getTotalCheckedGuidelines(): number {
 		return this.guidelines.filter(guideline => guideline.checked == true).length;
 	}
-	
+
 	focusFirstGuideline(): void {
 		let self = this;
-		
+
 		window.setTimeout(function(){
 			let firstInput = self._elementRef.nativeElement.querySelector('input');
-			
+
 			if(firstInput !== null) {
 				firstInput.focus();
 			}
 		}, 0);
 	}
-	
+
 	getCheckedGuidelines(): Guideline[] {
 		return this.guidelines.filter(guideline => guideline.checked == true);
+	}
+
+	setCheckedGuidelines(checkedGuidelines: string[], selectedContentType, guidelineLevel) {
+	  let guidelines = this._checklistService.getMatchingGuidelines(selectedContentType, guidelineLevel);
+	  guidelines.forEach(function(guideline){
+	    if(checkedGuidelines.includes(guideline.guidelineNumber)) {
+	      guideline.checked = true;
+      }
+    });
+    this.guidelines = guidelines;
+	}
+
+	canShowGuidelines(): boolean {
+		return this.guidelines.length > 0;
 	}
 }

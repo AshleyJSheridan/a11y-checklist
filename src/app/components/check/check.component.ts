@@ -36,14 +36,14 @@ export class CheckComponent implements OnInit {
 	getSelectedContentTypes(): ContentType[] {
 		return this.checkContentTypeComponent.getSelectedContentTypes();
 	}
-	
+
 	getSelectedGuidelineLevel(): GuidelineLevel {
 		return this.checkDesiredComplianceLevelComponent.getCurrentGuidelineLevel();
 	}
-	
+
 	updateGuidelines(): void {
 		let self = this;
-		
+
 		window.setTimeout(function(){
 			self.guidelinesComponent.updateGuidelines();
 		}, 0);
@@ -51,34 +51,35 @@ export class CheckComponent implements OnInit {
 
 	nextStep(event: any): void {
 		this.currentStep ++;
-		
+
 		if (this.canShowResults()) {
 			this.updateGuidelines();
 		}
 	}
-	
+
 	canShowResults(): boolean {
 		return this.currentStep === this.totalSteps;
 	}
-	
+
 	canShowStep(step: number): boolean {
 		return this.currentStep === step;
 	}
-	
+
 	getStepsAsArray(): number[] {
 		return Array.from({length: 3}, (_, index) => index + 1);
 	}
-	
+
 	goBackToStep(step, event: any) {
 		event.preventDefault();
-		
+
 		this.currentStep = step;
 	}
-	
+
 	saveState(event: any): void {
 		let saveSuccess = this.saveStateService.saveState(this.getSelectedContentTypes(), this.getSelectedGuidelineLevel(), this.getCheckedGuidelines());
-		let notificationType, message;
-		
+		let notificationType;
+		let message;
+
 		if(saveSuccess) {
 			notificationType = 'success';
 			message = 'Save complete';
@@ -88,30 +89,29 @@ export class CheckComponent implements OnInit {
 		}
 		this.showNotification(notificationType, message);
 	}
-	
+
 	getCheckedGuidelines(): Guideline[] {
 		if(!this.guidelinesComponent)
 			return [];
-			
+
 		return this.guidelinesComponent.getCheckedGuidelines();
 	}
-	
+
 	showNotification(notificationType: string, message: string): void {
 		this.notificationComponent.showNotification(notificationType, message);
 	}
-	
-	loadState($event): void {
-		event.preventDefault();
-		
+
+	loadState(event: any): void {
 		let hasSavedState = this.saveStateService.hasSavedState();
-		
+
 		if(!hasSavedState) {
 			this.notificationComponent.showNotification('warn', 'No saved state to load');
 		} else {
 			let savedState = this.saveStateService.getSavedState();
-			
+
 			this.checkContentTypeComponent.setContentTypesFromArray(savedState.contentTypes);
 			this.checkDesiredComplianceLevelComponent.setComplianceLevelFromInt(savedState.complianceLevel);
+			this.guidelinesComponent.setCheckedGuidelines(savedState.checkedGuidelines, this.getSelectedContentTypes(), this.getSelectedGuidelineLevel());
 		}
 	}
 }
