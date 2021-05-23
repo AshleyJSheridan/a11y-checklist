@@ -7,20 +7,26 @@ import { GuidelinesComponent } from '../guidelines/guidelines.component';
 import { GuidelineLevel } from '../../enums/guideline-level.enum';
 import { CheckDesiredComplianceLevelComponent } from '../check-desired-compliance-level/check-desired-compliance-level.component';
 import { Guideline } from '../../entities/guideline';
+import { SaveStateService } from '../../services/save-state.service';
+import { LocalStorageHelper} from '../../helpers/local-storage-helper';
 
 @Component({
 	selector: 'app-check',
-	templateUrl: './check.component.html'
+	templateUrl: './check.component.html',
+	providers: [LocalStorageHelper, SaveStateService]
 })
 export class CheckComponent implements OnInit {
 	private _showResults: boolean = false;
+	private saveStateService;
 	currentStep: number = 1;
 	totalSteps: number = 3;
 	@ViewChild(CheckContentTypesComponent, { static: true }) checkContentTypeComponent;
 	@ViewChild(CheckDesiredComplianceLevelComponent, { static: true }) checkDesiredComplianceLevelComponent;
 	@ViewChild(GuidelinesComponent) guidelinesComponent;
 
-	constructor() { }
+	constructor(saveStateService: SaveStateService) {
+		this.saveStateService = saveStateService;
+	}
 
 	ngOnInit() {
 	}
@@ -68,9 +74,7 @@ export class CheckComponent implements OnInit {
 	}
 	
 	saveState(event: any): void {
-		console.log(this.getSelectedContentTypes());
-		console.log(this.getSelectedGuidelineLevel());
-		console.log(this.getCheckedGuidelines());
+		this.saveStateService.saveState(this.getSelectedContentTypes(), this.getSelectedGuidelineLevel(), this.getCheckedGuidelines());
 	}
 	
 	getCheckedGuidelines(): Guideline[] {
