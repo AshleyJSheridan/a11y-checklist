@@ -32,48 +32,48 @@ describe('GuidelineComponent', () => {
 	it('should create an instance', () => {
 		expect(component).toBeTruthy();
 	});
-	
+
 	it('should copy a code snippet', () => {
 		let mockElement = document.createElement('div');
 		let mockEvent = { target: mockElement };
 		let codeSnippet = new CodeSnippet('some code', 'some description');
-		
+
 		spyOn(component['_clipboardHelper'], 'copyTextToClipboard');
-		
+
 		component.copyCode(mockEvent, codeSnippet);
-		
+
 		expect(component['_clipboardHelper'].copyTextToClipboard).toHaveBeenCalledWith('some code', mockElement);
 	});
-	
+
 	it('should update the checked state to true if the element triggering the event was checked', () => {
 		let mockEvent = { target: { checked: true } };
-		
+
 		spyOn(component.guideline, 'updateCheckedState');
-		
+
 		component.updateCheckedState(mockEvent);
-		
+
 		expect(component.guideline.updateCheckedState).toHaveBeenCalledWith(true);
 	});
-	
+
 	it('should update the checked state to false if the element triggering the event was not checked', () => {
 		let mockEvent = { target: { checked: false } };
-		
+
 		spyOn(component.guideline, 'updateCheckedState');
-		
+
 		component.updateCheckedState(mockEvent);
-		
+
 		expect(component.guideline.updateCheckedState).toHaveBeenCalledWith(false);
 	});
-	
+
 	it('should return true if the guideline was checked', () => {
 		component.guideline.checked = true;
-		
+
 		expect(component.isChecked()).toBeTruthy();
 	});
-	
+
 	it('should return false if the guideline was not checked', () => {
 		component.guideline.checked = false;
-		
+
 		expect(component.isChecked()).toBeFalsy();
 	});
 });

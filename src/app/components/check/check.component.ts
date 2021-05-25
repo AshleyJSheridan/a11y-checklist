@@ -91,9 +91,6 @@ export class CheckComponent implements OnInit {
 	}
 
 	getCheckedGuidelines(): Guideline[] {
-		if(!this.guidelinesComponent)
-			return [];
-
 		return this.guidelinesComponent.getCheckedGuidelines();
 	}
 
@@ -112,6 +109,8 @@ export class CheckComponent implements OnInit {
 			this.checkContentTypeComponent.setContentTypesFromArray(savedState.contentTypes);
 			this.checkDesiredComplianceLevelComponent.setComplianceLevelFromInt(savedState.complianceLevel);
 			this.guidelinesComponent.setCheckedGuidelines(savedState.checkedGuidelines, this.getSelectedContentTypes(), this.getSelectedGuidelineLevel());
+
+			this.currentStep = this.totalSteps;
 		}
 	}
 }

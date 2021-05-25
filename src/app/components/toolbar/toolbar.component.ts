@@ -12,11 +12,11 @@ export class ToolbarComponent implements OnInit {
 
 	ngOnInit(): void {
 	}
-	
+
 	save(): void {
 		this.saveState.emit(true);
 	}
-	
+
 	load(): void {
 		this.loadState.emit(true);
 	}

@@ -15,6 +15,7 @@ export class GuidelinesComponent implements OnInit {
 
 	@Input() selectedContentTypes: ContentType[];
 	@Input() guidelineLevel: GuidelineLevel;
+	@Input() showGuidelines: boolean = false;
 
 	constructor(checklistService: ChecklistService, elementRef: ElementRef) {
 		this._checklistService = checklistService;
@@ -60,17 +61,17 @@ export class GuidelinesComponent implements OnInit {
 		return this.guidelines.filter(guideline => guideline.checked == true);
 	}
 
-	setCheckedGuidelines(checkedGuidelines: string[], selectedContentType, guidelineLevel) {
-	  let guidelines = this._checklistService.getMatchingGuidelines(selectedContentType, guidelineLevel);
-	  guidelines.forEach(function(guideline){
-	    if(checkedGuidelines.includes(guideline.guidelineNumber)) {
-	      guideline.checked = true;
-      }
-    });
-    this.guidelines = guidelines;
+	setCheckedGuidelines(checkedGuidelines: string[], selectedContentTypes, guidelineLevel) {
+		let guidelines = this._checklistService.getMatchingGuidelines(selectedContentTypes, guidelineLevel);
+		guidelines.forEach(function(guideline){
+			if(checkedGuidelines.includes(guideline.guidelineNumber)) {
+				guideline.checked = true;
+			}
+		});
+		this.guidelines = guidelines;
 	}
 
 	canShowGuidelines(): boolean {
-		return this.guidelines.length > 0;
+		return this.showGuidelines;
 	}
 }

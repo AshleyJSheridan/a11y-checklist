@@ -17,7 +17,7 @@ describe('CheckContentTypesComponent', () => {
 
 	beforeEach(waitForAsync(() => {
 		TestBed.configureTestingModule({
-			declarations: [ 
+			declarations: [
 				CheckContentTypesComponent, SvgContentTypesComponent, SvgAnimationComponent, SvgAudioComponent,
 				SvgFormsComponent, SvgImagesComponent, SvgModalsComponent, SvgTimedComponentsComponent,
 				SvgTranslationsComponent, SvgVideoComponent
@@ -38,53 +38,72 @@ describe('CheckContentTypesComponent', () => {
 	});
 
 	it('should get the content types as an array of strings', () => {
-		let types = component.getAllContentTypes();
-		let expectedTypes = ['Animation', 'Audio', 'Forms', 'Images', 'Modals', 'Timed', 'Translations', 'Video'];
-		
+		const types = component.getAllContentTypes();
+		const expectedTypes = ['Animation', 'Audio', 'Forms', 'Images', 'Modals', 'Timed', 'Translations', 'Video'];
+
 		expect(types).toEqual(expectedTypes);
 	});
-	
+
 	it('should toggle content types on', () => {
-		let mockElement = { checked: true };
-		let mockEvent = { target: mockElement };
-		let contentType1 = 'Forms';
-		let contentType2 = 'Video';
-		let expectedTypes = [ContentType[contentType1], ContentType[contentType2]];
-		
+		const mockElement = { checked: true };
+		const mockEvent = { target: mockElement };
+		const contentType1 = 'Forms';
+		const contentType2 = 'Video';
+		const expectedTypes = [ContentType[contentType1], ContentType[contentType2]];
+
 		component.toggleSelectedType(mockEvent, contentType1);
 		component.toggleSelectedType(mockEvent, contentType2);
-		
-		let selectedTypes = component.getSelectedContentTypes();
-		
+
+		const selectedTypes = component.getSelectedContentTypes();
+
 		expect(selectedTypes).toEqual(expectedTypes);
 	});
-	
+
 	it('should toggle content types off', () => {
 		let mockElement = { checked: true };
 		let mockEvent = { target: mockElement };
-		let contentType1 = 'Forms';
-		let contentType2 = 'Video';
-		let expectedTypes = [];
-		
+		const contentType1 = 'Forms';
+		const contentType2 = 'Video';
+		const expectedTypes = [];
+
 		component.toggleSelectedType(mockEvent, contentType1);
 		component.toggleSelectedType(mockEvent, contentType2);
-		
+
 		mockElement = { checked: false };
 		mockEvent = { target: mockElement };
-		
+
 		component.toggleSelectedType(mockEvent, contentType1);
 		component.toggleSelectedType(mockEvent, contentType2);
-		
-		let selectedTypes = component.getSelectedContentTypes();
-		
+
+		const selectedTypes = component.getSelectedContentTypes();
+
 		expect(selectedTypes).toEqual(expectedTypes);
 	});
-	
+
 	it('should emit an event when the next step button is pressed', () => {
 		spyOn(component.nextStep, 'emit');
-		
+
 		component.next();
-		
+
 		expect(component.nextStep.emit).toHaveBeenCalledWith(true);
 	});
+
+	it('should set the checked content types from a passed in array', () => {
+		component.setContentTypesFromArray([1, 2, 3]);
+
+		expect(component.getSelectedContentTypes()).toEqual([1, 2, 3]);
+	});
+
+	it('should return true if the passed in content type is checked', () => {
+		component.setContentTypesFromArray([ContentType.Images, ContentType.Forms]);
+
+		expect(component.isContentTypeChecked('Forms')).toBeTruthy();
+	});
+
+	it('should return false if the passed in content type is not checked', () => {
+		component.setContentTypesFromArray([ContentType.Images, ContentType.Forms]);
+
+		expect(component.isContentTypeChecked('Audio')).toBeFalsy();
+	});
+
 });

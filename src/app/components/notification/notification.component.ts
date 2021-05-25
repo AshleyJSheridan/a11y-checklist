@@ -11,7 +11,7 @@ export class NotificationComponent implements OnInit {
 	public message: string;
 	public canShowNotification: boolean = false;
 
-	constructor() { 
+	constructor() {
 		this._window = window;
 	}
 
@@ -21,9 +21,9 @@ export class NotificationComponent implements OnInit {
 	showNotification(notificationType: string, message: string): void {
 		this.notificationType = notificationType;
 		this.message = message;
-		
+
 		this.canShowNotification = true;
-		
+
 		let notificationComponent = this;
 		let notificationTimeout = this._window.setTimeout(function() {
 			notificationComponent.canShowNotification = false;
