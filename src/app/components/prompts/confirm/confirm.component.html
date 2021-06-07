@@ -1,0 +1,13 @@
+<div class="{{ modalClass }} modal" *ngIf="canShowModal()" role="dialog">
+	<div class="modal-overlay">
+		<div class="modal-content">
+			<p class="confirmation-title">{{ title }}</p>
+			<p class="confirmation-text">{{ message }}</p>
+
+			<div class="modal-actions">
+				<button type="button" (click)="yes($event)" class="confirm-accept">{{ acceptLabel }}</button>
+				<button type="button" (click)="no($event)" class="confirm-cancel">{{ cancelLabel }}</button>
+			</div>
+		</div>
+	</div>
+</div>

@@ -19,6 +19,7 @@ import { GuidelineLevelPipe } from './pipes/guideline-level.pipe';
 import { PercentCompleteComponent } from './components/percent-complete/percent-complete.component';
 import { ToolbarComponent } from './components/toolbar/toolbar.component';
 import { NotificationComponent } from './components/notification/notification.component';
+import { ConfirmComponent } from './components/prompts/confirm/confirm.component';
 
 @NgModule({
 	declarations: [
@@ -40,7 +41,8 @@ import { NotificationComponent } from './components/notification/notification.co
 		GuidelineLevelPipe,
 		PercentCompleteComponent,
   ToolbarComponent,
-  NotificationComponent
+  NotificationComponent,
+  ConfirmComponent
 	],
 	imports: [
 		BrowserModule

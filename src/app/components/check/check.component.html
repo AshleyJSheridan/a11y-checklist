@@ -27,3 +27,5 @@
 		<app-guidelines [selectedContentTypes]="getSelectedContentTypes()" [guidelineLevel]="getSelectedGuidelineLevel()" [showGuidelines]="canShowResults()"></app-guidelines>
 	</div>
 </form>
+
+<app-confirm (confirmation)="confirmModalAction($event)"></app-confirm>

@@ -31,10 +31,12 @@ describe('ToolbarComponent', () => {
 	});
 
 	it('should emit an event when the load button is pressed', () => {
+		const event = new Event('some event');
+
 		spyOn(component.loadState, 'emit');
 
-		component.load();
+		component.load(event);
 
-		expect(component.loadState.emit).toHaveBeenCalledWith(true);
+		expect(component.loadState.emit).toHaveBeenCalledWith(event);
 	});
 });

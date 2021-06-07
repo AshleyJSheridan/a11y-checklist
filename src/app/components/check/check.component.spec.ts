@@ -24,6 +24,7 @@ import { MockElementRef } from '../../mocks/mock-element-ref';
 import { EnumHelper } from '../../helpers/enum-helper';
 import { ArrayHelper } from '../../helpers/array-helper';
 import { SaveData } from '../../entities/save-data';
+import { ConfirmComponent } from '../prompts/confirm/confirm.component';
 
 describe('CheckComponent', () => {
 	let component: CheckComponent;
@@ -59,11 +60,11 @@ describe('CheckComponent', () => {
 				CheckComponent, CheckContentTypesComponent, CheckDesiredComplianceLevelComponent, GuidelinesComponent,
 				SvgContentTypesComponent, SvgAnimationComponent, SvgAudioComponent, SvgFormsComponent, SvgImagesComponent,
 				SvgModalsComponent, SvgTimedComponentsComponent, SvgTranslationsComponent, SvgVideoComponent, NotificationComponent,
-				ToolbarComponent
+				ToolbarComponent, ConfirmComponent
 			],
 			providers: [
 				GuidelinesComponent, CheckComponent, NotificationComponent, CheckContentTypesComponent, EnumHelper, ArrayHelper,
-				CheckDesiredComplianceLevelComponent,
+				CheckDesiredComplianceLevelComponent, ConfirmComponent,
 				{ provide: ElementRef, useClass: MockElementRef }
 			]
 		})
@@ -232,10 +233,11 @@ describe('CheckComponent', () => {
 	);
 
 	it('should show a notification if there was no saved state found to restore',
-		inject([CheckComponent, NotificationComponent, SaveStateService, CheckContentTypesComponent, CheckDesiredComplianceLevelComponent, GuidelinesComponent],
+		inject([CheckComponent, NotificationComponent, SaveStateService, CheckContentTypesComponent, CheckDesiredComplianceLevelComponent,
+				GuidelinesComponent, ConfirmComponent],
 			(component: CheckComponent, notificationComponent: NotificationComponent, saveStateService: SaveStateService,
 			 checkContentTypeComponent: CheckContentTypesComponent, checkDesiredComplianceLevelComponent: CheckDesiredComplianceLevelComponent,
-			 guidelinesComponent: GuidelinesComponent) => {
+			 guidelinesComponent: GuidelinesComponent, confirmComponent: ConfirmComponent) => {
 
 			const event = new MockEvent();
 
@@ -243,6 +245,7 @@ describe('CheckComponent', () => {
 			component.checkContentTypeComponent = checkContentTypeComponent;
 			component.checkDesiredComplianceLevelComponent = checkDesiredComplianceLevelComponent;
 			component.guidelinesComponent = guidelinesComponent;
+			component.confirmComponent = confirmComponent;
 
 			spyOn(saveStateService, 'hasSavedState').and.returnValue(false);
 			spyOn(notificationComponent, 'showNotification');
@@ -250,7 +253,7 @@ describe('CheckComponent', () => {
 			spyOn(checkDesiredComplianceLevelComponent, 'setComplianceLevelFromInt');
 			spyOn(guidelinesComponent, 'setCheckedGuidelines');
 
-			component.loadState(event);
+			component.loadStateConfirm(event);
 
 			expect(notificationComponent.showNotification).toHaveBeenCalledWith('warn', 'No saved state to load');
 			expect(checkContentTypeComponent.setContentTypesFromArray).not.toHaveBeenCalled();
@@ -260,10 +263,11 @@ describe('CheckComponent', () => {
 	);
 
 	it('should restore state from saved data',
-		inject([CheckComponent, NotificationComponent, SaveStateService, CheckContentTypesComponent, CheckDesiredComplianceLevelComponent, GuidelinesComponent],
+		inject([CheckComponent, NotificationComponent, SaveStateService, CheckContentTypesComponent, CheckDesiredComplianceLevelComponent,
+				GuidelinesComponent, ConfirmComponent],
 			(component: CheckComponent, notificationComponent: NotificationComponent, saveStateService: SaveStateService,
 			 checkContentTypeComponent: CheckContentTypesComponent, checkDesiredComplianceLevelComponent: CheckDesiredComplianceLevelComponent,
-			 guidelinesComponent: GuidelinesComponent) => {
+			 guidelinesComponent: GuidelinesComponent, confirmComponent: ConfirmComponent) => {
 
 				const event = new MockEvent();
 				const savedState = new SaveData([1, 2, 3], 2, ['1.1.1']);
@@ -272,6 +276,7 @@ describe('CheckComponent', () => {
 				component.checkContentTypeComponent = checkContentTypeComponent;
 				component.checkDesiredComplianceLevelComponent = checkDesiredComplianceLevelComponent;
 				component.guidelinesComponent = guidelinesComponent;
+				component.confirmComponent = confirmComponent;
 
 				spyOn(saveStateService, 'hasSavedState').and.returnValue(true);
 				spyOn(saveStateService, 'getSavedState').and.returnValue(savedState);
@@ -282,7 +287,7 @@ describe('CheckComponent', () => {
 				spyOn(component, 'getSelectedContentTypes').and.returnValue([1, 2, 3]);
 				spyOn(component, 'getSelectedGuidelineLevel').and.returnValue(2);
 
-				component.loadState(event);
+				component.loadStateConfirm(event);
 
 				expect(notificationComponent.showNotification).not.toHaveBeenCalled();
 				expect(checkContentTypeComponent.setContentTypesFromArray).toHaveBeenCalledWith([1, 2, 3]);
@@ -291,4 +296,47 @@ describe('CheckComponent', () => {
 				expect(component.currentStep).toEqual(3);
 			})
 	);
+
+	it('should show a confirmation modal before loading a saved state over the current state',
+		inject([CheckComponent, ConfirmComponent], (component: CheckComponent, confirmComponent: ConfirmComponent) => {
+			const mockEvent = new Event('some event');
+			component.confirmComponent = confirmComponent;
+
+			spyOn(confirmComponent, 'showConfirmation');
+
+			component.loadState(mockEvent);
+
+			expect(confirmComponent.showConfirmation).toHaveBeenCalled();
+		})
+	);
+
+	it('should do nothing if the user action was false', () => {
+		const details = {userAction: false};
+
+		spyOn(component, 'loadStateConfirm');
+
+		component.confirmModalAction(details);
+
+		expect(component.loadStateConfirm).not.toHaveBeenCalled();
+	});
+
+	it('should do nothing if the user action was true but the type had no associated action', () => {
+		const details = {userAction: true, modalType: "some unknown type"};
+
+		spyOn(component, 'loadStateConfirm');
+
+		component.confirmModalAction(details);
+
+		expect(component.loadStateConfirm).not.toHaveBeenCalled();
+	});
+
+	it('should call the load state confirm if user said yes to loading state', () => {
+		const details = {userAction: true, modalType: "load-confirm"};
+
+		spyOn(component, 'loadStateConfirm');
+
+		component.confirmModalAction(details);
+
+		expect(component.loadStateConfirm).toHaveBeenCalledWith(details);
+	});
 });

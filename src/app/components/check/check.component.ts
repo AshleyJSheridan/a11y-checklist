@@ -10,6 +10,8 @@ import { Guideline } from '../../entities/guideline';
 import { SaveStateService } from '../../services/save-state.service';
 import { LocalStorageHelper} from '../../helpers/local-storage-helper';
 import { NotificationComponent } from '../notification/notification.component';
+import { ConfirmComponent } from '../prompts/confirm/confirm.component';
+import {ConfirmModalOptions} from "../../entities/confirm-modal-options";
 
 @Component({
 	selector: 'app-check',
@@ -25,6 +27,7 @@ export class CheckComponent implements OnInit {
 	@ViewChild(CheckDesiredComplianceLevelComponent, { static: true }) checkDesiredComplianceLevelComponent;
 	@ViewChild(GuidelinesComponent) guidelinesComponent;
 	@ViewChild(NotificationComponent) notificationComponent;
+	@ViewChild(ConfirmComponent) confirmComponent;
 
 	constructor(saveStateService: SaveStateService) {
 		this.saveStateService = saveStateService;
@@ -76,7 +79,7 @@ export class CheckComponent implements OnInit {
 	}
 
 	saveState(event: any): void {
-		let saveSuccess = this.saveStateService.saveState(this.getSelectedContentTypes(), this.getSelectedGuidelineLevel(), this.getCheckedGuidelines());
+		const saveSuccess = this.saveStateService.saveState(this.getSelectedContentTypes(), this.getSelectedGuidelineLevel(), this.getCheckedGuidelines());
 		let notificationType;
 		let message;
 
@@ -99,6 +102,17 @@ export class CheckComponent implements OnInit {
 	}
 
 	loadState(event: any): void {
+		const focusTarget = event.currentTarget;
+		const confirmOptions = new ConfirmModalOptions(
+			'Load Saved Checklist',
+			'Your current checklist settings will be lost when saved settings are loaded in. Do you wish to continue?',
+			focusTarget,
+			'load-confirm'
+		);
+		this.confirmComponent.showConfirmation(confirmOptions);
+	}
+
+	loadStateConfirm(event: any): void {
 		let hasSavedState = this.saveStateService.hasSavedState();
 
 		if(!hasSavedState) {
@@ -111,6 +125,15 @@ export class CheckComponent implements OnInit {
 			this.guidelinesComponent.setCheckedGuidelines(savedState.checkedGuidelines, this.getSelectedContentTypes(), this.getSelectedGuidelineLevel());
 
 			this.currentStep = this.totalSteps;
+		}
+	}
+
+	confirmModalAction(details): void {
+		if(details.userAction === true) {
+			// dispatch to correct method
+			if(details.modalType === 'load-confirm') {
+				this.loadStateConfirm(details);
+			}
 		}
 	}
 }
