@@ -25,8 +25,8 @@ export class GuidelinesComponent implements OnInit {
 	ngOnInit() { }
 
 	updateGuidelines(): void {
-		let selectedContentTypes = this.selectedContentTypes;
-		let guidelineLevel = this.guidelineLevel;
+		const selectedContentTypes = this.selectedContentTypes;
+		const guidelineLevel = this.guidelineLevel;
 
 		this.guidelines = this._checklistService.getMatchingGuidelines(selectedContentTypes, guidelineLevel);
 
@@ -46,10 +46,10 @@ export class GuidelinesComponent implements OnInit {
 	}
 
 	focusFirstGuideline(): void {
-		let self = this;
+		const self = this;
 
 		window.setTimeout(function(){
-			let firstInput = self._elementRef.nativeElement.querySelector('input');
+			const firstInput = self._elementRef.nativeElement.querySelector('input');
 
 			if(firstInput !== null) {
 				firstInput.focus();
@@ -62,7 +62,7 @@ export class GuidelinesComponent implements OnInit {
 	}
 
 	setCheckedGuidelines(checkedGuidelines: string[], selectedContentTypes, guidelineLevel) {
-		let guidelines = this._checklistService.getMatchingGuidelines(selectedContentTypes, guidelineLevel);
+		const guidelines = this._checklistService.getMatchingGuidelines(selectedContentTypes, guidelineLevel);
 		guidelines.forEach(function(guideline){
 			if(checkedGuidelines.includes(guideline.guidelineNumber)) {
 				guideline.checked = true;

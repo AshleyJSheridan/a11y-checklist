@@ -10,12 +10,12 @@ export class Guideline {
 	testAgainst: ContentType[];
 	codeSnippets: CodeSnippet[];
 	checked: boolean = false;
-	
+
 	constructor(
-		level: GuidelineLevel, 
+		level: GuidelineLevel,
 		guidelineNumber: string,
-		guidelineName: string, 
-		longDescription: string, 
+		guidelineName: string,
+		longDescription: string,
 		testAgainst: ContentType[],
 		codeSnippets: CodeSnippet[]
 	) {
@@ -26,11 +26,11 @@ export class Guideline {
 		this.testAgainst = testAgainst;
 		this.codeSnippets = codeSnippets;
 	}
-	
+
 	getLabel(): string {
 		return `guideline-label-${this.guidelineNumber}`;
 	}
-	
+
 	updateCheckedState(state: boolean) {
 		this.checked = state;
 	}
