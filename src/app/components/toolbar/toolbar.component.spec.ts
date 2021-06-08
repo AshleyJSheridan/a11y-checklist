@@ -23,11 +23,13 @@ describe('ToolbarComponent', () => {
 	});
 
 	it('should emit an event when the save button is pressed', () => {
+		const event = new Event('some event');
+
 		spyOn(component.saveState, 'emit');
 
-		component.save();
+		component.save(event);
 
-		expect(component.saveState.emit).toHaveBeenCalledWith(true);
+		expect(component.saveState.emit).toHaveBeenCalledWith(event);
 	});
 
 	it('should emit an event when the load button is pressed', () => {

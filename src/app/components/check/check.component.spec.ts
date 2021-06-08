@@ -186,7 +186,7 @@ describe('CheckComponent', () => {
 			spyOn(service, 'saveState').and.returnValue(true);
 			spyOn(component, 'showNotification');
 
-			component.saveState(event);
+			component.saveStateConfirm(event);
 
 			expect(service.saveState).toHaveBeenCalledWith([1, 2, 3], 2, []);
 			expect(component.showNotification).toHaveBeenCalledWith('success', 'Save complete');
@@ -203,7 +203,7 @@ describe('CheckComponent', () => {
 			spyOn(service, 'saveState').and.returnValue(false);
 			spyOn(component, 'showNotification');
 
-			component.saveState(event);
+			component.saveStateConfirm(event);
 
 			expect(service.saveState).toHaveBeenCalledWith([1, 2, 3], 2, []);
 			expect(component.showNotification).toHaveBeenCalledWith('error', 'There was a problem saving your current state');
@@ -339,4 +339,46 @@ describe('CheckComponent', () => {
 
 		expect(component.loadStateConfirm).toHaveBeenCalledWith(details);
 	});
+
+	it('should call the save state confirm if user said yes to saving state', () => {
+		const details = {userAction: true, modalType: "save-confirm"};
+
+		spyOn(component, 'saveStateConfirm');
+
+		component.confirmModalAction(details);
+
+		expect(component.saveStateConfirm).toHaveBeenCalledWith(details);
+	});
+
+	it('should save the state without showing a confirmation modal if there was no previously saved state',
+		inject([CheckComponent, ConfirmComponent, SaveStateService], (component: CheckComponent, confirmComponent: ConfirmComponent, service: SaveStateService) => {
+			const mockEvent = new Event('some event');
+			component.confirmComponent = confirmComponent;
+
+			spyOn(service, 'hasSavedState').and.returnValue(false);
+			spyOn(confirmComponent, 'showConfirmation');
+			spyOn(component, 'saveStateConfirm');
+
+			component.saveState(mockEvent);
+
+			expect(confirmComponent.showConfirmation).not.toHaveBeenCalled();
+			expect(component.saveStateConfirm).toHaveBeenCalledWith(mockEvent);
+		})
+	);
+
+	it('should show a confirmation modal if there was a previously saved state when the save button was pressed',
+		inject([CheckComponent, ConfirmComponent, SaveStateService], (component: CheckComponent, confirmComponent: ConfirmComponent, service: SaveStateService) => {
+			const mockEvent = new Event('some event');
+			component.confirmComponent = confirmComponent;
+
+			spyOn(service, 'hasSavedState').and.returnValue(true);
+			spyOn(confirmComponent, 'showConfirmation');
+			spyOn(component, 'saveStateConfirm');
+
+			component.saveState(mockEvent);
+
+			expect(confirmComponent.showConfirmation).toHaveBeenCalled();
+			expect(component.saveStateConfirm).not.toHaveBeenCalledWith(mockEvent);
+		})
+	);
 });

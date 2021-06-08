@@ -5,7 +5,7 @@ import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 	templateUrl: './toolbar.component.html'
 })
 export class ToolbarComponent implements OnInit {
-	@Output() saveState: EventEmitter<boolean> = new EventEmitter<boolean>();
+	@Output() saveState: EventEmitter<Event> = new EventEmitter<Event>();
 	@Output() loadState: EventEmitter<Event> = new EventEmitter<Event>();
 
 	constructor() { }
@@ -13,8 +13,8 @@ export class ToolbarComponent implements OnInit {
 	ngOnInit(): void {
 	}
 
-	save(): void {
-		this.saveState.emit(true);
+	save(event: Event): void {
+		this.saveState.emit(event);
 	}
 
 	load(event: Event): void {

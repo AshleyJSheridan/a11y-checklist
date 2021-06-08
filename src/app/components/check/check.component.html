@@ -12,15 +12,20 @@
 			</ul>
 		</nav>
 
-		<app-toolbar *ngIf="currentStep < totalSteps" (saveState)="saveState($event)" (loadState)="loadState($event)"></app-toolbar>
+		<ng-container *ngIf="currentStep < totalSteps">
+			<app-toolbar (saveState)="saveState($event)" (loadState)="loadState($event)"></app-toolbar>
+			<app-notification></app-notification>
+		</ng-container>
 		
 		<app-check-content-types (nextStep)="nextStep($event)" [attr.hidden]="!canShowStep(1) ? 'true' : null"></app-check-content-types>
 
 		<app-check-desired-compliance-level (nextStep)="nextStep($event)" [attr.hidden]="!canShowStep(2) ? 'true' : null"></app-check-desired-compliance-level>
-		
-		<app-toolbar *ngIf="currentStep == totalSteps" (saveState)="saveState($event)" (loadState)="loadState($event)"></app-toolbar>
-		
-		<app-notification></app-notification>
+
+		<ng-container *ngIf="currentStep == totalSteps">
+			<app-toolbar *ngIf="currentStep == totalSteps" (saveState)="saveState($event)" (loadState)="loadState($event)"></app-toolbar>
+			<app-notification></app-notification>
+		</ng-container>
+
 	</div>
 	
 	<div class="results">

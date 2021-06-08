@@ -79,6 +79,23 @@ export class CheckComponent implements OnInit {
 	}
 
 	saveState(event: any): void {
+		const hasSavedState = this.saveStateService.hasSavedState();
+
+		if(hasSavedState) {
+			const focusTarget = event.currentTarget;
+			const confirmOptions = new ConfirmModalOptions(
+				'Save Checklist',
+				'Your current saved checklist settings will be overwritten. Do you wish to continue?',
+				focusTarget,
+				'save-confirm'
+			);
+			this.confirmComponent.showConfirmation(confirmOptions);
+		} else {
+			this.saveStateConfirm(event);
+		}
+	}
+
+	saveStateConfirm(event: any): void {
 		const saveSuccess = this.saveStateService.saveState(this.getSelectedContentTypes(), this.getSelectedGuidelineLevel(), this.getCheckedGuidelines());
 		let notificationType;
 		let message;
@@ -133,6 +150,10 @@ export class CheckComponent implements OnInit {
 			// dispatch to correct method
 			if(details.modalType === 'load-confirm') {
 				this.loadStateConfirm(details);
+			}
+
+			if(details.modalType === 'save-confirm') {
+				this.saveStateConfirm(details);
 			}
 		}
 	}
