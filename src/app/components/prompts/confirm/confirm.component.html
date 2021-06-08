@@ -1,8 +1,8 @@
-<div class="{{ modalClass }} modal" *ngIf="canShowModal()" role="dialog">
+<div class="{{ modalClass }} modal" *ngIf="canShowModal()" role="dialog" aria-labelledby="confirm-prompt-title" aria-describedby="confirm-prompt-description">
 	<div class="modal-overlay">
 		<div class="modal-content">
-			<p class="confirmation-title">{{ title }}</p>
-			<p class="confirmation-text">{{ message }}</p>
+			<p class="confirmation-title" id="confirm-prompt-title">{{ title }}</p>
+			<p class="confirmation-text" id="confirm-prompt-description">{{ message }}</p>
 
 			<div class="modal-actions">
 				<button type="button" (click)="yes($event)" class="confirm-accept">{{ acceptLabel }}</button>
