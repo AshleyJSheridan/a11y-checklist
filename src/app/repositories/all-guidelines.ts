@@ -8,9 +8,10 @@ import { CodeSnippet } from '../entities/code-snippet';
 	providedIn: 'root'
 })
 export class AllGuidelines {
+	private _imagesWithoutAltSnippet: CodeSnippet = new CodeSnippet('(() => {let images = document.querySelectorAll("img:not([alt])");images.forEach((image) => {let hidden = image.getAttribute("aria-hidden");if(hidden !== "false"){console.error(image);}})})()', 'Find <code>&lt;img></code> tags without <code>alt</code> text');
 	private _videoCaptionSnippet: CodeSnippet = new CodeSnippet('(() => {let vids = document.querySelectorAll("video");vids.forEach((vid) => {let t = vid.querySelectorAll("track[kind=subtitles], track[kind=captions], track[kind=descriptions]");if(t.length === 0){console.error(vid);}})})()', 'Find <code>&lt;video></code> elements without tracks marked as description, captions, or subtitles');
 	private _audioCaptionSnippet: CodeSnippet = new CodeSnippet('(() => {let clips = document.querySelectorAll("audio");clips.forEach((clip) => {let t = clip.querySelectorAll("track[kind=subtitles], track[kind=captions], track[kind=descriptions]");if(t.length === 0){console.error(clip);}})})()', 'Find <code>&lt;audio></code> elements without tracks marked as description, captions, or subtitles');
-	private _unlabelledFormElementsSnippet: CodeSnippet = new CodeSnippet('(() => {let inputs = document.querySelectorAll("input:not([type=submit]):not([type=reset]):not([type=button]):not([type=hidden]), select, textarea");inputs.forEach((input) => {let parentLabel = getParentOfType(input, "label");if(parentLabel !== false)return;let inputId = input.getAttribute("id");let associatedLabel = getElementWithAttributeValue("label", "for", inputId);if(!associatedLabel) {console.error(input);} else {let label = parentLabel ? parentLabel : associatedLabel;let labelDisplay = getComputedStyleForNode(label, "display");let labelVisibility = getComputedStyleForNode(label, "visibility");if (labelDisplay === "none" || labelVisibility === "hidden") {console.error(input);}}})})();function getParentOfType(childNode, type) {let node = childNode.parentNode;while (node !== null && node.tagName !== undefined) {if (node.tagName.toLowerCase() === type)return node;node = node.parentNode;}return false;}function getElementWithAttributeValue(elementType, attribute, attributeValue) {if (attributeValue === null)return false;var element = document.querySelector(elementType + "[" + attribute + "=\"" + attributeValue + "\"]");return element;}function getComputedStyleForNode(node, property) {var computedStyles = window.getComputedStyle(node);return computedStyles.getPropertyValue(property);}', 'Find form elements with no associated label, or labels hidden from screen readers');
+	private _unlabelledFormElementsSnippet: CodeSnippet = new CodeSnippet('(() => {let inputs = document.querySelectorAll("input:not([type=submit]):not([type=reset]):not([type=button]):not([type=hidden]), select, textarea");inputs.forEach((input) => {let parentLabel = getParentOfType(input, "label");if(parentLabel !== false)return;let inputId = input.getAttribute("id");let associatedLabel = getElementWithAttributeValue("label", "for", inputId);if(!associatedLabel) {console.error(input);} else {let label = parentLabel ? parentLabel : associatedLabel;let labelDisplay = getComputedStyleForNode(label, "display");let labelVisibility = getComputedStyleForNode(label, "visibility");if (labelDisplay === "none" || labelVisibility === "hidden") {console.error(input);}}})})();function getParentOfType(childNode, type) {let node = childNode.parentNode;while (node !== null && node.tagName !== undefined) {if (node.tagName.toLowerCase() === type)return node;node = node.parentNode;}return false;}function getElementWithAttributeValue(elementType, attribute, attributeValue) {if (attributeValue === null)return false;var element = document.querySelector(`${elementType}[${attribute}=${attributeValue}]`);return element;}function getComputedStyleForNode(node, property) {var computedStyles = window.getComputedStyle(node);return computedStyles.getPropertyValue(property);}', 'Find form elements with no associated label, or labels hidden from screen readers');
 	private _audioVideoCaptionsSnippet: CodeSnippet = new CodeSnippet('(() => {let clips = document.querySelectorAll("audio,video");clips.forEach((clip) => {let t = clip.querySelectorAll("track[kind=captions]");if(t.length === 0){console.error(clip);}})})()', 'Find <code>&lt;audio></code> and <code>&lt;video></code> elements without tracks marked as description');
 	private _audioVideoDescriptionsSnippet: CodeSnippet = new CodeSnippet('(() => {let clips = document.querySelectorAll("audio,video");clips.forEach((clip) => {let t = clip.querySelectorAll("track[kind=descriptions]");if(t.length === 0){console.error(clip);}})})()', 'Find <code>&lt;audio></code> and <code>&lt;video></code> elements without tracks marked as description');
 	private _colourContrastSnippet: CodeSnippet = new CodeSnippet('(() => {let walker = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT, null, false);let textNode;while (textNode = walker.nextNode()) {var textContent = textNode.textContent.trim();if (textContent.length > 0) {var computedStyles = window.getComputedStyle(textNode.parentNode);var background = getColourFromComputed(computedStyles, "background-color");var foreground = getColourFromComputed(computedStyles, "color");var fontSize = parseInt(getPropertyFromComputedStyles(computedStyles, "font-size"));var fontWeight = getPropertyFromComputedStyles(computedStyles, "font-weight");var contrast = getColourContrast(background, foreground);if (!doesTextContrast(fontSize, fontWeight, contrast)) {console.error(textNode);}}}})();function getPropertyFromComputedStyles(computedStyles, property) {return computedStyles.getPropertyValue(property);}function getColourFromComputed(computedStyles, colourProperty) {var colour = getPropertyFromComputedStyles(computedStyles, colourProperty);var colourComponents;if (colour.match(/^rgba/)) {colourComponents = colour.match(/^rgba\\((\\d+), ?(\\d+), ?(\\d+), ?(\\d+)/);return convertRGBAtoRGB(colourComponents[1], colourComponents[2], colourComponents[3], colourComponents[4]);}colourComponents = colour.match(/^rgb\\((\\d+), ?(\\d+), ?(\\d+)/);return {r: parseInt(colourComponents[1]),g: parseInt(colourComponents[2]),b: parseInt(colourComponents[3])};}function convertRGBAtoRGB(r, g, b, alpha) {var defaultBackground = 255;return {r: (1 - alpha) * defaultBackground + alpha * r,g: (1 - alpha) * defaultBackground + alpha * g,b: (1 - alpha) * defaultBackground + alpha * b};}function getColourContrast(rgb1, rgb2) {var luminance1 = getColourLuminance(rgb1.r, rgb1.g, rgb1.b);var luminance2 = getColourLuminance(rgb2.r, rgb2.g, rgb2.b);return luminance1 / luminance2;}function getColourLuminance(r, g, b) {var a = [r, g, b].map(function (v) {v /= 255;return v <= .03928? v / 12.92: Math.pow((v + .055) / 1.055, 2.4);});return a[0] * 0.2126 + a[1] * 0.7152 + a[2] * .0722 + .05;}function doesTextContrast(fontSize, fontWeight, contrast) {var minContrastLevel = 4.5;var largeTextContrastLevel = 3;var largeTextSize = 24;var largeTextSizeBold = 18.66;var boldTextWeight = 700;var passedMinContrast = contrast >= minContrastLevel;var isLargeText = (fontSize >= largeTextSize) || (fontWeight >= boldTextWeight && fontSize >= largeTextSizeBold);var passedLargeTextMinContrast = (isLargeText && contrast >= largeTextContrastLevel);return passedMinContrast || passedLargeTextMinContrast;}', 'Find text that does not contrast well enough with the background');
@@ -18,10 +19,10 @@ export class AllGuidelines {
 	private _textSpacingSnippet: CodeSnippet = new CodeSnippet('(() => {let body = document.body || document.getElementsByTagName("body")[0];let textSpacing = document.createElement("style");body.appendChild(textSpacing);textSpacing.type = "text/css";textSpacing.appendChild(document.createTextNode("* {line-height: 2.5 !important;letter-spacing:1.12 !important;word-spacing:1.16 !important;}p {margin-bottom: 2em !important;}"))})();', 'Increase the spacing of text to test for broken layouts');
 	private _missingTitleSnippet: CodeSnippet = new CodeSnippet('(() => {if(document.title.length===0){console.error("missing page title")}})()', 'Detect missing page title');
 	private _largeTabindexSnippet: CodeSnippet = new CodeSnippet('(() => {let tabItems = document.querySelectorAll("*[tabindex]");tabItems.forEach((tabElement) => {let index = parseFloat(tabElement.getAttribute("tabindex"));if(index > 1){console.warn(tabElement)}})})()', 'Detect and warn about elements containing a <code>tabindex</code> higher than 1');
-	private _showLinkTextSnippet: CodeSnippet = new CodeSnippet('(()=>{let links=document.querySelectorAll("a");links.forEach((domLink) => {let link = domLink.cloneNode(true);let tabIndex = link.getAttribute("tabindex");if(tabIndex === "-1")return;let images=link.querySelectorAll("img");images.forEach((image) => {let altText = image.getAttribute("alt");image.parentNode.replaceChild(document.createTextNode(altText), image);})console.log(link.innerText);})})()','Show the text of links');
+	private _showLinkTextSnippet: CodeSnippet = new CodeSnippet('(()=>{let foundLinks = [];let links=document.querySelectorAll("a");links.forEach((domLink) => {let link = domLink.cloneNode(true);let tabIndex = link.getAttribute("tabindex");if(tabIndex === "-1")return;let images = link.querySelectorAll("img");images.forEach((image) => {let altText = image.getAttribute("alt");image.parentNode.replaceChild(document.createTextNode(altText), image);});foundLinks.push([link.innerText, link]);});console.table(foundLinks);})()', 'Show all links on the page and the text content of them');
 	private _missingDocumentLanguage: CodeSnippet = new CodeSnippet('(() => {if(document.querySelector("html:not([lang])")){console.error("missing document language identifier")}})()','Detect missing document language identifier');
-	private _missingLanguageOfParts: CodeSnippet = new CodeSnippet('(() => {if(document.querySelectorAll("*[lang]").length<1){}console.warn("No alternate language parts of document found")})()','Detect no lang attributes on any part of document');
-					
+	private _missingLanguageOfParts: CodeSnippet = new CodeSnippet('(() => {let langAttributes = document.querySelectorAll("*[lang]");if(langAttributes.length < 2 && langAttributes.length > 0){if(langAttributes[0].tagName.toLowerCase() !== "html"){console.warn("No alternate language parts of document found")}}})()', 'Detect no lang attributes on any part of document');
+
 	availableGuidelines: Guideline[] = [
 		new Guideline(
 			GuidelineLevel.A,
@@ -37,7 +38,7 @@ export class AllGuidelines {
 			</ul>`,
 			[ContentType.Audio, ContentType.Images, ContentType.Video, ContentType.Forms, ContentType.Animation],
 			[
-				new CodeSnippet('console.error(document.querySelectorAll("img:not([alt])"))', 'Find <code>&lt;img></code> tags without <code>alt</code> text'),
+				this._imagesWithoutAltSnippet,
 				this._videoCaptionSnippet,
 				this._audioCaptionSnippet,
 				this._unlabelledFormElementsSnippet,
@@ -732,7 +733,9 @@ export class AllGuidelines {
 			<p>If a link needs to visually remain as "read more", then <code>aria-labelledby</code> or <code>aria-label</code> can be used to provied an
 				accessible label, but this approach should be considered a last resort</p>`,
 			[],
-			[]
+			[
+				this._showLinkTextSnippet
+			]
 		),
 		new Guideline(
 			GuidelineLevel.AAA,
@@ -927,7 +930,8 @@ export class AllGuidelines {
 				<li>Moving focus to another component, although sometimes exceptions may be made for important modal dialogues where focus
 					trap might be required</li>
 				<li>Opening windows, or triggering system dialogs (like print or download) unless the user has already taken a
-					specific action where such a dialog might be expected (such as clicking a download link)</li>
+					specific action where such a dialog might be expected. For example, an automatic download may occur on a page where the user
+					has taken an explicit action where this is expected behaviour, but not when a website first loads, for example.</li>
 			</ul>`,
 			[],
 			[]
@@ -1023,6 +1027,8 @@ export class AllGuidelines {
 				<li>A date field should indicate the format required if it will only work with a specific type</li>
 				<li>Phone number fields should show the format they expect, and also if non-numerical values are allowed (as phone numbers
 					aren't numbers)</li>
+				<li>Password fields should state their requirements upfront, and not wait until the form is submitted to show the character
+					requirements</li>
 				<li>Optional and required fields should indicate their status with more than an asterisk/star alone, such as with a message
 					within the form that indicates what the use of this symbol means</li>
 			</ul>
@@ -1100,7 +1106,7 @@ export class AllGuidelines {
 				validated successfully.</p>
 			<p>Things to look out for are:</p>
 			<ul>
-				<li>Missig closing tags</li>
+				<li>Missing closing tags</li>
 				<li>Mismatched tags, or tags closed in the wrong nesting order</li>
 				<li>Duplicate <code>id</code> attributes</li>
 				<li>Invalid tags, or custom tags with improper names or not registed correctly</li>
@@ -1126,7 +1132,9 @@ export class AllGuidelines {
 				<li>Validation requirements or restrictions that apply to a given field</li>
 			</ul>`,
 			[],
-			[]
+			[
+				this._unlabelledFormElementsSnippet
+			]
 		),
 		new Guideline(
 			GuidelineLevel.AA,
