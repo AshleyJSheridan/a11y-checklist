@@ -20,6 +20,8 @@ import { PercentCompleteComponent } from './components/percent-complete/percent-
 import { ToolbarComponent } from './components/toolbar/toolbar.component';
 import { NotificationComponent } from './components/notification/notification.component';
 import { ConfirmComponent } from './components/prompts/confirm/confirm.component';
+import { AppRoutingModule } from './app-routing.module';
+import { HelpComponent } from './components/help/help.component';
 
 @NgModule({
 	declarations: [
@@ -42,10 +44,12 @@ import { ConfirmComponent } from './components/prompts/confirm/confirm.component
 		PercentCompleteComponent,
   ToolbarComponent,
   NotificationComponent,
-  ConfirmComponent
+  ConfirmComponent,
+  HelpComponent
 	],
 	imports: [
-		BrowserModule
+		BrowserModule,
+  AppRoutingModule
 	],
 	providers: [],
 	bootstrap: [AppComponent]

@@ -1,0 +1,157 @@
+<div class="help">
+	<header>
+		<h1>Accessibility Checklist Tool</h1>
+		<p>An accessibility tool for testers.</p>
+	</header>
+
+	<main>
+		<h2 id="help-heading">Help </h2>
+
+		<section id="contents-section" aria-labelledby="contents-section-heading">
+			<h2 id="contents-section-heading">Table of Contents</h2>
+
+			<nav aria-labelledby="contents-section-heading">
+				<ul>
+					<li><a href="#how-to-use-heading">How to Use</a>
+						<ul>
+							<li><a href="#content-selection-heading">Content Selection</a></li>
+							<li><a href="#compliance-level-selection-heading">Compliance level selection</a></li>
+							<li><a href="#guidelines-to-test-heading">The Guidelines to Test</a></li>
+						</ul>
+					</li>
+					<li><a href="#saving-loading-heading">Saving/Loading</a>
+						<ul>
+							<li><a href="#saving-section-heading">Saving</a></li>
+							<li><a href="#loading-section-heading">Loading</a></li>
+						</ul>
+					</li>
+
+				</ul>
+			</nav>
+		</section>
+
+		<section id="how-to-use" aria-labelledby="how-to-use-heading">
+			<h2 id="how-to-use-heading">How to Use</h2>
+
+			<p>The checklist tool is made up of three main parts:</p>
+
+			<ul>
+				<li>Content selection</li>
+				<li>Compliance level selection</li>
+				<li>The guidelines to test</li>
+			</ul>
+
+			<p>At any point you can move backwards to any particular stage of the tool by selecting that step from the 3-step
+				navigation at the very top of the tool.</p>
+
+			<p><a href="#contents-section">Back to top</a></p>
+
+			<section id="content-selection" aria-labelledby="content-selection-heading">
+				<h3 id="content-selection-heading">Content Selection</h3>
+
+				<p>The content selection screen is where you try to best match the content types you wish to check. Here's a
+					better breakdown of what each type covers:</p>
+
+				<dl>
+					<dt>Animation</dt>
+					<dd>This covers everything from a full-on animated show piece right, a website with animations as a user
+						scrolls, right the way through to a website using subtle pulsing animation to draw attention to new
+						features.</dd>
+
+					<dt>Audio</dt>
+					<dd>Any website that uses audio, including noises attached to events (messages, alerts, etc) and the adio
+						from videos.</dd>
+
+					<dt>Forms</dt>
+					<dd>Forms are a crucial part of the web, and this covers all the things you need to check if your content
+						contains them or form components, like buttons, text inputs, checkboxes, and other form-like components.</dd>
+
+					<dt>Images</dt>
+					<dd>This covers tradition <code>&lt;img></code> images as well as <code>&lt;canvas></code> and
+						<code>&lt;svg></code>. Even CSS images would be covered under this.</dd>
+
+					<dt>Modals</dt>
+					<dd>Modals include things like alerts, prompts, and confirmation dialogs which attempt to trap the user in
+						them until a specific type of action is taken. A regular system modal dialog handles many of the normal
+						accessibility needs of a user, but they often get re-implemented to allow for better customisation.</dd>
+
+					<dt>Timed</dt>
+					<dd>If components on your website require a user to be able to take a specific action in a specific timeframe,
+						then this will ensure the generated guidelines cover it. For example, things like drop-down (not
+						<code>&lt;select></code>) menus which require a mouse movement from point a to b in less than a second
+						would count under this.</dd>
+
+					<dt>Translations</dt>
+					<dd>Any content which is available in either multiple languages, or content which includes mixed language
+						content needs some specific language guideline checks.</dd>
+
+					<dt>Video</dt>
+					<dd>As well as traditional video content, this also covers things like animations which are video-like.</dd>
+				</dl>
+
+				<p>If your content includes none of these types, then only a few accessibility guidelines which apply to all
+					basic content will be presented.</p>
+
+				<p><a href="#contents-section">Back to top</a></p>
+			</section>
+
+			<section id="compliance-level-selection" aria-labelledby="compliance-level-selection-heading">
+				<h3 id="compliance-level-selection-heading">Compliance level selection</h3>
+
+				<p>Compliance against the Web Content Accessibility Guidelines (WCAG) ranges from the most basic (A) up to
+					the near impossible (AAA). It's fairly typical to aim for AA compliance, as it's a good middle ground.</p>
+				<p>AAA compliance is incredibly difficult to achieve, especially if you have live video content. On the other
+					hand, single-A compliance is very easy, but doesn't generate a very big change for those most in need.</p>
+
+				<p><a href="#contents-section">Back to top</a></p>
+			</section>
+
+			<section id="guidelines-to-test" aria-labelledby="guidelines-to-test-heading">
+				<h3 id="guidelines-to-test-heading">The Guidelines to Test</h3>
+
+				<p>Once you've made your selections, you'll be presented with a selection of guidelines which best match your
+					choices from the <a href="https://www.w3.org/TR/WCAG21/">WCAG 2.1</a> specification.</p>
+
+				<p>Each guideline is listed under its main groups (perceivable, operable, understandable, & robust), which
+					generally outline what type of thing they check.</p>
+
+				<p>Initially, all guidelines are in their minimised state, with only their checkbox, number, and name shown.
+					Each one can be expanded by clicking on the name to show a more detailed description that explains the
+					guideline better. Where possible, there are code snippets which you can copy and paste into your browser
+					console to test the live content of your website. These snippets range from testing images without alternative
+					text, to the colour contrast of text elements on the page.</p>
+
+				<p><a href="#contents-section">Back to top</a></p>
+			</section>
+		</section>
+
+		<section id="saving-loading" aria-labelledby="saving-loading-heading">
+			<h2 id="saving-loading-heading">Saving/Loading</h2>
+
+			<p>You can save and load a single state using the buttons provided in the toolbar. This functionality has been built
+				with privacy in mind, so state is saved in your browsers local storage rather than in a cookie or directly against
+				a server.</p>
+
+			<p><a href="#contents-section">Back to top</a></p>
+
+			<section id="saving-section" aria-labelledby="saving-section-heading">
+				<h3 id="saving-section-heading">Saving</h3>
+
+				<p>If you have no current saved state, then clicking the save button will do so with only a success notification.
+					However, if you already have a state saved, you will be warned about overwriting this if you continue.</p>
+
+				<p><a href="#contents-section">Back to top</a></p>
+			</section>
+
+			<section id="loading-section" aria-labelledby="loading-section-heading">
+				<h3 id="loading-section-heading">Loading</h3>
+
+				<p>Clicking the load button will always ask for confirmation about loading a state over the current state. This
+					is to ensure that you don't accidentally load a state over the top of any current changes or selections you
+					may have made.</p>
+
+				<p><a href="#contents-section">Back to top</a></p>
+			</section>
+		</section>
+	</main>
+</div>
